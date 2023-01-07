@@ -1,0 +1,199 @@
+{% load staticfiles %}
+     <!-- Info box Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                {%if id_data%}
+                                    <form action="{% url action pk=id_data.id %}" method="post" enctype="multipart/form-data">
+                                    {%else%}
+                                    <form action="{% url action %}" method="post" enctype="multipart/form-data">
+                                {%endif%}
+                                {% csrf_token %}
+                                    <div class="form-body">
+                                        <input type="hidden" name="next" value="{{ request.path }}">
+                                                                               
+                                        <div id="team">
+                                            <div class="mt-2" style="height: 42px;">
+                                                <h5 class="card-title" style="position: absolute;">Team Field</h5>
+                                                <button id="addmember" type="button" style="float: right;" class="btn btn-success text-white"> <i class="fa fa-plus"></i> Add Member</button>
+                                                    <input type='hidden' id="count"  name="count" value="{% if team|length == 0 %} 1 {%endif%}">
+                                            </div> 
+                                            {% if t %}                                               
+                                            <div id="team1">
+                                                <img src="{% if t.profile_picture %}{{t.profile_picture.url}} {% endif %} " class="img-circle" style="margin-bottom: -36px;" width="50px" height="50px">
+                                                <div class="row mt-2" style="border: inset;">
+                                                    <input type='hidden'  name="teamid1" value="{{t.id}}">
+                                                    <div class="col-md-9 mt-4">                                                   
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Name</label>
+                                                                    <input type="text" id="pname" name="fname1" class="form-control" value="{{t.name}}"  placeholder="Name of the member"> 
+                                                                </div>
+                                                            </div>
+                                                            <!--/span-->
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Post</label>
+                                                                    <input type="text" name="fpost1" id="lastName" class="form-control" value="{{t.post}}" placeholder="Post of member"> 
+                                                                </div>
+                                                            </div>
+                                                            <!--/span-->
+                                                        </div>
+                                                        <div class="row">                                    
+                                                            <div class="col-md-6 ">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Short Description</label>
+                                                                    <textarea name="fshort_description1" class="form-control" rows="4">{{t.short_description}}</textarea>
+                                                                </div>
+                                                            </div>                                                
+                                                        
+                                                            <div class="col-md-6 ">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Long Description</label>
+                                                                    <textarea name="flong_contents1" class="form-control" rows="4">{{t.long_contents}}</textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                            <label class="form-label">Profile Picture</label> <br>                                                            
+                                                                <input name="fimage1" type="file" id="input-file-now" class="dropify" />{{t.profile_picture}}
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                            
+                                            </div>  
+                                            {% else %}
+                                            <div id="team1">
+                                                <img src="https://plus1group.com.au/wp-content/uploads/2018/07/1_Circle_Wealth.png" class="img-circle" style="margin-bottom: -36px;" width="50px" height="50px">                                          
+                                                                                             
+                                                <div class="row mt-2" style="border: inset;">
+                                                    <input type='hidden'  name="teamid1" value="">
+                                                    <div class="col-md-9 mt-4">                                                   
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Name</label>
+                                                                    <input type="text" id="pname" name="fname1" class="form-control" value=""  placeholder="Name of the member"> 
+                                                                </div>
+                                                            </div>
+                                                            <!--/span-->
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Post</label>
+                                                                    <input type="text" name="fpost1" id="lastName" class="form-control" value="" placeholder="Post of member"> 
+                                                                </div>
+                                                            </div>
+                                                            <!--/span-->
+                                                        </div>
+                                                        <div class="row">                                    
+                                                            <div class="col-md-6 ">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Short Description</label>
+                                                                    <textarea name="fshort_description1" class="form-control" rows="4"></textarea>
+                                                                </div>
+                                                            </div>                                                
+                                                        
+                                                            <div class="col-md-6 ">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Long Description</label>
+                                                                    <textarea name="flong_contents1" class="form-control" rows="4"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                            <label class="form-label">Profile Picture</label> <br>                                                            
+                                                                <input name="fimage1" type="file" id="input-file-now" class="dropify" />
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                            
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        <!--team end-->
+                                         <div class="form-actions m-t-40">
+                                        <button id="normal" type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="button" class="btn btn-dark">Cancel</button>
+                                    </div>
+                                    </div>
+                                        
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+<script>
+    $(document).ready(function(){
+            $('#addmember').click(function(){         
+                var i = $('#count').val();
+                var i = parseInt(i) + 1 ;
+                $('#count').val(i)
+                var hi = `
+                            <img src="https://plus1group.com.au/wp-content/uploads/2018/07/1_Circle_Wealth.png" class="img-circle" style="margin-bottom: -36px;" width="50px" height="50px">
+                            <div id="team1" class="row mt-2" style="border: inset;">
+                                <input type='hidden'  name='teamid`+i+`' value=''>
+                                <div class="col-md-9 mt-4">                                                   
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Name</label>
+                                                <input type="text" id="pname" name="fname`+i+`" class="form-control" value=""  placeholder="Name of the member"> </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Post</label>
+                                                <input type="text" name="fpost`+i+`" id="lastName" class="form-control" value="" placeholder="Post of member"> </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <div class="row">                                    
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label class="form-label">Short Description</label>
+                                                <textarea name="fshort_description`+i+`" class="form-control" rows="4"></textarea>
+                                            </div>
+                                        </div>                                                
+                                    
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label class="form-label">Long Description</label>
+                                                <textarea name="flong_contents`+i+`" class="form-control" rows="4"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <label class="form-label">Profile Picture</label>
+                                            <input name="fimage`+i+`" type="file" id="input-file-now" class="dropify" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
+                        `;
+
+                $("#team1").after(hi);
+                // console.log("hi");
+            });
+
+            
+            
+        });
+            
+                            
+</script>

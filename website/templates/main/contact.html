@@ -1,0 +1,50 @@
+{% extends 'layout/master.html' %}
+{% load staticfiles %}
+{% block contents %}
+
+        <!--banner start-->
+        <div class="hm_bread_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <h1>contact</h1>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">contact</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--About section start-->
+        <div class="contact_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="contact_box">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <h2>email</h2>
+                            <p><a href="#">{{global_data.site_email}}</a></p>
+                            {% comment %} <p><a href="#">support@handmade.com</a></p> {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="contact_box">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <h2>phone</h2>
+                            <p>{{global_data.site_contact}}</p>
+                            {% comment %} <p>+214567893218</p> {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="contact_box">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <h2>address</h2>
+                            <p>{{global_data.site_address}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}

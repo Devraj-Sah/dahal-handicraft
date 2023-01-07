@@ -1,0 +1,177 @@
+{% extends 'layout/master.html' %}
+{% load staticfiles %}
+{% block contents %}
+{% load mathfilters %} 
+ <!--banner start-->
+ <div class="hm_bread_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1>Your Cart Section</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'Cart' %}">Cart</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--cart section start-->
+
+<div class="container">
+    <div class="cart_all_pro">
+        <div class="px-4 px-lg-0">
+            <!-- For demo purpose -->
+
+
+            <div class="pb-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 p-5 bg-white rounded shadow-sm mb-5">
+
+                            <!-- Shopping cart table -->
+
+
+                            <!-- table head  -->
+
+                            <div class="table_head">
+                                <div class="conainer">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <h3>Product Name</h3>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <h3>Price</h3>
+
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h3>Quantity</h3>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <h3>Action</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- first -->
+                            <input type='hidden' id="count"  name="count" value="{{wishlist|length}}">
+                            {% for w in wishlist %}
+                                <!-- second -->
+                                <div class="individual_pro">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-12">
+                                                <div class="pro_img">
+                                                    <img src="{{w.product.image1.url}}" alt="" width="70">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-4 col-sm-12">
+                                                <div class="pro_data">
+                                                    <h5> {{w.product.name}}</h5>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2 col-sm-12" >
+                                                <div class="pro_data" style="display:flex">
+                                                    <h5> $</h5> <h5 id="price{{forloop.counter}}" style="margin-left:-60px;"> {{w.product.price}}</h5>
+
+                                                </div >
+
+
+                                            </div>
+                                            <div class="col-md-2 col-sm-12">
+                                                <div class="pro_data">
+                                                    <h5 id="num{{forloop.counter}}">{{w.quantity}}</h5>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="col-md-2 col-sm-12">
+                                                <div class="pro_data">
+                                                    <h5>
+                                                        <a href="{% url 'WishListDelete' p_id=w.product.id pk=c_id next="cart" %}" style="color: #00a550;">remove</a>
+                                                    </h5>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            {% endfor %}
+
+                            <!-- End -->
+                        </div>
+                        <div class="col-lg-4 p-5 bg-white rounded shadow-sm mb-5">
+
+                            <div class="order_price">
+                                <div class="summery_dev">
+                                    <h6>
+                                        Order summary
+                                        </h3>
+                                </div>
+                                <div class="p-4">                                    
+                                    <ul class="list-unstyled mb-4">
+                                        <li class="d-flex justify-content-between py-3 border-bottom">
+                                            <strong class="text-muted">Order Subtotal
+                                            </strong><strong id="alltotal"></strong>
+                                        </li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom">
+                                            <strong class="text-muted">Shipping and
+                                                handling</strong><strong>$ (Will be sent in Mail)</strong>
+                                        </li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom">
+                                            <strong class="text-muted">Tax</strong><strong>$0.00</strong>
+                                        </li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom">
+                                            <strong class="text-muted">Total</strong>
+                                            <h5 class="font-weight-bold" id="alltotal1"></h5>
+                                        </li>
+                                    </ul><button href="{% url 'CheckOut' %}">Procceed to
+                                        Order</button>
+                                </div>
+                                <script>
+                                    var count = $('#count').val()                                    
+                                    var items = 0
+                                    var temp_items = 0
+                                    var total = 0
+                                    for (var i=1;i<=count;i++){
+                                        var name = '#num'+i
+                                        var price = '#price'+i
+                                        items += parseInt($(name).text())
+                                        temp_items = parseInt($(name).text())
+                                        price = parseInt($(price).text())
+                                        total += temp_items * price                           
+                                    }     
+                                    total = "$ "+total      
+                                    //$('#items').text(items)          
+                                    $('#alltotal').text(total)          
+                                    $('#alltotal1').text(total)          
+                                   
+                                </script>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

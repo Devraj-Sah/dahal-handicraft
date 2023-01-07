@@ -1,0 +1,64 @@
+{% load staticfiles %}
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Product Overview</h5>
+                <div class="table-responsive m-t-30">
+                    <table class="table product-overview">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Title</th>
+                                <th>icon_image</th>
+                                <th>banner_image</th>
+                                <th>author</th>
+                                <th>Updated</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+
+                            </tr>
+                        </thead>
+                        {% if p_list %}
+                        <tbody id="tableSearch">
+                            {% for i in p_list %}
+                            <tr>
+                                <td>{{i.id}}</td>
+                                <td>{{i.title}}</td>
+                                <td>    
+                                    {% if i.icon_image %}              
+                                        <img src="{{i.icon_image.url}}" class="" alt="{{i.icon_image}}" width="80" height="50">
+                                    {% else %}
+                                        NotFound
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if i.banner_image %}              
+                                        <img src="{{i.banner_image.url}}" class="" alt="{{i.banner_image}}" width="80" height="50">
+                                    {% else %}
+                                        NotFound
+                                    {% endif %}
+                                </td>
+                                <td>{{i.author}}</td>
+                                <td>{{i.updated_at}}</td>                               
+                                <td>
+                                    <span class="label label-success">{{i.status}}</span>
+                                </td>
+                                <td>
+                                    <a href="{% url 'BlogsCreate' pk=i.id %}" class="text-inverse p-r-10" data-bs-toggle="tooltip" title="" data-original-title="Edit">
+                                        <i class="ti-marker-alt" style="font-size:18px"></i>
+                                    </a> 
+                                    <a href="{% url 'BlogsDelete' pk=i.id %}" class="text-inverse" title="" data-bs-toggle="tooltip" data-original-title="Delete">
+                                        <i class="ti-trash" style="font-size:18px"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

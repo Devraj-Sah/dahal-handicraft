@@ -1,0 +1,63 @@
+{% extends 'layout/master.html' %}
+{% block contents %}
+
+    <!-- main top bar -->
+
+ 
+     <div class=" loginPage" >
+         <form class="loginFrom" method="post" action="{%url 'user_login' %}">
+            {% csrf_token %}
+             <h2 class="loginTitle">Royal Family Collection</h2>
+             <div class=" LoginFormContainer">
+                {% if messages%}
+                    {%for message in messages%}
+                        <div class="alert alert-info">
+                                {% autoescape off %}
+                                {{message}}
+                            {% endautoescape %}
+                        </div>
+                    {%endfor%}
+                {%endif%}
+                 <h4>Sign-In</h4>
+                 <div class="inputBoxLogin">
+                     <input label="Email" name="email" type="text" placeholder="ak@gmail.com" />
+                 </div>
+
+                 <div class="inputBoxLogin">
+                     <input label="Password" name="password" type="password"
+                         placeholder="password" />
+                 </div>
+                 <div class="inputBoxLogin">
+                   
+                     <button type="submit">Continue</button>
+                 </div>
+             </div>
+             <p>
+                 Don't have an account ?
+                 <a class="link" href="{%url 'user_register'%}">
+                 <span style="cursor: pointer;">SIGN UP</span>
+                 </a>
+             </p>
+             <div class="terms">
+                 By creating an account, you agree to Royal Family Collection's Conditions of
+                 Use and Privacy Notice.
+             </div>
+             <div class="loginWithGoogle">
+                 <p class="googleIconItem text-center">
+                     <i class="fa-brands fa-google"></i>
+                     <span onClick={loginGoogle}>Login with Google</span>
+                 </p>
+             </div>
+         </form>
+     </div>
+ 
+
+
+ 
+
+
+{% endblock %}
+
+
+
+

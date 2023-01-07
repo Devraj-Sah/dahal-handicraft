@@ -1,0 +1,74 @@
+{% extends 'layout/master.html' %}
+{% block contents %}
+
+
+    <!-- start register page -->
+
+
+        <div class=" registerPage">
+
+            <div class="registerFrom">
+            <form class="" method="post" action="{%url 'user_register'%}">
+                {% csrf_token %}
+                <h2 class="registerTitle">Royal Family Collection</h2>
+                <div class=" registerFormContainer">
+                    <h4>Create An Account</h4>
+                    
+                    <div class="inputBoxLogin">
+                        <input label="First Name" name="first_name" type="text" placeholder="Full Name" />
+                    </div>
+
+                    <div class="inputBoxLogin">
+                        <input label="Last Name" name="last_name" type="text" placeholder="User Name" />
+                    </div>
+
+                    <div class="inputBoxLogin">
+                        <input label="Permant Address" name="permanent_address" type="text" placeholder="Permant Address" />
+                    </div>
+
+                    <div class="inputBoxLogin">
+                        <input label="Current Address" name="current_address" type="text" placeholder="Current Address" />
+                    </div>
+                    
+
+                    <div class="inputBoxLogin">
+                        <input label="Email" name="email" type="email" placeholder="a@gmail.com" />
+                    </div>
+                   
+                    <div class="inputBoxLogin">
+                        <input label="Contact no." name="number" type="text"
+                            placeholder="98********" />
+                    </div>
+                   
+                    <div class="inputBoxLogin">
+                        <input label="Password" name="password" type="password"
+                            placeholder="password" />
+                    </div>
+                  
+                    <div class="inputBoxLogin">
+                        <input label="Confirm Password" name="cpassword" type="password"
+                            placeholder="confirm password" />
+                    </div>
+                    <div class="inputBoxLogin">
+                     
+                        <button type="submit">Continue</button>
+                    </div>
+                </div>
+                <p>
+                    Already have an account ?
+                    <a class="link" href="{%url 'user_login'%}">
+                    <span style="cursor:pointer ;" class="siginInBtn">LOG IN</span>
+                    </a>
+                </p>
+                <div class="terms">
+                    By creating an account, you agree to All In One's Conditions of
+                    Use and Privacy Notice.
+                </div>
+            </form>
+            </div>
+ 
+        </div>
+
+
+  
+{% endblock %}

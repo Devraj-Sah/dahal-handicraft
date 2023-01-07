@@ -1,0 +1,238 @@
+{% load staticfiles %}
+    <!-- Info box Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                {%if id_data%}
+                                    <form action="{% url action edit_id=id_data.id %}" method="post" enctype="multipart/form-data" onsubmit="submitForm();" name="navform">
+                                    {%else%}
+                                    <form action="{% url action %}" method="post" enctype="multipart/form-data" onsubmit="submitForm();" name="navform">
+                                {%endif%}
+                                {% csrf_token %}
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+                                    <div class="form-body">
+                                        {% if messages%}
+                                            {%for message in messages%}
+                                                <div class="alert alert-info">
+                                                       {% autoescape off %}
+                                                        {{message}}
+                                                    {% endautoescape %}
+                                                </div>
+                                            {%endfor%}
+                                        {%endif%}
+                                        <h5 class="card-title">Add Navigation</h5>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">NAME</label>
+                                                    {% if id_data.name == 'About' %}
+                                                        <input readonly id="pname" name="name" class="form-control" value="{{id_data.name}}"  placeholder="Name"> 
+                                                    {% else %}
+                                                        <input type="text" id="pname" name="name" class="form-control" value="{{id_data.name}}"  placeholder="Name"> 
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label class="form-label">caption</label>                                                    
+                                                        <input type="text" name="caption" id="lastName" class="form-control" value="{{id_data.caption}}" placeholder="caption">                                                     
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <!--/row-->
+                                        <div class="row">
+                                        {%if  parent_data%}
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Parent Page</label>
+                                                    <select class="form-control" name="parent_page_id" data-placeholder="Choose a Category" tabindex="1">
+                                                        {% comment %} <option value="0">select category</option> {% endcomment %}
+                                                        {% if id_data.parent.name == 'Slider' or parent_data.name == 'Slider' %}
+                                                            <option value="{% if id_data.parent.id %}{{id_data.parent.id}}{%else%}{{parent_data.id}}{% endif %}" selected > Slider </option>
+                                                        {% elif id_data.parent.name == 'clients' or parent_data.name == 'clients' %}
+                                                            <option value="{% if id_data.parent.id %}{{id_data.parent.id}}{%else%}{{parent_data.id}}{% endif %}" selected > Clients </option>
+                                                        {% elif id_data.parent.name == 'Happy_Customers' or parent_data.name == 'Happy_Customers' %}
+                                                            <option value="{% if id_data.parent.id %}{{id_data.parent.id}}{%else%}{{parent_data.id}}{% endif %}" selected > Happy Customers </option>
+                                                        {% elif id_data %}
+                                                            {% for cat in category %}
+                                                                <option value="{{cat.id}}" {% if cat.id == id_data.parent_page_id %} selected {% endif %} >{{cat.name}}</option>
+                                                            {% endfor %}
+                                                        {% elif parent_data %}
+                                                            {% for cat in category %}
+                                                                 <option value="{{cat.id}}" {% if cat.id == parent_data.id %} selected {% endif %} >{{cat.name}}</option>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </div>                                           
+                                            {%else%}
+                                                 <input type="hidden" name="parent_page_id" value="0">
+                                            {%endif%}
+                                            <!--/span-->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="form-label">Status</label>
+                                                    <br/>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" value=1 id="customRadioInline1" name="status" class="form-check-input" checked >
+                                                        <label class="form-check-label" for="customRadioInline1">Publish</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" value=0 id="customRadioInline2" name="status" class="form-check-input" {% if id_data.status == 0 %} checked {% endif %}>
+                                                        <label class="form-check-label" for="customRadioInline2">Draft</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <!--/span-->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="form-label">Position</label>
+                                                    <br/>                
+                                                      <input type="number" value="{% if id_data %}{{id_data.position}}{% else %}{{position}}{% endif %}" id="quantity" name="position" min="1" max="50">                                      
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Page Type</label>
+                                                    <select class="form-control" id='page_type' name="page_type" data-placeholder="Choose a Category" tabindex="1">
+                                                        {% if id_data.parent.caption == 'slider' or parent_data.name == 'Slider'%}
+                                                             <option value="sale" selected > sale </option>
+                                                        {% elif id_data.name == 'About' %}
+                                                             <option value="contact" selected > contact </option>
+                                                        {% elif id_data.parent.name == 'clients' or parent_data.name == 'clients' %}
+                                                             <option value="blog" selected > Clients </option>
+                                                        {% elif id_data.parent.name == 'Happy_Customers' or parent_data.name == 'Happy_Customers' %}
+                                                             <option value="normal" selected > Happy Customers </option>
+                                                        {% else %}
+                                                            {% for page in page_type %}
+                                                                <option value="{{page.page_name}}"  {% if page.page_name == id_data.page_type %} selected {% endif %}> {{page.page_name}} </option>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <input type="text" class="form-control" style="display: none;" name="title" value="" placeholder="Title" aria-label="Title" aria-describedby="basic-addon2">
+
+                                            <!--/span-->
+                                            {% comment %} <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Title</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon2"><i class="ti-cut"></i></span>
+                                                        </div>
+                                                        <input type="text" class="form-control" name="title" value="{{id_data.title}}" placeholder="Title" aria-label="Title" aria-describedby="basic-addon2">
+                                                    </div>
+                                                </div>
+                                            </div> {% endcomment %}
+                                            <!--/span-->
+                                        </div>
+                                        {% if id_data.page_type == 'sale' or id_data.page_type == 'contact' %}
+                                            <h5 class="card-title m-t-40">Short Description</h5>
+                                            <div class="row">
+                                                <div class="col-md-12 ">
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" name="short_description" id="short_description" rows="4">{{id_data.short_description}}</textarea>                                            
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <textarea class="form-control" style="display: none;" name="short_description" rows="4"></textarea>   
+                                        {% endif %}                                         
+                                        <h5 class="card-title m-t-40">Long Description</h5>
+                                      
+                                        <div class="row">
+                                            <div class="col-md-12 ">
+                                                <div class="form-group">
+                                                    <textarea id="long_content" name="long_contents">{{id_data.long_contents}}</textarea>
+                                                     <script src="{% static '/assets/dist/js/htmeditor.min.js' %}"      htmeditor_textarea="long_content" htmeditor_textarea1="short_description"     full_screen="no"      editor_height="350" editor_height1="200"    run_local="no"> </script> 
+                                                     <!-- https://www.htmeditor.com/embed-html-editor/ -->
+                                                     <!-- Embed the HTMEditor <textarea id="htmeditor"></textarea> <script src="https://htmeditor.com/js/htmeditor.min.js"      htmeditor_textarea="htmeditor"      full_screen="yes"      editor_height="480"     run_local="no"> </script>  -->
+                                                     <!-- <textarea name="long_contents" class="form-control" rows="4">{{id_data.long_contents}}</textarea> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <input type="hidden" name="meta_title" class="form-control" value=""> </div>
+                                            <input type="hidden" name="keyword" class="form-control" value=""> </div>
+                                            {% comment %} <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Meta Title</label>
+                                                    <input type="text" name="meta_title" class="form-control" value="{{id_data.meta_title}}"> </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Meta Keyword</label>
+                                                    <input type="text" name="keyword" class="form-control" value="{{id_data.keyword}}"> </div>
+                                            </div> {% endcomment %}
+                                            <!--/span-->
+                                        
+                                            <div class="col-md-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Banner Image</h4>
+                                                        <input name="image1" type="file" id="input-file-now" class="dropify" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% if id_data.banner_image1 %}
+                                                    <script>
+                                                        $("#input-file-now").attr("data-default-file", "{{id_data.banner_image1.url}}");
+                                                    </script>
+                                            {% endif %}
+                                             {% comment %} <div class="col-md-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Banner Image 2</h4>
+                                                        <input name="image2" type="file" id="input-file-now" class="dropify" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">ICON IMAGE</h4>
+                                                        <input name="image3" type="file" id="input-file-now" class="dropify" />
+                                                    </div>
+                                                </div>
+                                            </div> {% endcomment %}
+                                        </div>
+                                        <hr> 
+
+                                    </div>
+
+                                    <div class="form-actions m-t-40">
+                                        <button id="normal" type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="button" class="btn btn-dark">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                
+                <script>
+                        function submitForm(){
+                            var position = document.navform.newposition.value;
+                            document.navform.position.value = position;                                                 
+                        }                                      
+                                 
+                </script>

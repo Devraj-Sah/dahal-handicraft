@@ -1,0 +1,128 @@
+<!-- Info box Content -->
+<!-- ============================================================== -->
+<div class="row">
+    <!-- Column -->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                {%if id_data%}
+                <form action="{% url action id=id_data.id %}" method="post" enctype="multipart/form-data">
+                    {%else%}
+                    <form action="{% url action %}" method="post" enctype="multipart/form-data"
+                        enctype="multipart/form-data">
+                        {%endif%}
+                        {% csrf_token %}
+                        <div class="form-body">
+                            <h5 class="card-title">Add Role</h5>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Role Name</label>
+                                        <input type="text" id="first" name="name" value="{{id_data.name}}" class="form-control" value=""
+                                            placeholder="Admin">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Status</label>
+                                        <br />
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="customRadioInline1" name="status"
+                                                class="form-check-input">
+                                            <label class="form-check-label" for="customRadioInline1">Publish</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="customRadioInline2" name="status"
+                                                class="form-check-input">
+                                            <label class="form-check-label" for="customRadioInline2">Draft</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- column -->
+                                <div class="col-md-12">
+                                    <div class="skin skin-line m-t-30">
+
+                                        <div class="form-group">
+                                            <label class="form-label">Colors</label>
+                                            <div class="input-group">
+                                                <ul class="icolors">
+                                                    <li></li>
+                                                    <li class="red active"></li>
+                                                    <li class="green"></li>
+                                                    <li class="blue"></li>
+                                                    <li class="orange"></li>
+                                                    <li class="yellow"></li>
+                                                    <li class="purple"></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Permission List</label>
+                                                    <div class="input-group">
+                                                        <ul class="icheck-list">
+                                                            {% for permission in permissions_1_19 %}
+                                                            <li>
+                                                                <input type="checkbox" class="check" {% if permission in group_has_permission %} checked {% endif %} data-checkbox="icheckbox_line-red" data-label="{{permission.name}}" name="permissions" value="{{permission.id}}">
+                                                            </li>
+                                                            {% endfor %}
+                                                            <!-- <li>
+                                                                        <input type="checkbox" class="check" disabled data-checkbox="icheckbox_line-red" data-label="Disabled"> </li>
+                                                                    <li>
+                                                                        <input type="checkbox" class="check" checked disabled data-checkbox="icheckbox_line-red" data-label="Disabled &amp; checked">
+                                                                     </li> -->
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Permission List</label>
+                                                    <div class="input-group">
+                                                        <ul class="icheck-list">
+                                                            {% for permission in permissions_20_39 %}
+                                                                <li>
+                                                                    <input type="checkbox" class="check" {% if permission in group_has_permission %} checked {% endif %} data-checkbox="icheckbox_line-red" data-label="{{permission.name}}" name="permissions" value="{{permission.id}}">
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Permission List</label>
+                                                    <div class="input-group">
+                                                        <ul class="icheck-list">
+                                                            {% for permission in permissions_40_58 %}
+                                                                <li>
+                                                                    <input type="checkbox" class="check"  {% if permission in group_has_permission %} checked {% endif %} data-checkbox="icheckbox_line-red" data-label="{{permission.name}}" name="permissions" value="{{permission.id}}">
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+            </div>
+        </div>
+        <!-- column -->
+        <!--/span-->
+    </div>
+
+    <hr>
+</div>
+<div class="form-actions m-t-40">
+    <input type="hidden" name="next" value="{{ request.path }}">
+    <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>
+    <button type="button" class="btn btn-dark">Cancel</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- Column -->
+</div>
+<!-- ============================================================== -->
+<!-- End PAge Content -->

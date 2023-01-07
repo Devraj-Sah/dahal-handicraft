@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<div class="row">
+    {% comment %} <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2">
+        {% include 'admin/tree/tree.html '%}
+    </div> {% endcomment %}
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Navigation Overview</h5>
+                <div class="table-responsive m-t-30">
+                    <table class="table product-overview">
+                       
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Banner Image</th>
+                                {% if open%}
+                                <th>Parent Category</th>
+                                  {%endif%}
+                                <th>Page Type</th>
+                                <th>Position</th>
+                                <th>Status</th>
+                                <th>Actions</th>                                
+                                {% if not open%}
+                                <th>Open</th>
+                                {%endif%}
+                        
+                            </tr>
+                        </thead>
+
+                     {% if all_data   %}
+                        <tbody id="tableSearch">
+                            {% for i in all_data %}
+                            <tr>
+                                <td>{{i.id}}</td>
+                                <td>{{i.name}}</td>
+                                <td>{% if i.banner_image %} <img src="{{i.banner_image.url}}" class="" alt="{{i.name}}" width="80" height="50"> {% else %} NotFound {%  endif %}</td>                                
+                                {% if  open%} 
+                                    <td>{{i.parent_page_id}}</td>
+                                {%endif%}
+                                <td>{{i.page_type}}</td>
+                                <td>{{i.position}}</td>
+                                <td>
+                                    <span class="label label-success">{{i.status}}</span>
+                                </td>
+                                <td>
+                                    <a href="{% url 'NavigationCreate' edit_id=i.id %}" class="text-inverse p-r-10" data-bs-toggle="tooltip" title="" data-original-title="Edit">
+                                        <i class="ti-marker-alt" style="font-size:18px"></i>
+                                    </a> 
+                                    <a href="{% url 'NavigationDelete' id=i.id %}" class="text-inverse" title="" data-bs-toggle="tooltip" data-original-title="Delete">
+                                        <i class="ti-trash" style="font-size:18px"></i>
+                                    </a>
+                                </td>
+                                {% if i.page_type == 'group' %}
+                                <td>
+                                    <a href="{% url 'NavigationList' id=i.id %}"><img src="{% static '/assets/icons/folder.jpg' %}" class="" alt="{{i.name}}" width="80" height="50">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        {% endif %} 
+                    </table>
+                    <style>
+                        table td img{
+                         transition: transform 0.5s;
+                        }
+                        table td img:hover{
+                            transform: rotate(15deg);
+                        }
+                    </style>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

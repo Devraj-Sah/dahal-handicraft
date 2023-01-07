@@ -1,0 +1,184 @@
+{% load staticfiles %}
+    {% load mathfilters %}   
+<style>
+    .dropdown-toggle::after {
+        display: none;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> {{slug1}} </h5>
+                <div class="table-responsive">
+                    <table class="table product-overview">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Customer</th>
+                                <th>Order ID</th>
+                                <th>Photo</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>View</th>
+                                <th>Date</th>
+                                <th>Status</th>   
+                                <th style="display:none">number</th>
+                                <th style="display:none">email</th>                            
+                            </tr>
+                        </thead>
+                        {% if all_data %}
+                        <tbody id="tableSearch">
+                            {% for i in all_data %}                               
+                            <tr>
+                
+                                <td>{{i.id}}</td>
+                                <td>{{i.user_detail}}</td>
+                                <td>#00{{i.id}}</td>
+                                <td>    
+                                    {% if i.product.image1 %}                                               
+                                        <img src="{{i.product.image1.url}}" class="" alt="{{i.product.image1}}" width="80" height="50">
+                                    {% else %}
+                                        NotFound
+                                    {% endif %}
+                                </td>   
+                                <td>{{i.product.name}}</td> 
+                                <td>{{i.product_details}}</td>  <!-- this is quantity-->
+                                <td>{{i.product.price|sub:i.product.discount|mul:i.product_details}}/-</td>
+                                <td><button data-bs-toggle="modal" data-bs-target="#order_detail{{i.id}}" class="btn waves-effect waves-light btn-secondary model_img img-responsive">view</button></td>
+                                 <td><span class="label label-info">{{i.get_date}}</span></td>
+                                 <td><span class="label label-success">{% if i.pdc == 'p' %} Pending {% elif i.pdc == 'd' %} Delevired {% else %} Processing {% endif %}</span></td>
+                                 {% if action%}
+                                 <td>
+                                   <div class="dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                           <i class="bi bi-three-dots-vertical" style="color: ;"></i>
+                                        </a>
+
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <li>
+                                                <a class="dropdown-item" href="{% url "Order" pk=i.id pdc="p"  %}"> 
+                                                    {%if i.pdc == "p" %} 
+                                                <i class="bi bi-check-lg"></i> 
+                                                {% else %} &nbsp; &nbsp;
+                                                    {% endif %}
+                                                Pending
+                                                </a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{% url "Order" pk=i.id pdc="d"  %}">
+                                                {%if i.pdc == "d" %} 
+                                                <i class="bi bi-check-lg"></i> 
+                                                {% else %} &nbsp; &nbsp;
+                                                    {% endif %}
+                                                Delivered
+                                            </a></li>
+                                            {% comment %} <li><a class="dropdown-item" href="{% url "Order" pk=i.id pdc="c"  %}">
+                                                {%if i.pdc == "c" %} 
+                                                <i class="bi bi-check-lg"></i> 
+                                                {% else %} &nbsp; &nbsp;
+                                                    {% endif %}
+                                                Cancelled Order
+                                            </a></li> {% endcomment %}
+                                        </ul>
+                                        </div>
+                                 </td>
+                                 <td style="display:none">{{i.phone}}</td>  
+                                 <td style="display:none">{{i.get_shipping_address.email}}</td>
+                                 {% endif %}                                                          
+                            </tr>
+                            {% comment %} <script>
+                                    $(document).ready(function($){
+                                        $(".clickable-row{{forloop.counter}}").click(function() {
+                                            window.location = $(this).data("href");
+                                        });
+                                    });
+                            </script> {% endcomment %}
+                    
+                            {% endfor %}
+                        </tbody>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-----modal-->
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Vertically Center</h4>
+        <!-- sample modal content -->
+        <!----for loop-->
+       {% for i in all_data %}  
+        <div id="order_detail{{i.id}}" class="modal" tabindex="-1" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="vcenter">ORDER DETAIL</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-----order detail-->
+
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="">{{i.product.name}}</h3>
+                                    <h6 class="card-subtitle">{{i.product.title}}</h6>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-6">
+                                            <div class="white-box text-center"> {% if i.product.image1 %}  <img src="{{i.product.image1.url}}" class="img-responsive"> {% endif %} </div>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-6">
+                                            <h4 class="box-title m-t-40">Product description</h4>
+                                            <p>{{i.product.discription}}</p>
+                                            <h2 class="m-t-40">${{i.product.price}} <small class="text-success">({{i.product.discount_type}} off)</small></h2>
+                                            
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <h3 class="box-title m-t-40">General Info</h3>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td width="390">Customer Name</td>
+                                                            <td>{{i.user_detail}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Mobile Number</td>
+                                                            <td>{{i.phone}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Shipping Address</td>
+                                                            <td> {{i.shipping_address}} </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email</td>
+                                                            <td>{{i.get_shipping_address.email}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-----close order detail-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info waves-effect text-white" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        {% endfor %}
+        <!----end for loop  -->
+    </div>
+</div>

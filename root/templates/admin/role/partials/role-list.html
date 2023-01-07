@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Roles Overview</h5>
+                <div class="table-responsive m-t-30">
+                    <table class="table product-overview">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Role Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for id , name in roles %}
+                            <tr>
+                               <td>{{id}}</td>
+                               <td>{{name}}</td>
+                                
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

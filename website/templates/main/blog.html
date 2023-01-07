@@ -1,0 +1,103 @@
+{% extends 'layout/master.html' %}
+{% load staticfiles %}
+{% block contents %}
+           <!--banner start-->
+           <div class="hm_bread_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <h1>Our Blog</h1>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Our Blog</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--blog section start-->
+        <div class="hm_news_wrapper">
+            <div class="container">
+                <div class="row">
+
+
+                    {% comment %} {% for b in blog %}
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="blogSectionImg">
+                            {% if b.icon_image %}
+                                <img src="{{b.icon_image.url}}" class="card-img-top" alt="cart_img" />
+                            {%else%}
+                                <img src="{{b.banner_image.url}}" class="card-img-top" alt="cart_img" />
+                            {% endif %}
+                            
+                            <div class="card-body">
+
+                                <h6>{{b.updated_at}}</h6>
+
+                                <div class="blog-Title">
+                                    <a class="link" href="{% url 'BlogDetail' id=b.id %}">
+                                        {{b.title}}
+                                    </a>
+
+                                </div>
+
+                                <div class="readMoreButton">
+                                    <a class="link" href="{% url 'BlogDetail' id=b.id %}">
+                                        <span> Read More</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %} {% endcomment %}
+
+                {% for b in blog %}
+
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="hm_news_box">
+                            <div class="hm_news_img">
+                                <a href="{% url 'BlogDetail' id=b.id %}">
+                                    {% if b.icon_image %}
+                                        <img src="{{b.icon_image.url}}" class="img-responsive" alt="HandiCraft" />
+                                    {%else%}
+                                        <img src="{{b.banner_image.url}}" class="img-responsive" alt="HandiCraft" />
+                                    {% endif %}
+                                <div class="news_img_overlay"></div>
+                                </a>
+                            </div>
+                            <div class="hm_news_data">
+                                <h3><a href="{% url 'BlogDetail' id=b.id %}">{{b.title}}</a></h3>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>admin</a></li>
+                                    <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{b.get_date}}</a></li>
+                                </ul>
+                                {% if b.main_title != '' %}
+                                    {% autoescape off %}
+                                        {{b.main_title}}
+                                    {% endautoescape %}
+                                {% else %}
+                                <p>Every time we are on a vacation, we face a tough time selecting budget-friendly souvenirs for our relatives. </p>
+                                {% endif %}
+                                <a href="{% url 'BlogDetail' id=b.id %}" class="news_btn">read more</a>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+                    
+                  
+                  
+                   
+                   
+                </div>
+                
+            </div>
+        </div>
+
+{% endblock %}
+
+
+
+
+

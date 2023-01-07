@@ -1,0 +1,213 @@
+{% load staticfiles %}
+     <!-- Info box Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                {%if id_data%}
+                                    <form action="{% url action pk=id_data.id %}" method="post" enctype="multipart/form-data">
+                                    {%else%}
+                                    <form action="{% url action %}" method="post" enctype="multipart/form-data">
+                                {%endif%}
+                                {% csrf_token %}
+                                    <div class="form-body">
+                                        <input type="hidden" name="next" value="{{ request.path }}">
+
+                                        <h5 class="card-title">Add Product</h5>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group"> 
+                                                    <label class="form-label dev">Site Name</label> 
+                                                    <input type="text" id="site_name" name="site_name" class="form-control" placeholder="Site Name"
+                                                    value="{{id_data.site_name}}" required>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Site Name (नेपालिमा)</label>
+                                                    <input type="text" id="site_nepali_name" name="site_name_nepali" class="form-control"
+                                                    placeholder="Site Name" value="{{id_data.site_name_nepali}}">
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label dev">Site Email</label>
+                                                    <input type="email" id="site_email" name="site_email" class="form-control" placeholder="devraj.sah310@gmail.com"
+                                                    value="{{id_data.site_email}}" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label dev">Site Contact</label>
+                                                    <input type="text" id="phone" name="site_contact" class="form-control" placeholder="9829936530"
+                                                    value="{{id_data.site_contact}}" required>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Site Contact (नेपालिमा)</label>
+                                                    <input type="text" id="phone_ne" name="site_contact_nepali" class="form-control"
+                                                    placeholder="9861733649" value="{{id_data.site_contact_nepali}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label dev">Site Address</label>
+                                                    <input type="text" id="address_ne" name="site_address" class="form-control"
+                                                    placeholder="Ktm, 1 .." value="{{id_data.site_address}}" required>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Site Address (नेपालिमा)</label>
+                                                        <input type="text" id="address_ne" name="site_address_nepali" class="form-control"
+                                                        placeholder="काठमाडौँ , १ .." value="{{id_data.site_address_nepali}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">facebook link</label>
+                                                    <input type="text" id="facebook" name="fb_link" class="form-control"
+                                                    placeholder="facebook link" value="{{id_data.fb_link}}">
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Twitter Url</label>
+                                                        <input type="text" id="page_keyword" name="twitter_link" class="form-control"
+                                                        placeholder="Twitter" value="{{id_data.twitter_link}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">LinkedIn  url</label>
+                                                    <input type="text" id="LinkedIn" name="linkedin_link" class="form-control"
+                                                    placeholder="LinkedIn" value="{{id_data.linkedin_link}}">
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label class="form-label">Youtube link</label>
+                                                        <input type="text" id="other" name="other_link" class="form-control"
+                                                        placeholder="Instagram Link" value="{{id_data.other_link}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label dev">Page Title</label>
+                                                <input type="text" id="page_title" name="page_title" class="form-control" placeholder="Page Title"
+                                                value="{{id_data.page_title}}" required>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label class="form-label">Page Keyword</label>
+                                                    <input type="text" id="page_keyword" name="page_keyword" class="form-control"
+                                                    placeholder="Page Keyword" value="{{id_data.page_keyword}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        </div>
+                                        <h5 class="card-title m-t-40">Description</h5>
+                                        <div class="row">
+                                            <div class="col-md-12 ">
+                                                <div class="form-group">
+                                                    <textarea name="page_discription" class="form-control" rows="4">{{id_data.page_discription}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">                                      
+                                            <div class="col-md-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Fav Icon</h4>
+                                                        <input name="image1" type="file" id="input-file-now1" class="dropify" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% if id_data.image1 %}
+                                            <script>
+                                                $("#input-file-now1").attr("data-default-file", "{{id_data.image1.url}}");
+                                            </script>
+                                            {% endif %}
+                                            <div class="col-md-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Logo</h4>
+                                                        <input name="image2" type="file" id="input-file-now2" class="dropify" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% if id_data.image2 %}
+                                                <script>
+                                                    $("#input-file-now2").attr("data-default-file", "{{id_data.image2.url}}");
+                                                </script>
+                                            {% endif %}
+                                            <div class="col-md-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Fotter Logo</h4>
+                                                        <input name="image3" type="file" id="input-file-now3" class="dropify" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% if id_data.image3 %}
+                                            <script>
+                                                $("#input-file-now3").attr("data-default-file", "{{id_data.image3.url}}");
+                                            </script>
+                                            {% endif %}
+                                        <hr> </div>
+                                    <div class="form-actions m-t-40">
+                                        <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="button" class="btn btn-dark">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                

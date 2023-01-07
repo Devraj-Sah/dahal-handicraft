@@ -1,0 +1,208 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{%static '/assets/images/favicon.png' %}">
+    <title>Radiant InfoTech Nepal Pvt. Ltd. | IT Company of Nepal | Web Development | Web Designing | Graphic Designing | Web Designer | Authorized Company of Digital Signature | Authorized G Suite Colud Partner for Nepal | Authorized G Suite Reseller in Nepal | Software Development | Web Hosting | Domain Registration</title>
+    
+    <!-- chartist CSS -->
+    <link href="{% static '/assets/node_modules/morrisjs/morris.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/dist/css/pages/ecommerce.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/assets/node_modules/dropify/dist/css/dropify.min.css' %}"><!----for form image page image upload-->
+    <link href="{% static '/assets/dist/css/pages/login-register-lock.css' %}" rel="stylesheet"><!--login page css for only one page login page-->
+    <!-- Custom CSS -->
+    <link href="{% static '/assets/dist/css/style.min.css' %}" rel="stylesheet">
+    <!-- font awsome-->
+      
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    {% block optionalcss %}
+    
+    {% endblock %}
+  
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js' % } "></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js' % } "></script>
+<![endif]-->
+    <script src="{% static '/assets/node_modules/jquery/dist/jquery.min.js' %}"></script>
+<style type="text/css">
+    .dev:after{
+        content:" *";
+        color:red;
+        }
+}
+</style>
+</head>
+
+<body class="skin-default fixed-layout">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Radiant admin</p>
+        </div>
+    </div>
+   
+    <div id="main-wrapper">
+     
+      <!-- topbar -->
+      {% include "partials/top-header.html"  %}
+       
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- User Profile-->
+                <div class="user-profile">
+                    <div class="user-pro-body">
+                        {% if user.image %}                                               
+                            <div><img src="{{user.image.url}}" class="" alt="{{user.image.url}}" width="80" height="50" alt="user-img" class="img-circle"></div>
+                        {% else %}
+                        <div NotFound></div>                           
+                        {% endif %}
+                        <div class="dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ user.first_name }} <span class="caret"></span></a>
+                            <div class="dropdown-menu animated flipInY">
+                                <!-- text-->
+                                <!-- <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a> -->
+                                <!-- text-->
+                                <!-- <a href="javascript:void(0)" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a> -->
+                                <!-- text-->
+                                <!-- <a href="javascript:void(0)" class="dropdown-item"><i class="ti-email"></i> Inbox</a> -->
+                                <!-- text-->
+                                <div class="dropdown-divider"></div>
+                                <!-- text-->
+                                <!-- <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a> -->
+                                <!-- text-->
+                                <div class="dropdown-divider"></div>
+                                <!-- text-->
+                                <a href="{% url 'Logout' %}" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                                <!-- text-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sidebar navigation-->
+                {% include "partials/sidebar.html" %}
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+       
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <!-------content md start--------->
+                {% block contents %}
+                    <!-- here all contents displayed -->
+                {% endblock %}             
+                <!-------content md close--------->
+
+                <!-- .right-sidebar -->
+                <div class="right-sidebar">
+                                    <div class="slimscrollright">
+                                        <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+                                        <div class="r-panel-body">
+                                            <ul id="themecolors" class="m-t-20">
+                                                <li><b>With Light sidebar</b></li>
+                                                <li><a href="javascript:void(0)" data-skin="skin-default" class="default-theme working">1</a></li>
+                                                <li><a href="javascript:void(0)" data-skin="skin-green" class="green-theme">2</a></li>
+                                                <li><a href="javascript:void(0)" data-skin="skin-red" class="red-theme">3</a></li>
+                                                <li><a href="javascript:void(0)" data-skin="skin-blue" class="blue-theme">4</a></li>
+                                                <li><a href="javascript:void(0)" data-skin="skin-purple" class="purple-theme">5</a></li>
+                                                <li><a href="javascript:void(0)" data-skin="skin-megna" class="megna-theme">6</a></li>
+                                                <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
+                                                <li><a href="javascript:void(0)" data-skin="skin-default-dark" class="default-dark-theme ">7</a></li>
+                                                <li><a href="javascript:void(0)" data-skin="skin-green-dark" class="green-dark-theme">8</a></li>
+                                                <li><a href="javascript:void(0)" data-skin="skin-red-dark" class="red-dark-theme">9</a></li>
+                                                <li><a href="javascript:void(0)" data-skin="skin-blue-dark" class="blue-dark-theme">10</a></li>
+                                                <li><a href="javascript:void(0)" data-skin="skin-purple-dark" class="purple-dark-theme">11</a></li>
+                                                <li><a href="javascript:void(0)" data-skin="skin-megna-dark" class="megna-dark-theme ">12</a></li>
+                                            </ul>
+                                            <!-- <ul class="m-t-20 chatonline">
+                                                <li><b>Chat option</b></li>
+                                                <li>
+                                                    <a href="javascript:void(0)"><img src="{% static '/assets/images/users/1.jpg' %}" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)"><img src="{% static '/assets/images/users/2.jpg' %}" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)"><img src="{% static '/assets/images/users/3.jpg' %}" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)"><img src="{% static '/assets/images/users/4.jpg' %}" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)"><img src="{% static '/assets/images/users/5.jpg' %}" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)"><img src="{% static '/assets/images/users/6.jpg' %}" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)"><img src="{% static '/assets/images/users/7.jpg' %}" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0)"><img src="{% static '/assets/images/users/8.jpg' %}" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                                                </li>
+                                            </ul> -->
+                                        </div>
+                                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+            </div>
+        </div>
+    
+        <footer class="footer">
+            © 2022 AdminPanel by RadiantNepal
+            <a href="https://radiantnepal.com/">RadiantNepal</a>
+        </footer>
+   
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static '/assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{% static '/assets/dist/js/perfect-scrollbar.jquery.min.js' %}"></script>
+    <!--Wave Effects -->
+    <script src="{% static '/assets/dist/js/waves.js' %}"></script>
+    <!--Menu sidebar -->
+    <script src="{% static '/assets/dist/js/sidebarmenu.js' %}"></script>
+    <!--stickey kit -->
+    <script src="{% static '/assets/node_modules/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
+    <script src="{% static '/assets/node_modules/sparkline/jquery.sparkline.min.js' %} "></script>
+    <!--Custom JavaScript -->
+    <script src="{% static '/assets/dist/js/custom.min.js' %}"></script>
+
+
+
+    <script src="{% static '/assets/node_modules/jquery-sparkline/jquery.sparkline.min.js' %}"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <!--morris JavaScript -->
+    <script src="{% static '/assets/node_modules/raphael/raphael-min.js' %}"></script>
+    <script src="{% static '/assets/node_modules/morrisjs/morris.min.js' %}"></script>
+    <!--Custom JavaScript -->
+    <script src="{% static '/assets/dist/js/ecom-dashboard.js' %}"></script>
+    {% block optionaljs %}
+
+    {% endblock %}
+  
+</body>
+
+
+
+</html>
+

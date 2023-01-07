@@ -1,0 +1,59 @@
+<style>
+    .dashBoard {
+        height: auto;
+    }
+</style>
+<div class="col-md-9 viewWrapper">
+    <h3>Product Details</h3>
+
+    <div class="productDetails">
+
+        <div class=" produtct_data_details">
+                <!-- name -->
+                <span>{{all_data.product.name}}</span> 
+                        <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    
+
+                    <!-- Order data -->
+                    <p>Email : <span></span> </p>
+                    <p>Name : <span>{{all_data.user_detail}}</span> </p>
+                    <p>Contact : <span>{{all_data.phone}}</span> </p>
+                    <p>Status : 
+                        <span style="color:green ;">
+                            {% if all_data.pdc == 'p' %}
+                                We are On the Way.
+                            {% else %}
+                                Packing your Products.
+                            {% endif %}
+
+                        </span> </p>
+                    
+
+                </div>
+                <div class="col-md-6">                   
+
+                    <!-- Order data -->
+                    <p>Order Date : <span>{{all_data.get_date}}</span> </p>
+                    <p>Shipping address : <span>{{all_data.shipping_address}}</span> </p>
+                    <p>Current Address : <span>{{all_data.shipping_address}}</span> </p> 
+                </div>
+            </div>
+            <h4> Details</h4>
+                <span>{{all_data.product.discription}}</span>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+</div>
+
+</div>
+</div>
+
+
+

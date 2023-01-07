@@ -1,0 +1,105 @@
+{% extends 'layout/master.html' %}
+{% block contents %}
+{% load mathfilters %}    
+{%load custom_tags %}
+{% load staticfiles %}
+<!--banner start-->
+<div class="hm_bread_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1>New Arrival</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">New Arrival</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hm_arrivals_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1 class="hm_heading hm_heading_01"><span class="hm_color">Our</span> New Arrivals</h1>
+            </div>
+        </div>
+      <div class="row">
+            {% if product %}
+                {% for k  in product %}
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="new_pro_box">
+                            <div class="new_pro_img">
+                                <a href="/product-details/{{k.id}}">
+                                <img src="{% if k.image1 %}{{k.image1.url}}{% endif %}" alt="handmade-craft-arrivals1" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="new_pro_data">
+                                <h3><a href="/product-details/{{k.id}}">{{k.name}}</a></h3>
+                                <p>{{k.title}}</p>
+                                <div class="new_pro_data_dollar">
+                                <span class="cart_icon"><a href="/product-details/{{k.id}}"><i class="fa fa-eye" aria-hidden="true"></i></a></span>
+                                <a href="/product-details/{{k.id}}"><span class="more">VIEW more</span></a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            {% comment %} <script src={% static 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          $("#search").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#data .col-lg-3").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+        </script> {% endcomment %}
+
+
+    <!-- pagination -->
+    <div class="pagination_rounded pagination_wrapper">
+        <ul>            
+            <li>
+                <a href="{% if product.has_previous %}?page={{product.previous_page_number}}{% else %}#{% endif %}" class="prev"> <i class="fa fa-angle-left" aria-hidden="true"></i> Prev </a>
+            </li>  
+            {% if product.number > 4 %}
+                <li>
+                    <a href="?page=1">1</a>
+                </li> 
+                <li><a href="#"> . . . </a></li>
+            {% endif %}
+            {% for i in product.paginator.num_pages|times:product.number %} 
+            {% if forloop.counter < 6 %}
+                    <li>
+                        <a href="?page={{i}}">{{i}}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}            
+            {% if product.number < product.paginator.num_pages|sub:4  %}
+            <li><a href="#"> . . . </a></li>
+            {% endif %} 
+
+            <li><a href="?page={{product.paginator.num_pages}}">{{product.paginator.num_pages}}</a>
+            </li>
+            <li><a href="{% if product.has_next %}?page={{product.next_page_number}}{% else %}#{% endif %}" class="next"> Next <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+</div>
+    {% endblock %}
+    
+    
+
+
+
+
+
+

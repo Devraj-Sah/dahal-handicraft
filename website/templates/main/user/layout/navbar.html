@@ -1,0 +1,32 @@
+
+    <!-- dashboard -->
+    <div class="container dashBoard">
+        <div class="row">
+
+
+            <div class=" col-md-3 wigitBox">
+                <div class="coreWiget">
+
+                    <h3>My Profile</h3>
+                    <div class="coreWigetItem ">
+
+                        <a  href="{% url 'UserProfile' %} ">
+                            Dashboard
+                        </a>
+                    </div>
+
+                    <div class="coreWigetItem ">
+
+                        <a href="{%url 'UserSetting'%}">
+                            Setting
+                        </a>
+                    </div>
+
+                    <div class="coreWigetItem coreWigetLast ">
+
+                        <a href="{% url 'Logout' %}">
+                            Log Out
+                        </a>
+                    </div>
+                </div>
+            </div>

@@ -1,0 +1,41 @@
+{% load staticfiles %}
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Group Overview</h5>
+                <div class="table-responsive m-t-30">
+                    <table class="table product-overview">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Role Name</th>
+                                <th>Role Permission</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for role in groups %}
+                            <tr>
+                               <td>{{role.id}}</td>
+                               <td>{{role.name}}</td>
+                               <td>
+                                {% for permission in role.permissions.all %} <span class="label label-success">{{permission.name}}</span> {% endfor %}
+                               </td>
+                                <td>
+                                    <a href="{% url 'GroupCreate' id=role.id %}" class="text-inverse p-r-10" data-bs-toggle="tooltip" title="" data-original-title="Edit">
+                                        <i class="ti-marker-alt"></i>
+                                    </a> 
+                                    <a href="{% url 'GroupDelete' id=role.id %}" class="text-inverse" title="" data-bs-toggle="tooltip" data-original-title="Delete">
+                                        <i class="ti-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,307 @@
+{% load staticfiles %}
+{% load mathfilters %}
+
+
+<!-- slider -->
+<section class="image-slider owl-carousel owl-theme">
+
+    {% for slider in sliders %}
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="slider_main_img"
+                        style="background-image:linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url({%if slider.banner_image1 %}{{slider.banner_image1.url}}{%else%}{% static 'assets/images/slide'%}{{forloop.counter}}.jpg{%endif%});background-size: cover;background-position: center;    position: relative;">
+                        {% if slider.long_contents %}
+                            {% autoescape off %}
+                                {{slider.long_contents}}
+                            {% endautoescape %}
+                            {% else %}
+                            <h1>Welcome to Dahal
+                                handicraft</h1>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+</section>
+<!--About section start-->
+<div class="hm_about_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="hm_about_img">
+                    <img src="{% static 'assets/images/about.jpg' %} " alt="handmade-craft-about" class="img-responsive">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="hm_about_data">
+                    {% if contact_section.short_description != '' %}
+                        {% autoescape off %}
+                            {{contact_section.short_description}}
+                            {{contact_section.long_contents}}
+                        {% endautoescape %}
+                    {% else %}
+                        <h1><span class="hm_color">Welcome</span> To Hand Made</h1>
+                        <p>Handicraft Pvt. Ltd. is an online wholesale platform, offering a wide variety of Nepali
+                            hemp handicrafts products at an affordable price and ship worldwide. Our mission is to
+                            connect the dots between the local artisans as well as the overall Nepali handicraft
+                            community with the rest of the world using technology.</p>
+                        <p>As all our products are made from both natural and local raw materials therefore they are
+                            eco-friendly and do not cause deforestation but in fact helps reduce it. We mainly
+                            concentrate on manufacturing various unique, and vintage hemp products and promoting it
+                            across the world to encourage and uplift the skills and lifestyle of people of the
+                            regions from the raw material originates. </p>
+                    {% endif %}
+                    <div class="hm_btn_wrapper">
+                        <a href="/about-us" class="hm_btn">read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--New Arrivals section start-->
+<div class="hm_arrivals_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1 class="hm_heading hm_heading_01"><span class="hm_color">Our</span> New Arrivals</h1>
+            </div>
+        </div>
+        <div class="row">
+
+            {% if product %}
+            {% for k  in product %}
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="new_pro_box">
+                        <div class="new_pro_img">
+                            <a href="/product-details/{{k.id}}">
+                            <img src="{% if k.image1 %}{{k.image1.url}}{% endif %}" alt="handmade-craft-arrivals1" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="new_pro_data">
+                            <h3><a href="/product-details/{{k.id}}">{{k.name}}</a></h3>
+                            <p>{{k.title}}</p>
+                            <div class="new_pro_data_dollar">
+                            <span class="cart_icon"><a href="/product-details/{{k.id}}"><i class="fa fa-eye" aria-hidden="true"></i></a></span>
+                            <a href="/product-details/{{k.id}}"><span class="more">VIEW more</span></a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+            <!-- pagination -->
+            <div class="pagination_rounded pagination_wrapper">
+                <ul>            
+                    <li>
+                        <a href="{% if product.has_previous %}?page={{product.previous_page_number}}{% else %}#{% endif %}" class="prev"> <i class="fa fa-angle-left" aria-hidden="true"></i> Prev </a>
+                    </li>  
+                    {% if product.number > 4 %}
+                        <li>
+                            <a href="?page=1">1</a>
+                        </li> 
+                        <li><a href="#"> . . . </a></li>
+                    {% endif %}
+                    {% for i in product.paginator.num_pages|times:product.number %} 
+                        {% if forloop.counter < 6 %}
+                            <li>
+                                <a href="?page={{i}}">{{i}}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}            
+                    {% if product.number < product.paginator.num_pages|sub:4  %}
+                        <li><a href="#"> . . . </a></li>
+                    {% endif %} 
+
+                    <li><a href="?page={{product.paginator.num_pages}}">{{product.paginator.num_pages}}</a>
+                    </li>
+                    <li><a href="{% if product.has_next %}?page={{product.next_page_number}}{% else %}#{% endif %}" class="next"> Next <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!--end pagination-->
+        </div>
+    </div>
+</div>
+<div class="viewed">
+    <h1 class="viewed-title"> <span> Most</span> viewed/ordered Product</h1>
+    <div class="container">
+        <div class="row g-3">
+            {% if most_ordered %}
+            {% for k  in most_ordered %}
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="new_pro_box">
+                        <div class="new_pro_img">
+                            <a href="/product-details/{{k.id}}">
+                            <img src="{% if k.image1 %}{{k.image1.url}}{% endif %}" alt="handmade-craft-arrivals1" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="new_pro_data">
+                            <h3><a href="/product-details/{{k.id}}">{{k.name}}</a></h3>
+                            <p>{{k.title}}</p>
+                            <div class="new_pro_data_dollar">
+                            <span class="cart_icon"><a href="/product-details/{{k.id}}"><i class="fa fa-eye" aria-hidden="true"></i></a></span>
+                            <a href="/product-details/{{k.id}}"><span class="more">VIEW more</span></a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+</div>
+<!--Product Category sevtion start-->
+
+
+
+<div class="hm_product_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1 class="hm_heading hm_heading_01"><span class="hm_color">Our</span> Product Catalog</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="hm_partners_slider">
+
+                    <!-- first -->
+                    <div class=" owl-carousel owl-theme test_slider_pro">
+
+                        <!-- first -->
+                        {%for menu in menus %}
+                            {% for submenu in menu.childs.all %}
+                                {% if submenu.page_type == "sale"%}
+                                    {% comment %} <li class="nav-item">
+                                        <a href="/{{menu.name}}/{{submenu.name}}" class="nav-link">{{submenu.caption}}</a>
+                                    </li> {% endcomment %}
+                                    <div class="hm_pro_box">
+                                        <div class="hm_pro_img">
+                                            <a href="/{{menu.name}}/{{submenu.name}}">
+                                                <img src="{% if submenu.banner_image1 %}{{submenu.banner_image1.url}}{% else %}{% static 'assets/images/noimage.jpg' %}{% endif %}" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="hm_pro_data">
+                                            <h3><a href="/{{menu.name}}/{{submenu.name}}">{{submenu.caption}}</a></h3>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--happy customer sevtion start-->
+<div class="hm_testimonial_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1 class="hm_heading hm_heading_01"><span class="hm_color">Our</span> happy customers</h1>
+            </div>
+        </div>
+        <div class="row">
+            {% for cus in customers %}
+                <div class="col-lg-4 col-md-4">
+                    <div class="hm_testi_box">
+                        <div class="hm_test_img">
+                            <img src="{{cus.banner_image1.url}}" alt="handmade-craft-customer1"
+                                class="img-responsive" width="60px" height="60px" />
+                        </div>
+                        <h2>{{cus.name}}</h2>
+                        {% autoescape off %}
+                        {{cus.long_contents}}
+                        {% endautoescape %}
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+<!--our blog section start-->
+<div class="hm_news_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1 class="hm_heading hm_heading_01"><span class="hm_color">Our </span>latest blog</h1>
+            </div>
+        </div>
+        <div class="row">
+
+
+            {% for b in blog %}
+
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <div class="hm_news_box">
+                        <div class="hm_news_img">
+                            <a href="{% url 'BlogDetail' id=b.id %}">
+                                {% if b.icon_image %}
+                                    <img src="{{b.icon_image.url}}" class="img-responsive" alt="HandiCraft" />
+                                {%else%}
+                                    <img src="{{b.banner_image.url}}" class="img-responsive" alt="HandiCraft" />
+                                {% endif %}
+                            <div class="news_img_overlay"></div>
+                            </a>
+                        </div>
+                        <div class="hm_news_data">
+                            <h3><a href="{% url 'BlogDetail' id=b.id %}">{{b.title}}</a></h3>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>admin</a></li>
+                                <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{b.get_date}}</a></li>
+                            </ul>
+                            {% if b.main_title != '' %}
+                                {% autoescape off %}
+                                    {{b.main_title}}
+                                {% endautoescape %}
+                            {% else %}
+                            <p>Every time we are on a vacation, we face a tough time selecting budget-friendly souvenirs for our relatives. </p>
+                            {% endif %}
+                            <a href="{% url 'BlogDetail' id=b.id %}" class="news_btn">read more</a>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+<!--our partners section start-->
+<div class="hm_partners_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1 class="hm_heading">Our clients</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="hm_partners_slider">
+                    <div class="owl-carousel owl-theme test_slider">
+                        {% for client in clients %}                        
+                        <div class="item"><img src="{{client.banner_image1.url}}" alt="{{client.name}}">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

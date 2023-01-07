@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Permission Overview</h5>
+                <div class="table-responsive m-t-30">
+                    <table class="table product-overview">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Permission Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for permission in permissions %}
+                                <tr>
+                                <td>{{permission.id}}</td>
+                                <td>{{permission.name}}</td>
+                                    <td>
+                                        <a href="#" class="text-inverse p-r-10" data-bs-toggle="tooltip" title="" data-original-title="Edit">
+                                            <i class="ti-marker-alt"></i>
+                                        </a> 
+                                        <a href="#" class="text-inverse" title="" data-bs-toggle="tooltip" data-original-title="Delete">
+                                            <i class="ti-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

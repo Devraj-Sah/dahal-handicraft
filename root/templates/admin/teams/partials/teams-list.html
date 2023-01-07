@@ -1,0 +1,75 @@
+{% load staticfiles %}
+<style>
+        .clickable-row{
+        cursor: pointer;        
+    }
+table.table>tbody>tr:hover td,
+table.table>tbody>tr:hover th {
+  background-color: #212529 !important;
+  opacity: 0.8;
+  color:white;
+  border-radius: 5px;
+}
+</style>
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> Teams </h5>
+                <div class="table-responsive">
+                    <table class="table product-overview">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>post</th>
+                                <th>Profile Picture</th>
+                                <th>Short Description</th>
+                                <th>Long Description</th>
+                                <th>Action</th>
+                                
+                            </tr>
+                        </thead>
+                        {% if p_list %}
+                        <tbody id="tableSearch">
+                            {% for i in p_list %}
+                            <tr class='clickable-row' onclick="window.location='{% url 'Teams' pk=i.id %}';">
+                            {% comment %} <tr class='clickable-row{{forloop.counter}}' data-href="{% url 'Teams' pk=i.id %}"> {% endcomment %}
+
+                                <td>{{i.id}}</td>
+                                <td>{{i.name}}</td>
+                                <td>{{i.post}}</td>
+                                <td>    
+                                    {% if i.profile_picture %}              
+                                        <img src="{{i.profile_picture.url}}" class="" alt="{{i.profile_picture}}" width="80" height="50">
+                                    {% else %}
+                                        NotFound
+                                    {% endif %}
+                                </td>   
+                                <td>{{i.short_description}}</td>
+                                <td>{{i.long_contents}}</td>
+                                 <td>
+                                    {% comment %} <a href="{% url 'Teams' pk=i.id %}" class="text-inverse p-r-10" data-bs-toggle="tooltip" title="" data-original-title="Edit">
+                                        <i class="ti-marker-alt"></i>
+                                    </a>  {% endcomment %}
+                                    <a href="{% url 'TeamsDelete' pk=i.id %}" class="text-inverse" title="" data-bs-toggle="tooltip" data-original-title="Delete">
+                                        <i class="ti-trash" style="font-size:18px"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% comment %} <script>
+                                    $(document).ready(function($){
+                                        $(".clickable-row{{forloop.counter}}").click(function() {
+                                            window.location = $(this).data("href");
+                                        });
+                                    });
+                            </script> {% endcomment %}
+                            {% endfor %}
+                        </tbody>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

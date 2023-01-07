@@ -1,0 +1,9 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/royalretailshop/royal_family/
+    - /bin/cp -r website $DEPLOYPATH
+    - /bin/cp -r admin $DEPLOYPATH
+    - /bin/cp -r account $DEPLOYPATH
+    - /bin/cp -r media $DEPLOYPATH
+  
+  

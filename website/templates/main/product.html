@@ -1,0 +1,131 @@
+{% extends 'layout/master.html' %}
+{% block contents %}
+            <!--banner start-->
+            <div class="hm_bread_wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <h1>Custom</h1>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active">Custom</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="hm_news_wrapper shop_single">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-12">
+                            <div class="hm_shop_single">
+                                <div class="hm_product_details">
+    
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="custom_title">
+                                            <h2>Select color and size of your product</h2>
+                                        </div>
+                                        <div class="row">
+    
+                                            <div class="col-md-12 rightSide">
+    
+                                                <div class="productdesc">
+    
+                                                    <div class="product_name_filed">
+                                                        <label>Product Name : </label>
+                                                        <textarea name="product brandName"></textarea>
+                                                    </div>
+    
+    
+    
+    
+                                                    <div class="productSize mt-2">
+                                              
+                                                        <div class="productSize mt-2">
+                                                            <span>Size :</span>
+                                                            <select class="selectBox" name="size">
+                                                                <option value="">-- select --</option>
+                                                                <option value="xl">XL</option>
+                                                                <option value="xxl">XXL</option>
+                                                                <option value="xxxl">XXXL</option>
+                                                            </select>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    <br>
+                                                    <div class="productSize mt-2">
+                                                        <span>Size :</span>
+                                                        <div class="language_data">
+                                                            <div class="dropdown language_box" id="dropdownMenuButton1"
+                                                                data-bs-toggle="dropdown">
+                                                                <div class="custom_select_option">
+                                                                    <span>--Select size --</span>
+                                                                    <i class="fa-solid fa-chevron-down"></i>
+                                                                </div>
+                                                                <ul class="dropdown-menu"
+                                                                    aria-labelledby="dropdownMenuButton1">
+    
+                                                                    <li>
+                                                                        <a class="link dropdown-item">
+                                                                            <span>xl</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a class=" link dropdown-item">
+                                                                            <span>XXL</span>
+                                                                        </a>
+                                                                    </li>
+    
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="increaseAnddecrease">
+                                                        <button>-</button>
+                                                        <span class="number">0</span>
+                                                        <button>+</button>
+                                                    </div>
+                                                    <div class="addtoCard custom_buttom">
+                                                        <a href="cart.html">
+                                                            <button>Send product Details</button>
+    
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--product info tab-->
+    
+                            </div>
+                        </div>
+                        <!--sidebar css start-->
+                        <div class="col-lg-3 col-md-12">
+                            <div class="sidebar">
+                                <!--Product Catalog-->
+                                <div class="sidebar-widget widget_categories">
+                                    <div class="sidebar-title">
+                                        <h2>Product Catalog</h2>
+                                    </div>
+                                    <ul>
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="common-page.html">About Us</a></li>
+                                        <li><a href="roduct-list.html">New Arrival</a></li>
+                                        <li><a href="product-list.html">Product Catalog</a></li>
+                                        <li><a href="custom.html">Custom</a></li>
+                                        <li><a href="blog-list.html">Blog</a></li>
+                                        <li><a href="contact.html">Cantact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+    
+    
+                    </div>
+                </div>
+            </div>
+    
+{% endblock %}

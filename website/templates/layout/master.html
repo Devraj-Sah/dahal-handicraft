@@ -1,0 +1,426 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>
+        {% if global_data.site_name != '' %}
+            {{global_data.site_name}}{% else %}
+                Home - Dahal Handicraft{% endif %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="" />
+    <meta name="MobileOptimized" content="320">
+    <!-- favicon links-->
+    <link rel="icon" type="image/icon" href="{% static 'assets/images/favicon.png' %}" />
+    <!-- main css -->
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %} " />
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %} " />
+    <link rel="stylesheet" href="{% static 'assets/css/header.css' %} " />
+
+    <!-- header -->
+    <link rel="stylesheet" href="{% static 'assets/header/css/bootstrap.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'assets/header/css/owl.theme.default.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'assets/header/css/owl.carousel.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'assets/header/css/animate.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'assets/header/css/meanmenu.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'assets/header/css/style.css' %} ">
+    <link rel="stylesheet" href="{% static 'assets/header/css/responsive.css' %} ">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.min.css' %} " />
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome.css' %} " />
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %} " />
+    <link rel="stylesheet" href="{% static 'assets/css/custom_animation.css' %} " />
+    <!--revolution-->
+    <link href="{% static 'assets/js/plugin/revolution/css/settings.css' %} " rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/js/plugin/revolution/css/layers.css' %} " rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/js/plugin/revolution/css/navigation.css' %} " rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/js/plugin/owl/owl.carousel.css' %} " />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %} " media="screen" />
+    <link rel="stylesheet" href="{% static 'assets/css/colors/default.css' %} " id="colors" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- header -->
+    <script src="{% static 'assets/header/js/jquery.min.js' %} "></script>
+   
+</head>
+
+<body>
+    <!--main wrapper start-->
+    <div id="wrapper">
+        <header>
+            <section class="mainTopbar">
+
+                <div class="container-fluid ">
+                    <div class="row">
+
+                        <div class="col-lg-6  col-md-12 col-sm-12 ">
+                            <div class="leftSideMainTopBar">
+
+                                <div class="nameInfo">
+                                    <span>Welcome to {% if global_data.site_name != '' %}{{global_data.site_name}}{% else %}Dahal HandiCraft{% endif %}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="rightSidemainTopBar">
+                                <div class="language">
+                                    <div class="dropdown language_box" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown">
+                                        <div class="languageInfo">
+                                            <span>--Select language --</span>
+                                            <i class="fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                                            <li>
+                                                <a class="link dropdown-item">
+                                                    <span>English</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class=" link dropdown-item">
+                                                    <span>Nepali</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class=" link dropdown-item">
+                                                    <span>Hindi</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class=" link dropdown-item">
+                                                    <span>Arabic</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- top bar -->
+            <section class="container-fluid ">
+                <div class="topBar">
+                    <div class="topBarWrapper">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="leftSideTopbar">
+                                    <a href="/">
+                                        <img src="{% if global_data.image2 != '' %}{{global_data.image2.url}}{% else %}{% static 'assets/images/logo.png' %}{% endif %} " alt="_logo" />
+                                    </a>
+                                    <span>{% if global_data.site_name != '' %}{{global_data.site_name}}{% else %}Dahal HandiCraft{% endif %}<span>
+
+                                </div>
+
+                            </div>
+                            <div class="col-5 middleSideTop">
+                                <div class="searhInput">
+                                    <input type="text" placeholder="Keyword here..." />
+                                </div>
+
+                                <div class="searchIcon">
+                                    <span>
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-3 rightSideTop">
+                                <div class="cartList">
+                                    <a class="link" href="{% url 'Cart' %}">
+                                        <i class="fa-solid fa-cart-arrow-down"></i>
+                                        <p>My Cart</p>
+                                        <span class="badge">{% if cartvalue %}{{cartvalue}}{% else %}0{% endif %}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- navbar start -->
+            <div class="navbar-area">
+                <div class="mobile-nav">
+                    <div class="container-fluid">
+                        <div class="mobile-menu">
+
+
+                            <div class="logo">
+
+                                <div class=" small_device_Logo">
+                                    <a href="index.html">
+                                        <img src="{% static 'assets/images/logo.png' %} " alt="_logo" />
+                                    </a>
+
+                                    <div class="rightSideTop_mobile">
+                                        <div class="cartList_mobile">
+                                            <a class="link" href="cart.html">
+                                                <i class="fa-solid fa-cart-arrow-down"></i>
+                                                <span class="badge">2</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="desktop-nav">
+                    <div class="container-fluid">
+                        <nav class="navbar navbar-expand-md navbar-light">
+                            <div class="collapse navbar-collapse mean-menu">
+                                <ul class="navbar-nav m-start">
+                                    <li class="nav-item">
+                                        <a href="/" class="nav-link active">
+                                            Home
+                                        </a>
+                                    </li>
+                                    {%for menu in menus %}
+                                        <li class="nav-item">
+                                            <a href="/{%if menu.page_type != "group" %}{{menu.name}}{%else%}#{%endif%}" class="nav-link">
+                                                {{menu.caption}}
+                                                {% if menu.page_type == "group"  %}
+                                                <i class="fa-solid fa-chevron-down"></i>
+                                                {% endif %}
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                            
+                                                {% for submenu in menu.childs.all %}
+                                                    <li class="nav-item">
+                                                        <a href="/{{menu.name}}/{{submenu.name}}" class="nav-link">{{submenu.caption}}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    {% endfor %}
+                                    
+                                </ul>
+
+                            </div>
+                            <a class="navbar-brand" href="#">
+                                <p>
+                                    {% if global_data.page_keyword != '' %}{{global_data.page_keyword}}{% else %}
+                                    100% original products <br>
+                                    {% comment %} <small>change form global-setting (page keyword)</small> {% endcomment %}
+                                    {% endif %}
+                                    
+                                </p>
+                            </a>
+                        </nav>
+
+                    </div>
+                </div>
+
+            </div>
+        </header>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "error" %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {% block contents %}  
+            <!-- here all contents displayed -->
+        {% endblock %}
+
+        <button class="open-button" onclick="openForm()">
+            <i class="fa-brands fa-facebook-messenger"></i>
+        </button>
+
+        <div class="chat-popup" id="myForm">
+            <form action="/action_page.php" class="form-container">
+                <label for="msg"><b>Fell free to contact</b></label>
+                <textarea placeholder="Type message.." name="msg" required></textarea>
+
+                <button type="submit" class="btn">Send</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <!--footer start-->
+        <div class="hm_footer_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <div class="hm_footer_box">
+                            <img src="{% if global_data.image2 != '' %}{{global_data.image2.url}}{% else %}{% static 'assets/images/logo.png' %}{% endif %}" alt="handmade-craft-logo" class="img-responsive">
+                            <!-- <p class="footer_about_para">Nepali hemp handicrafts products at an affordable price and ship worldwide.</p> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <div class="hm_footer_box">
+                            <h3 class="footer_heading">Quick Link</h3>
+                            <ul>
+                                {%for menu in menus %}
+                                    {% if menu.page_type != "product" and menu.page_type != "group" %}
+                                        <li class="nav-item">
+                                            <a href="/{%if menu.page_type != "group" %}{{menu.name}}{%else%}{%endif%}" class="nav-link">
+                                                {{menu.caption}}
+                                            </a>
+
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <div class="hm_footer_box">
+                            <h3 class="footer_heading">Product Catalog</h3>
+                            <ul>                          
+                                {%for menu in menus %}
+                                    {% for submenu in menu.childs.all %}
+                                        {% if submenu.page_type == "sale"%}
+                                            <li class="nav-item">
+                                                <a href="/{{menu.name}}/{{submenu.name}}" class="nav-link">{{submenu.caption}}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <div class="hm_footer_box hm_footer_contact">
+                            <h3 class="footer_heading">Our Information</h3>
+                            <ul>
+                                <li>
+                                    <div class="hm_footer_information">
+                                        <span class="footer_icon"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        </span>
+                                        <p class="foo_con_para">{% if global_data.site_address != '' %}{{global_data.site_address}}{% else %}Thamel, Kathmandu, Nepal{% endif %} </p>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="hm_footer_information">
+                                        <a href="tel:014514706"><span class="footer_icon"><i class="fa fa-phone"
+                                                    aria-hidden="true"></i> </span>
+                                            <p class="foo_con_para">{% if global_data.site_contact != '' %}{{global_data.site_contact}}{% else %}+977 01-4514706{% endif %}</p>
+                                        </a>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="hm_footer_information">
+                                        <a href="mailto:info@nepalihemp.com"><span class="footer_icon"><i
+                                                    class="fa fa-envelope" aria-hidden="true"></i> </span>
+                                            <p class="foo_con_para">{% if global_data.site_email != '' %}{{global_data.site_email}}{% else %}info@nepalihemp.com{% endif %}</p>
+                                        </a>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--bottom footer start-->
+        <div class="hm_bottom_footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <p class="copyright-text">&copy;
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            {% if global_data.site_name != '' %}{{global_data.site_name}}{% else %}Dahal HandiCraft{% endif %}, All Rights Reserved. Developed by <a href="http://radiantnepal.com/"
+                                target="_blank">Radiant Infotech Nepal</a>
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <ul class="footer_so_icons">
+                            <li><a href="{% if global_data.fb_link != '' %}{{global_data.fb_link}}{% else %}#{% endif %}"><i class="fa-brands fa-facebook"
+                                        style="color: darkblue; font-size: 20px;"></i></a></li>
+                            <li><a href="{% if global_data.twitter_link != '' %}{{global_data.twitter_link}}{% else %}#{% endif %}"><i class="fa-brands fa-twitter"
+                                        style="color: lightblue; font-size: 20px;"></i></a></li>
+                            <li><a href="{% if global_data.other_link != '' %}{{global_data.other_link}}{% else %}#{% endif %}"><i class="fa-brands fa-youtube"
+                                        style="color: red; font-size: 20px;"></i></a></li>
+                            <!-- <li><a href="#"><i class="fa-brands fa-instagram" style="color: #E90B18; font-size: 20px;"></i></a></li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--main wrapper-->
+    </div>
+    <!--script-->
+    <script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %} "></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap.bundle.min.js' %} "></script>
+    <script type="text/javascript" src="{% static 'assets/js/wow.min.js' %} "></script>
+    <script type="text/javascript" src="{% static 'assets/js/plugin/owl/owl.carousel.min.js' %} "></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.magnific-popup.js' %} "></script>
+    <!--Revolution slider js-->
+    <script src="{% static 'assets/js/plugin/revolution/js/jquery.themepunch.tools.min.js' %} " type="text/javascript"></script>
+    <script src="{% static 'assets/js/plugin/revolution/js/jquery.themepunch.revolution.min.js' %} " type="text/javascript"></script>
+    <script src="{% static 'assets/js/plugin/revolution/js/revolution.extension.navigation.min.js' %} " type="text/javascript"></script>
+    <script src="{% static 'assets/js/plugin/revolution/js/revolution.extension.slideanims.min.js' %} " type="text/javascript"></script>
+    <script src="{% static 'assets/js/plugin/revolution/js/revolution.extension.layeranimation.min.js' %} " type="text/javascript">
+    </script>
+    <script src="{% static 'assets/js/plugin/revolution/js/revolution.extension.parallax.min.js' %} " type="text/javascript"></script>
+    <script src="{% static 'assets/js/plugin/revolution/js/revolution.extension.kenburn.min.js' %} " type="text/javascript"></script>
+    <!--Revolution slider js-->
+    <script type="text/javascript" src="{% static 'assets/js/switcher.js' %} "></script>
+    <script type="text/javascript" src="{% static 'assets/js/custom.js' %} "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
+    <script src="{% static 'assets/header/js/bootstrap.bundle.min.js' %} "></script>
+    <script src="{% static 'assets/header/js/meanmenu.min.js' %} "></script>
+    <script src="{% static 'assets/header/js/owl.carousel.min.js' %} "></script>
+    <script src="{% static 'assets/header/js/nice-select.min.js' %} "></script>
+    <script src="{% static 'assets/header/js/smoothscroll.min.js' %} "></script>
+    <script src="{% static 'assets/header/js/custom.js' %} "></script>
+    
+
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>

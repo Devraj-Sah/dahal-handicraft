@@ -1,0 +1,26 @@
+{% extends "layouts/master.html" %}
+{% block contents %}
+
+    {% include "partials/page-title.html" %}
+    {%  include "admin/users/partials/user-type.html" %}
+
+{% endblock %}
+
+{% block optionalcss %}
+{% load staticfiles %}
+    <link href="{% static '/assets/node_modules/footable/css/footable.bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Page CSS -->
+    <link href="{% static '/assets/dist/css/pages/contact-app-page.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/dist/css/pages/footable-page.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block optionaljs %}
+    <script src="{% static '/assets/node_modules/moment/moment.js' %}"></script>
+    <script src="{% static '/assets/node_modules/footable/js/footable.min.js' %}"></script>
+    <!--FooTable init-->
+    <script>
+        $(function () {
+            $('#demo-foo-addrow').footable();
+        });
+    </script>
+{% endblock %}

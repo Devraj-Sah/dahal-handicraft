@@ -1,0 +1,135 @@
+{% extends 'layout/master.html' %}
+{% block contents %}
+
+    <!-- checkout box -->
+
+    {% comment %} <div class="container mt-5">
+        <div class="row">
+            <div class="shippingUserData">
+
+                <div class="shippingData">
+                    <h3>Old Address</h3>
+
+                    <span>Shipping address: Kathmandu</span>
+                    <br>
+                    <span>Billing address: Kathmandu Nepal</span>
+                    <br>
+
+                    <div class="selectOldBtn">
+                       <a href="#"> Select old address</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+
+    {% comment %} <div class=" checkoutPage">
+        <div class="container">
+            <div class="fluid">
+                <form class="checkoutFrom" method="post" action="{% url "CheckOut"%}" >
+                    <div class=" LoginFormContainer">
+                            {% csrf_token %}
+                            <div class="row">
+                                <h4>Shipping Address</h4>
+                                <div class="col-md-6">
+                                    <div class="inputBoxLogin">
+                                        <input label="Name" name="name" type="text" placeholder="Full Name *" required />
+                                    </div>
+
+                                    <div class="inputBoxLogin">
+                                        <input label="Phone" name="phone" type="number" placeholder="Phone * " required/>
+                                    </div>
+                                    <div class="inputBoxLogin">
+                                        <input label="shipping Address" name="address" type="text"
+                                            placeholder="Shipping address *" required/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="inputBoxLogin">
+                                        <input label="Email" name="email" type="text" placeholder="Email" />
+                                    </div>
+
+                                    <div class="inputBoxLogin">
+                                        <input label="Billing Address" name="baddress" type="text"
+                                            placeholder=" Billing Address" />
+                                    </div>
+                                    <div class="inputBoxLogin">
+                                        <input label="Curent Address" name="caddress" type="text"
+                                            placeholder="Curent Address" />
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="checkoutButton">
+                                    <button type="submit">Continue</button>                              
+                            </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+    </div> {% endcomment %}
+
+
+    <div class="container">
+        <div class="form-shopping">
+            <div class="apply-wrapper">
+                <form class="checkoutFrom" method="post" action="{% url "CheckOut"%}" >
+                    {% csrf_token %}                    
+                    <div class=" row">
+                        <div class="col-md-6 col-lg-6 col-12">
+                            <div class="form-1">
+                                <input type="name"  name="name"  class="form-control" id="inputName4" placeholder="Full Name *">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-12">
+                            <div class="form-1">
+                                <input type="email" name="email" class="form-control" id="inputemail4" placeholder="Email *">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-12">
+                            <div class="form-1">
+                                <input type="PhoneNumber" name="phone" class="form-control" id="inputPhoneNumber4"
+                                    placeholder="Phone Number *">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-12">
+                            <div class="form-1">
+                                <input type="Billing addres" name="baddress" class="form-control" id="inputemail4"
+                                    placeholder="Billing address">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-12">
+                            <div class="form-1">
+                                <input type="Shipping Address"  name="address" class="form-control" id="Shipping Address"
+                                    placeholder="Shipping Address">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-12">
+                            <div class="form-1">
+                                <input type="Current Address"  name="caddress"  class="form-control" id="inputName4"
+                                    placeholder="Current Address *">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="button-form">
+                        <button type="submit" class="btn ">Continue</button>
+                    </div> -->
+                    <div class="hm_btn_wrapper">
+                        <a href="" type="submit" class="hm_btn">Continue</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

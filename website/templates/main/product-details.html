@@ -1,0 +1,199 @@
+{% extends 'layout/master.html' %}
+{% load staticfiles %}
+{% block contents %}
+{% load mathfilters %} 
+
+
+                <!--banner start-->
+                <div class="hm_bread_wrapper">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <h1>Hemp Hiking Backpack</h1>
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item">New Arival</a></li>
+                                    <li class="breadcrumb-item active">Hemp Hiking Backpack</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="hm_news_wrapper shop_single">
+                    <div class="container">
+                        <div class="row">
+    
+    
+                            <div class="col-lg-12 col-md-12">
+                                <div class="hm_shop_single">
+                                    <div class="container singlePage">
+                                        <form id="updateForm" method="post" action="/cart/{{product.id}}/{{c_id}}">
+                                        <div class="row">
+                                            {% csrf_token %}
+                                            <div class="col-md-6 leftSideImg">
+                                                <img src="{{product.image1.url}}" />
+                                            </div>
+                                            <div class="col-md-6 rightSide">
+                                                <div class="productTitle">
+                                                    {{product.name}}
+                                                </div>
+                                                <div class="productdesc">
+                                                    
+                                                        <span style="color: #00a550;"> Price : $. {{product.price}}</span>
+                                                    
+                                                    <div class="productRating">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <span>(12)</span>
+                                                    </div>
+                                                    <div class="productSize mt-2">
+                                                        <span>Color :</span>
+                                                        <select class="selectBox" name="color">
+                                                            <option value="">-- select --</option>
+                                                            <option value="green">Green</option>
+                                                            <option value="gray">Gray</option>
+                                                            <option value="white">White</option>
+                                                        </select>
+                                                    </div>
+                                                    <br>
+                                                    <div class="productSize mt-2">
+                                                        <span>Size :</span>
+                                                        <select class="selectBox" name="size">
+                                                            <option value="">-- select --</option>
+                                                            <option value="xl">XL</option>
+                                                            <option value="xxl">XXL</option>
+                                                            <option value="xxxl">XXXL</option>
+                                                        </select>
+                                                    </div>
+                                                    
+                                                    <div class="increaseAnddecrease">
+                                                        <button type="button" id="minus">-</button>
+                                                        <span class="number" id="num">1</span>
+                                                        <button type="button" id="plus">+</button>
+                                                    </div>
+                                                    <input type='hidden'  name="number" id="number" value="1">
+
+                                                    <div class="brandName">
+                                                        Brand: <span>Hemp</span>
+                                                    </div>
+    
+                                                    <div class="addtoCard" id="cart">                                                                                                     
+                                                            <button type='submit'>ADD TO CART</button>                                                     
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                        </div>
+                                    </form>
+                                    </div>
+                                    <!--product info tab-->
+                                    <div class="col-lg-12 col-md-12 padding_left">
+    
+                                        <div class="hm_pro_tab">
+                                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                                        data-bs-target="#home" type="button" role="tab" aria-controls="home"
+                                                        aria-selected="true">Overview</button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                                        data-bs-target="#profile" type="button" role="tab"
+                                                        aria-controls="profile" aria-selected="false">Other</button>
+                                                </li>
+    
+                                            </ul>
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                                    aria-labelledby="home-tab">
+                                                    {% autoescape off %}{{product.discription}}
+                                                </div>
+                                                <div class="tab-pane fade" id="profile" role="tabpanel"
+                                                    aria-labelledby="profile-tab">
+                                                    {{product.long_contents}}  {% endautoescape %}                                                 
+                                                </div>
+    
+                                            </div>
+    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--sidebar css start-->
+                            <!--related product slider-->
+                            <div class="col-lg-12 col-md-12 padding_left">
+                                <div class="hm_shop_single">
+                                    <h1 class="hm_heading"><span class="hm_color">Related</span> products</h1>
+                                    <div class="hm_related_product">
+                                        <div class="owl-carousel owl-theme related_pro_slider">
+                                            <div class="item">
+                                                <div class="new_pro_box">
+                                                    <div class="new_pro_img">
+                                                        <a href="#">
+                                                            <img src="{% static 'assets/images/new_pro1.jpg' %}"
+                                                                alt="handmade-craft-arrivals1" class="img-fluid">
+                                                        </a>
+                                                    </div>
+                                                    <div class="new_pro_data">
+                                                        <h3><a href="#">Hemp Hiking Backpack</a></h3>
+                                                        <p>This Hemp Hiking Backpack is handmade in Nepal using organic hemp
+                                                            from the Himalayas and cotton.</p>
+                                                        <div class="new_pro_data_dollar">
+                                                            <span class="cart_icon"><a href="#"><i class="fa fa-eye"
+                                                                        aria-hidden="true"></i></a></span>
+                                                        </div>
+    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<script>
+$(document).ready(function(){
+    $('#plus').click(function(){        
+        var i = $('#num').text()
+        var i = parseInt(i) + 1 ;
+        $('#num').text(i)
+        $('#number').val(i)
+
+    });
+    $('#minus').click(function(){  
+        var i = $('#num').text()
+        if (i != 1){
+        var i = parseInt(i) - 1 ;
+        $('#num').text(i)
+        $('#number').val(i)
+        }
+
+    });
+});
+
+{% comment %} var submitForm = function(method){
+var formAction = '/' + method + '/' + {{product.id}} + '/' +{{c_id}} ;
+$('#updateForm').attr('action', formAction);
+$('#updateForm').submit();
+};
+
+$(document)
+.on('click', '#wishlist', function(){
+    submitForm('wish-list');
+})
+.on('click', '#cart', function(){
+    submitForm('cart');
+}); {% endcomment %}
+
+
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "layouts/master.html" %}
+{% block contents %}
+
+{% comment %} 
+page-title included because message confilict we need (force button inside the form)
+and message is also used in partial/page-title so 2 messages are comming
+{% endcomment %}
+    <div class="row page-titles">
+        <div class="col-lg-5 align-self-center">
+            <h4 class="text-themecolor">{{ slug1 }}</h4>
+        </div>
+    <div class="col-md-7 align-self-center text-end">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb justify-content-end">
+                <li class="breadcrumb-item"><a href="/admin">dashboard</a></li>
+                <li class="breadcrumb-item active">{{ slug1 }}</li>
+            </ol>
+            {% if create == True %}
+                <button type="button" class="btn btn-info d-lg-block m-l-15 text-white" onclick="Create('{{  create_link_name  }}')"><i class="fa fa-plus-circle"></i> Create New</button>
+            {% endif %}
+            <script>
+                function Create(link){
+                      location.href = link
+                    }                
+            </script>
+            </div>
+        </div>
+    </div>
+{% comment %} 
+end page-title
+{% endcomment %}
+
+    {% include 'admin/navigation/partials/navigation-form.html' %}
+{% endblock %}
+
+{% block optionaljs %}
+{% load staticfiles %}
+        <!-- jQuery file upload -->
+        <script src="{% static '/assets/node_modules/dropify/dist/js/dropify.min.js' %}"></script>
+        <script>
+        $(document).ready(function() {
+            // Basic
+            $('.dropify').dropify();
+    
+            // Translated
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+    
+            // Used events
+            var drEvent = $('#input-file-events').dropify();
+    
+            drEvent.on('dropify.beforeClear', function(event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+    
+            drEvent.on('dropify.afterClear', function(event, element) {
+                alert('File deleted');
+            });
+    
+            drEvent.on('dropify.errors', function(event, element) {
+                console.log('Has Errors');
+            });
+    
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function(e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+        });
+        </script>
+{% endblock %}
+

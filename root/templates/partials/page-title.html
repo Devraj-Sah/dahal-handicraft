@@ -1,0 +1,52 @@
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">{{ slug1 }}</h4>
+    </div>
+    <div class="col-md-7 align-self-center text-end">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb justify-content-end">
+                <li class="breadcrumb-item"><a href="/admin">dashboard</a></li>
+                <li class="breadcrumb-item active">{{ slug1 }}</li>
+            </ol>
+            {% if create == True %}
+                <button type="button" class="btn btn-info d-lg-block m-l-15 text-white" onclick="Create('{{  create_link_name  }}')"><i class="fa fa-plus-circle"></i> Create New</button>
+            {% endif %}
+            {% if import == True %}
+                <button type="button" class="btn btn-info d-lg-block m-l-15 text-white" data-bs-toggle="modal" data-bs-target=".bs-example-modal-sm" class="model_img img-responsive"><i class="bi bi-cloud-arrow-down"></i> Import</button>
+            {% endif %}
+             {% if export == True %}
+                <button type="button" class="btn btn-info d-lg-block m-l-15 text-white" onclick="Create('{{  export_link_name  }}')"><i class="bi bi-cloud-arrow-up"></i> Export</button>
+            {% endif %}
+            <script>
+                function Create(link){
+                      location.href = link
+                    }                
+            </script>
+            {% comment %}  {% if create == True %}
+            <a href="
+            {% if parameter %}
+                {% url  create_link_name  id=parameter %}
+            {% else %}
+                {% url  create_link_name  %}
+            {% endif %}
+            ">
+                <button type="button" class="btn btn-info d-none d-lg-block m-l-15 text-white"
+                 onclick="Create('')"><i class="fa fa-plus-circle"></i> Create New</button>
+            </a>
+            {% endif %} {% endcomment %}
+        </div>
+    </div>
+</div>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == "error" %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}

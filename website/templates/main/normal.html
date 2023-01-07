@@ -1,0 +1,92 @@
+{% extends 'layout/master.html' %}
+{% load staticfiles %}
+{% block contents %}
+<div class="hm_home_style1 hm_home_style3">
+    <!--menu start-->
+   
+<!--banner start-->
+<div class="hm_bread_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h1>
+                    {% if blog_detail %}
+                        {{blog_detail.title}}
+                    {% else %}
+                        {{about.title}}
+                    {% endif %}
+                </h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/blog">Blog</a></li>
+                    <li class="breadcrumb-item active">
+                        {% if blog_detail %}
+                            {{blog_detail.title}}
+                        {% else %}
+                            {{about.title}}
+                    {% endif %}
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if blog_detail %}
+<!--blog section start-->
+<div class="hm_news_wrapper">
+    <div class="container">
+
+        <div class="hm_news_inner hm_blogs hm_single_blog">
+            <div class="hm_news_box">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="hm_news_data">
+                            {% autoescape off %}
+                            <h1>{{blog_detail.title}}</h1><hr>
+                                {{blog_detail.main_title}}
+                                {{blog_detail.discription}}
+                            {% endautoescape %}
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="hm_news_img">
+                            <img src="{{blog_detail.banner_image.url}}" alt="" class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% else %}
+<!--blog section start-->
+    <div class="hm_news_wrapper">
+        <div class="container">
+
+            <div class="hm_news_inner hm_blogs hm_single_blog">
+                <div class="hm_news_box">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-12">
+                            <div class="hm_news_data">
+                                
+                                <h3>{{about.title}}</h3>
+
+                                    {% autoescape off %}
+                                        {{about.long_contents}}
+                                    {% endautoescape %}
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="hm_news_img">
+                                <img src="{{about.banner_image1.url}}" alt="" class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+{% endif %}
+{% endblock %}
+

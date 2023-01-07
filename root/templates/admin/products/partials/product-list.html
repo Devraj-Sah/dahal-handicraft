@@ -1,0 +1,115 @@
+{% load staticfiles %}
+<style>
+    .dropdown-toggle::after {
+        display: none;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Product Overview</h5>
+                <div class="table-responsive m-t-30">
+                    <table class="table product-overview">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>photo</th>
+                                <th>Price</th>
+                                <th>Discount_type</th>
+                                <th>Discount</th>
+                                <th>category</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        {% if p_list %}
+                        <tbody id="tableSearch">
+                            {% for i in p_list %}
+                            <tr>
+                                <td>{{i.id}}</td>
+                                <td>{{i.name}}</td>
+                                <td>    
+                                    {% if i.image1 %}              
+                                        <img src="{{i.image1.url}}" class="" alt="{{i.name}}" width="80" height="50">
+                                    {% elif i.image2 %}
+                                         <img src="{{i.image1.url}}" class="" alt="{{i.name}}" width="80" height="50">
+                                    {% elif i.image3 %}
+                                         <img src="{{i.image1.url}}" class="" alt="{{i.name}}" width="80" height="50">
+                                    {% elif i.image4 %}
+                                         <img src="{{i.image1.url}}" class="" alt="{{i.name}}" width="80" height="50">
+                                    {% else %}
+                                        NotFound
+                                    {% endif %}
+                                </td>
+                                <td>{{i.price}}</td>
+                                <td>{{i.discount_type}}</td>
+                                <td>{{i.discount}}</td>
+                                <td>{{i.category.name}}</td>
+                                <td>
+                                    {%if i.ftn == "f" %} 
+                                        <span class="label label-primary">Featured</span>
+                                    {% endif %}
+                                    {%if i.ftn == "t" %} 
+                                        <span class="label label-success">Trending</span>
+                                    {% endif %}
+                                    {%if i.ftn == "n" %} 
+                                        <span class="label label-info">New Arrival</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{% url 'ProductCreate' pk=i.id %}" class="text-inverse p-r-10" data-bs-toggle="tooltip" title="" data-original-title="Edit">
+                                        <i class="ti-marker-alt" style="font-size:18px"></i>
+                                    </a> 
+                                    <a href="{% url 'ProductDelete' pk=i.id %}" class="text-inverse" title="" data-bs-toggle="tooltip" data-original-title="Delete">
+                                        <i class="ti-trash" style="font-size:18px"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                   <div class="dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                           <i class="bi bi-three-dots-vertical" style="color: ;"></i>
+                                        </a>
+
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <li>
+                                                <a class="dropdown-item" href="{% url "ProductList" pk=i.id ftn="f"  %}"> 
+                                                    {%if i.ftn == "f" %} 
+                                                <i class="bi bi-check-lg"></i> 
+                                                {% else %} &nbsp; &nbsp;
+                                                    {% endif %}
+                                                Featured
+                                                </a>
+                                            </li>
+                                            <li><a class="dropdown-item" href="{% url "ProductList" pk=i.id ftn="t"  %}">
+                                                {%if i.ftn == "t" %} 
+                                                <i class="bi bi-check-lg"></i> 
+                                                {% else %} &nbsp; &nbsp;
+                                                    {% endif %}
+                                                Trending
+                                            </a></li>
+                                            <li><a class="dropdown-item" href="{% url "ProductList" pk=i.id ftn="n"  %}">
+                                                {%if i.ftn == "n" %} 
+                                                <i class="bi bi-check-lg"></i> 
+                                                {% else %} &nbsp; &nbsp;
+                                                    {% endif %}
+                                                New Arrival
+                                            </a></li>
+                                        </ul>
+                                        </div>
+
+
+
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

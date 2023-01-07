@@ -1,0 +1,69 @@
+{% extends 'layout/master.html' %}
+{% block contents %}
+
+
+    <div class="productPage">
+        <div class="topData">
+            <div class="topDataText">
+                <h3>
+                    Blog details
+                </h3>
+                <p class="text-center">
+                    <a class="link" href="/">
+                    Home
+                    </a>
+                    <span>/</span>
+                    <a class="link" href="/blog">
+                        Blog
+                    <a/>
+                    <span>/</span>
+                Blog details
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- PRODUCT DETAILS -->
+
+
+        <div class="container singleBlog">
+            
+            <div class="singleBlogImg">
+                <img src="{{blog.banner_image.url}}" alt="blog_img" />
+            </div>
+            <div class="singleBlogData">
+            
+                <div class="singleBlogTitle">
+                   {{blog.title}}
+                </div>
+                
+                <div class="singleBlogAuthor">
+                    Author: <span>{{blog.author}}</span>
+                    <p> {{blog.updated_at}}</p>
+                </div>
+                <div class="blogInfo">
+                    
+                    <p>
+                        {{blog.discription}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    
+
+{% endblock %}
+
+
+
+
+

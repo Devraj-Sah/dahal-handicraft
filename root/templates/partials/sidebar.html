@@ -1,0 +1,86 @@
+<nav class="sidebar-nav">
+    <ul id="sidebarnav">
+        <!-- <li>
+            <div class="hide-menu text-center">
+                <div id="eco-spark"></div>
+                <small>TOTAL EARNINGS - JUNE 2020</small>
+                <h4>$2,478.00</h4>
+            </div>
+        </li> -->
+        <li class="nav-small-cap">----Welcome To Admin pane-----</li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">GENERAL <span class="badge rounded-pill bg-cyan ms-auto">6</span></span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="{% url 'NavigationList' %}">Main Navigation</a></li>
+                <li><a href="{% url 'HomeNavigationList' %}">Home Navigation</a></li>
+                <li><a href="{% url 'ProductList' %}">Products</a></li>
+                <li><a href="{% url 'GlobalCreate' %}">Global Settings</a></li>
+                <li><a href="{% url 'Blogs' %}">Blogs</a></li>
+                {% comment %} <li><a href="{% url 'Teams' %}">Teams</a></li> {% endcomment %}
+            </ul>
+        </li>
+        {% comment %} <li class="nav-small-cap">----CLIENT ACTIVITIES</li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-layers"></i><span class="hide-menu">CLIENTS <span class="badge rounded-pill bg-cyan ms-auto">4</span></span></a>
+            <ul aria-expanded="false" class="collapse">
+                <!-- <li><a href="{% url 'CustomerOrder' %}">CUSTOMER ORDERS</a></li> -->
+                <li><a href="{% url 'Order' %}">ORDERS</a></li>
+                <li><a href="{% url 'Pending' %}">PENDING</a></li>
+                <li><a href="{% url 'Delivered' %}">DELIVERED</a></li>
+                <li><a href="{% url 'CanclelledOrders' %}">CANCELLED ORDERS</a></li>
+                <li><a href="{% url 'index' %}">CHECK OUT</a></li>
+                <li><a href="{% url 'index' %}">TOP SEARCH</a></li>
+                <li><a href="{% url 'index' %}">SHIPPING ADDRESS</a></li>
+                <li><a href="{% url 'index' %}">MESSAGES</a></li>
+            </ul>
+        </li> {% endcomment %}
+        <!-- <li class="nav-small-cap">----PAYMENT MANAGEMENT</li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-wallet"></i><span class="hide-menu">PAYMENT<span class="badge rounded-pill bg-cyan ms-auto">2</span></span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="{% url 'index' %}">ESEWA</a></li>
+                <li><a href="{% url 'index' %}">KHALTI</a></li>
+            </ul>
+        </li>
+        <li class="nav-small-cap">----DELIVER MANAGEMENT</li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-wrench"></i><span class="hide-menu">ORDER & STAFF <span class="badge rounded-pill bg-cyan ms-auto">2</span></span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="{% url 'index' %}">STAFF</a></li>
+                <li><a href="{% url 'index' %}">DELIVER & TRACK</a></li>
+            </ul>
+        </li>
+        <li class="nav-small-cap">----VENDORS & STORE</li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-basket-loaded"></i><span class="hide-menu">VENDOR & STORE <span class="badge rounded-pill bg-cyan ms-auto">2</span></span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="{% url 'index' %}">VENDOR</a></li>
+                <li><a href="{% url 'index' %}">STORE</a></li>
+            </ul>
+        </li> -->
+        <li class="nav-small-cap">----USERS</li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-people"></i><span class="hide-menu">USERS <span class="badge rounded-pill bg-cyan ms-auto">4</span></span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="{% url 'AdvanceUserList' role_id=0 %}">User Type</a></li>
+                <li><a href="{% url 'UserList' %}">USERS</a></li>
+                <li><a href="{% url 'RoleList' %}">ROLE</a></li>
+                <li><a href="{% url 'GroupList' %}">Group</a></li><!----Group is combination of different permissions-->
+                <li><a href="{% url 'PermissionList' %}">PERMISSION</a></li>
+                {% comment %} <li><a href="{% url 'UserLogs' %}">LOGS</a></li> {% endcomment %}
+            </ul>
+        </li>
+        <!-- <li> <a href="{% url 'ChatApp' %}" aria-expanded="false"><i class="icon-people"></i><span class="hide-menu">CHAT-APP<span class="badge rounded-pill bg-cyan ms-auto"></span></span></a>
+        </li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="ti-email"></i><span class="hide-menu">Email</span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="{% url 'MailApp' %}">Mailbox</a></li>
+                <li><a href="{% url 'MailDetail' %}">Mailbox Detail</a></li>
+                <li><a href="{% url 'MailCompose' %}">Compose Mail</a></li>
+            </ul>
+        </li> -->
+        {% comment %} <li class="nav-small-cap">----DATA SCIENCE & ANALYSIS(AI)</li>
+        <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">DATA ANALYSIS <span class="badge rounded-pill bg-cyan ms-auto">3</span></span></a>
+            <ul aria-expanded="false" class="collapse">
+                <li><a href="{% url 'index' %}">DATA VISULIZAATION</a></li>
+                <li><a href="{% url 'index' %}">BEST PRODUCTS</a></li>
+                <li><a href="{% url 'index' %}">EXPERT AI</a></li>
+            </ul>
+        </li> {% endcomment %}
+     
+    </ul>
+</nav>

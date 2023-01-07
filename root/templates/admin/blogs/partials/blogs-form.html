@@ -1,0 +1,112 @@
+{% load staticfiles %}
+     <!-- Info box Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                {%if id_data%}
+                                    <form action="{% url action pk=id_data.id %}" method="post" enctype="multipart/form-data">
+                                    {%else%}
+                                    <form action="{% url action %}" method="post" enctype="multipart/form-data">
+                                {%endif%}
+                                {% csrf_token %}
+                                    <div class="form-body">
+                                        {% if messages%}
+                                            {%for message in messages%}
+                                                <div class="alert alert-info">{{message}}</div>
+                                            {%endfor%}
+                                        {%endif%}
+                                        <input type="hidden" name="next" value="{{ request.path }}">
+
+                                        <h5 class="card-title">Add Blogs</h5>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Title of the blog</label>
+                                                    <input type="text" id="title" name="title" class="form-control" placeholder="Heading of the Blogs"
+                                                    value="{{id_data.title}}">
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            
+                                        <!--/span-->
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label class="form-label">Status</label>
+                                                    <br/>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" value=1 id="customRadioInline1" name="status" class="form-check-input" {% if id_data.status == 1 %} checked {% endif %}>
+                                                        <label class="form-check-label" for="customRadioInline1">Publish</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" value=0 id="customRadioInline2" name="status" class="form-check-input" {% if id_data.status == 0 %} checked {% endif %}>
+                                                        <label class="form-check-label" for="customRadioInline2">Draft</label>
+                                                    </div>
+                                                </div>
+                                            </div><hr>
+                                            <!--/span-->
+                                            </div>
+                                            <h5 class="card-title m-t-40">Main Blog Theme</h5>
+                                            <div class="row">
+                                                <div class="col-md-12 ">
+                                                    <div class="form-group">
+                                                        <textarea name="main_title" id="maintitle" class="form-control" rows="5">{{id_data.main_title}}</textarea>
+                                                        </div>
+                                                </div>
+                                            </div><hr>
+                                        <!--/span-->
+                                        </div>
+                                        <h5 class="card-title m-t-40">Blog Description</h5>
+                                        <div class="row">
+                                            <div class="col-md-12 ">
+                                                <div class="form-group">
+                                                    <textarea name="discription" id="discription" class="form-control" rows="10">{{id_data.discription}}</textarea>
+                                                     <script src="{% static '/assets/dist/js/htmeditor.min.js' %}"      htmeditor_textarea="discription"   htmeditor_textarea1="maintitle"    full_screen="no"      editor_height="350"   editor_height1="250"  run_local="no"> </script> 
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row" style="border-top:outset">  
+                                            <div class="col-md-3" style="border-right:inset">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Update Banner Image<sub>(1100x300)</sub></h4>
+                                                        <input name="banner_image" type="file" id="input-file-now" class="dropify" />
+                                                    </div>
+                                                </div>
+                                                {% if id_data.banner_image %}
+                                                        <script>
+                                                            $("#input-file-now").attr("data-default-file", "{{id_data.banner_image.url}}");
+                                                        </script>
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Update Icon image<sub>(300x300)</sub></h4>
+                                                        <input name="icon_image" type="file" id="input-file-now1" class="dropify" />
+                                                    </div>
+                                                </div>
+                                                {% if id_data.icon_image %}
+                                                    <script>
+                                                        $("#input-file-now1").attr("data-default-file", "{{id_data.icon_image.url}}");
+                                                    </script>
+                                                {% endif %}
+                                            </div>
+                                        <hr> </div>
+                                    <div class="form-actions m-t-40">
+                                        <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>
+                                        <button type="button" class="btn btn-dark">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                

@@ -1,0 +1,56 @@
+{% extends 'layout/master.html' %}
+{% block contents %}
+{% load mathfilters %}    
+    <div class="container WishList mt-5">
+        <div class="text-center WishListTitle">Your Wish List</div>
+        <div class="row">
+           
+            <div class="col-md-12">
+                <div class="row topWishListContainer">
+                    <div class="col-4 topWishListProduct">Products</div>
+
+                    <div class="col-md-2 topWishListPrice">Price</div>
+                    <div class="col-md-3 topWishListStock">Stock Status</div>
+                    <div class="col-md-2 topWishListAddToCart">Add To Cart</div>
+                </div>
+            </div>
+            <hr />
+        </div>
+
+       
+        <div class="row">
+            <div class="col-md-12">
+                {% for w in wishlist %}
+                    <div class="row leftSideWishList">
+                        <div class="col-4 wishProductImgAndName">
+                            <img class="img-fluid"
+                                src="{{w.product.image1.url}}"
+                                alt="ak" />
+                            <p>{{w.product.name}}</p>
+                        </div>
+
+                    
+                        <div class="col-md-2 WishListProductPrice">Rs. {{w.product.price|sub:w.product.discount}}</div>
+                        
+                        <div class="col-md-3 productStock">
+                            <p>in Stock</p>
+                        </div>
+                    
+                        <div class="col-md-2 addTo_cart">
+                            <a href="{% url 'Cart' p_id=w.product.id c_id=c_id %}" style="text-decoration: none;color: black;">
+                            Add To Cart
+                            </a>
+                        </div>
+                        <div class="col-1 removeWishList">
+                            <a href="{% url 'WishListDelete' p_id=w.product.id pk=c_id next="wish" %}" style="text-decoration: none;color: black;">
+                            remove
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

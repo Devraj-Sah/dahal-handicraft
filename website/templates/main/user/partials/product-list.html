@@ -1,0 +1,52 @@
+
+<div class="col-md-9 dashBoardWrapper">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Order Date</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+             {% for i in all_data %}                               
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{i.product.name}}</td>
+                        <td>{{i.product_details}}</td>
+                        <td>{{i.get_date}}</td>
+                        <td>
+                            <a href="{% url "ViewOrder" p_id=i.id %}">
+                                <button class="button_Edit">view</button>
+                            </a>
+                            <a href="{% if i.product.id %}{% url "UserProfile" order_id=i.id %}{% endif %}">
+                                <button class="button_delete">delete</button>
+                            </a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+
+
+
+        </tbody>
+        
+    </table>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
