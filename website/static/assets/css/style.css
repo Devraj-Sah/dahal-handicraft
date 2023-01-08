@@ -5890,3 +5890,148 @@ label.radio input:checked + span {
 .hm_btn_wrapper{
   margin-left: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ............................................. */
+.gmail-page{
+  padding-bottom: 50px;
+  padding-top: 50PX;
+}
+.gmail-page-content{
+  height: auto;
+  box-shadow: rgb(136 165 191 / 48%) 6px 2px 16px 0px, rgb(255 255 255 / 80%) -6px -2px 16px 0px;
+  padding: 20px 20px 20px 20px;
+  border: 1px solid #F5F5F5;
+}
+
+
+
+
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #cd9cf2;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1));
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1))
+  }
+  /* .................................................. */
+
+  .gmail-massege{
+    height: 100%;
+    /* border: 1px solid #F5F5F5; */
+  }
+  .card1{
+     border: 1px solid #F5F5F5;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  .card1-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card1-header img{
+    width: 250px;
+  }
+  .card1-body{
+  padding: 6px 6px 6px 6px;
+  /* color: black; */
+  }
+  .card1-header span{
+    color: #00A550;
+  }
+  .email-icon{
+    display: flex;
+    align-items: center;
+    margin-left: 272px;
+   
+
+  }
+  .email-icon i{
+    font-size: 30px;
+    padding:10px;
+  }
+
+
+  @media only screen and (max-width: 768px) {
+    .card1-footer{
+      margin-right: 0px;
+    }
+    .email-text h5{
+      margin-right: 196px;
+    }
+    .email-icon {
+      display: flex;
+      align-items: center;
+      margin-left: 246px;
+  }
+
+
+  @media only screen and (max-width: 425px) {
+  .email-icon {
+    display: flex;
+    align-items: center;
+    margin-left: 68px;
+  }
+  .email-text h5{
+    margin-right: 80px;
+  }
+  @media only screen and (max-width: 375px) {
+    .email-icon {
+      display: flex;
+      align-items: center;
+      margin-left: 50px;
+    }
+    .email-text h5{
+      margin-right: 47px;
+    }
+  }
+
+  @media only screen and (max-width: 320px) {
+    .card1-header img{
+      width: 130px;
+    }
+    .card1-text-title{
+      font-size:10px;
+    }
+    .card1-title{
+      font-size: 12px;
+    }
+    .card1-footer h5{
+      margin-right: 47px;
+    }
+    .email-icon {
+      display: flex;
+      align-items: center;
+      margin-left: 17px;
+    }
+    .email-text h5{
+      margin-right: 31px;
+    }
+  }

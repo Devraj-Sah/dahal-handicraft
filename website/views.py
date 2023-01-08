@@ -183,38 +183,104 @@ def WishListDelete(request, p_id, pk, next):
     else:
         return redirect('website.index')
 
+
+def read_template(filename):
+    with open(filename, 'r') as template_file:
+        template_file_content = template_file.read()
+    return template_file_content
+
  # ishere field [ 1(TRUE) =>wishlist) ], [ 0(false) => cart)]  , 2=> order
-@login_required(login_url=settings.CLIENT_LOGIN_URL)
+# @login_required(login_url=settings.CLIENT_LOGIN_URL)
 def CheckOut(request):
     try:
         c_id = request.COOKIES['c_id']
     except:
         return redirect('website.index')
     if Wishlist.objects.filter(temp_id=c_id,ishere=False):
-        if request.POST:        
+        if request.POST: 
+            #mail
+            import smtplib
+            from string import Template
+            from email.mime.multipart import MIMEMultipart
+            from email.mime.text import MIMEText
+            from email.mime.application import MIMEApplication
+            from email.mime.image import MIMEImage
+            import os
+            from pathlib import Path
+            BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+
+            MY_ADDRESS = 'fenfit@fenfitnepal.com'
+            PASSWORD = 'fenfit@devraj'
+
+            user_info = {
+                'name'    : request.POST['name'],
+                'phone'   : request.POST['phone'],
+                'email'   : request.POST['email'],
+                'shpping_address' : request.POST['address'],
+                'billing_address' : request.POST['baddress'],
+                'current_address' : request.POST['caddress'],
+            }
+
+            names = "Devraj" 
+            emails = "devraj.sah13@gmail.com"
+
+           # html = html.replace('{{names}}',names)
+
+            s = smtplib.SMTP(host='mail.fenfitnepal.com', port=587)
+            s.starttls()
+            s.login(MY_ADDRESS, PASSWORD)
+            
+
             for i in Wishlist.objects.filter(temp_id=c_id,ishere=False) :
-                shipping_data = {
-                    'user_id' : request.user.id,
-                    'name'    : request.POST['name'],
-                    'phone'   : request.POST['phone'],
-                    'email'   : request.POST['email'],
-                    'shpping_address' : request.POST['address'],
-                }
-                ship =  Shipping.objects.create(**shipping_data)
-                data = {
-                    'user_detail' : request.POST['name'],
-                    'phone' :  request.POST['phone'],
-                    'shipping_address' : request.POST['address'], 
-                    'user_id' : request.user.id, 
+                total = 0
+                html = read_template(os.path.join(BASE_DIR ,'website/templates/main/messages.html'))
+                msg = MIMEMultipart()       # create a message
+                msg['From']=MY_ADDRESS
+                msg['To']=emails
+                msg['Subject']="Order Details"
+
+                # This example assumes the image is in the current directory
+                fp = open(os.path.join(BASE_DIR ,'website/static/assets/images/logo.png'), 'rb')
+                msgImage = MIMEImage(fp.read())
+                fp.close()
+
+                # Define the image's ID as referenced above
+                msgImage.add_header('Content-ID', '<image0>')
+                msg.attach(msgImage)
+                shipping_data = {                   
                     'product_id' : i.product_id,
-                    'product_details' : i.quantity,
-                    'get_shipping_address_id' : ship.id,
+                    'product_quantity' : i.quantity,
+                    'product_color' : i.color,
+                    'product_size' : i.size
                 }
-             
-                Order.objects.create(**data)
+                html = html.replace("{{shipping_data['product_quantity']}}",str(shipping_data['product_quantity']))
+                html = html.replace("{{shipping_data['product_color']}}",str(shipping_data['product_color']))
+                html = html.replace("{{shipping_data['product_size']}}",str(shipping_data['product_size']))
+
+                j = Products.objects.filter(id=shipping_data['product_id']).first()
+                product_data = {
+                    'product_name' : j.name,
+                    'product_price' : j.price,
+                    'product_image' : j.image1,
+                }
+                html = html.replace("{{product_data['product_name']}}",str(product_data['product_name']))
+                html = html.replace("{{product_data['product_price']}}",str(product_data['product_price']))
+                fp = open(os.path.join(BASE_DIR ,"media/"+str(product_data['product_image'])), 'rb')
+                msgImage = MIMEImage(fp.read())
+                fp.close()       
+                msgImage.add_header('Content-ID', '<image1>')
+                msg.attach(msgImage)  
+
+                total =   int(shipping_data['product_quantity']) * int(product_data['product_price'])  
+                html = html.replace("{{total}}",str(total))
+                msg.attach(MIMEText(html, 'html'))
+                s.send_message(msg)
+                del msg
+            # Terminate the SMTP session and close the connection
+            s.quit()
                 # Order.objects.update_or_create(product_id=data['product_id'],user_id=c_id,defaults=data)
             messages.info(request,"Successfully Orderd ! We will contact you very Soon. ")
-            Wishlist.objects.filter(temp_id=c_id,ishere=False).update(ishere=2)
+            #Wishlist.objects.filter(temp_id=c_id,ishere=False).update(ishere=2)
             return redirect('Cart')            
         menus = Navigation.objects.filter(parent_page_id=0).order_by('position')
         global_data = GlobalSettings.objects.first()
