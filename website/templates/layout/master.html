@@ -48,7 +48,10 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <!-- header -->
-    <script src="{% static 'assets/header/js/jquery.min.js' %} "></script>
+    <script src="{% static 'assets/header/js/jquery.min.js' %} "></script>  
+    {% block topjscontents %}  
+    <!-- here all contents displayed -->
+    {% endblock %}
    
 </head>
 
@@ -72,38 +75,68 @@
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12">
                             <div class="rightSidemainTopBar">
+                               
                                 <div class="language">
-                                    <div class="dropdown language_box" id="dropdownMenuButton1"
+                                    {% comment %} <div class="dropdown language_box" id="dropdownMenuButton1"
                                         data-bs-toggle="dropdown">
                                         <div class="languageInfo">
-                                            <span>--Select language --</span>
+                                            <span id="lan">--Select language --</span>
                                             <i class="fa-solid fa-chevron-down"></i>
                                         </div>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-
-                                            <li>
-                                                <a class="link dropdown-item">
-                                                    <span>English</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class=" link dropdown-item">
-                                                    <span>Nepali</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class=" link dropdown-item">
-                                                    <span>Hindi</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class=" link dropdown-item">
-                                                    <span>Arabic</span>
-                                                </a>
-                                            </li>
+                                         <ul id="theme" class="dropdown-menu" role="menu">
+                                            <li><a class="link dropdown-item" href="#">-- English --</a></li>
+                                            <li><a class="link dropdown-item" href="#">Nepali</a></li>
+                                            <li><a class="link dropdown-item" href="#">Hindi</a></li>
+                                            <li><a class="link dropdown-item" href="#">Arabic</a></li>
+                                            <li><a class="link dropdown-item" href="#">Darkly</a></li>
+                                            <li><a class="link dropdown-item" href="#">Flatly</a></li>
+                                            <li><a class="link dropdown-item" href="#">Lumen</a></li>
+                                            <li><a class="link dropdown-item" href="#">Simplex</a></li>
+                                            <li><a class="link dropdown-item" href="#">Slate</a></li>
+                                            <li><a class="link dropdown-item" href="#">Spacelab</a></li>
+                                            <li><a class="link dropdown-item" href="#">Superhero</a></li>
+                                            <li><a class="link dropdown-item" href="#">United</a></li>
+                                            <li><a class="link dropdown-item" href="#">Yeti</a></li>
                                         </ul>
-                                    </div>
+                                        <script>
+                                           $('#theme li').click(function () {
+                                               //alert('item: ' + $(this).text());
+                                               $('#lan').text($(this).text());
+                                           });
+                                       </script>
+                                    </div> {% endcomment %}
+                                    
+
+
+
+                                    <div id="google_element"></div>
+                                    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+                                    <script>
+                                        function loadGoogleTranslate(){
+                                            new google.translate.TranslateElement('google_element');
+                                        }
+                                        {% comment %} $(document).ready(function(){
+                                            if($(".goog-close-link").length > 0){
+                                                alert('found');
+                                            }
+                                        }); {% endcomment %}
+                                    </script>
                                 </div>
+                                <style>
+                                    #google_element span{
+                                        display: none;
+                                    }
+                                    .skiptranslate{
+                                        font-size:0;
+                                    }
+                                    
+                                    .skiptranslate div{
+                                        font-size:16px;
+                                    }
+                                    .goog-te-combo{
+                                        padding: 6px;
+                                    }
+                                </style>
                             </div>
 
                         </div>
@@ -121,7 +154,7 @@
                                     <a href="/">
                                         <img src="{% if global_data.image2 != '' %}{{global_data.image2.url}}{% else %}{% static 'assets/images/logo.png' %}{% endif %} " alt="_logo" />
                                     </a>
-                                    <span>{% if global_data.site_name != '' %}{{global_data.site_name}}{% else %}Dahal HandiCraft{% endif %}<span>
+                                    <span class="notranslate" >{% if global_data.site_name != '' %}{{global_data.site_name}}{% else %}Dahal HandiCraft{% endif %}<span>
 
                                 </div>
 
@@ -384,7 +417,7 @@
     </div>
     <!--script-->
     <script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %} "></script>
-    <script type="text/javascript" src="{% static 'assets/js/bootstrap.bundle.min.js' %} "></script>
+    {% comment %} <script type="text/javascript" src="{% static 'assets/js/bootstrap.bundle.min.js' %} "></script> {% endcomment %}
     <script type="text/javascript" src="{% static 'assets/js/wow.min.js' %} "></script>
     <script type="text/javascript" src="{% static 'assets/js/plugin/owl/owl.carousel.min.js' %} "></script>
     <script type="text/javascript" src="{% static 'assets/js/jquery.magnific-popup.js' %} "></script>
@@ -402,15 +435,16 @@
     <script type="text/javascript" src="{% static 'assets/js/custom.js' %} "></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-    </script>
     <script src="{% static 'assets/header/js/bootstrap.bundle.min.js' %} "></script>
     <script src="{% static 'assets/header/js/meanmenu.min.js' %} "></script>
     <script src="{% static 'assets/header/js/owl.carousel.min.js' %} "></script>
     <script src="{% static 'assets/header/js/nice-select.min.js' %} "></script>
     <script src="{% static 'assets/header/js/smoothscroll.min.js' %} "></script>
-    <script src="{% static 'assets/header/js/custom.js' %} "></script>
+    </script>
+    {% block jscontents %}  
+    <!-- here all contents displayed -->
+    {% endblock %}
     
-
     <script>
         function openForm() {
             document.getElementById("myForm").style.display = "block";

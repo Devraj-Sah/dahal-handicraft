@@ -1,4 +1,10 @@
 {% extends 'layout/master.html' %}
+
 {% block contents %}
     {% include 'partials/main.html' %}
+{% endblock %}
+
+{% block jscontents %}
+    {% load staticfiles %}
+    <script src="{% static 'assets/header/js/custom.js' %} "></script>
 {% endblock %}

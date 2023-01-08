@@ -1,0 +1,80 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_list %}
+
+{% block object-tools %}
+    <div class="object-tools grp-object-tools tools">
+
+        <a href="{% url 'admin:translation_manager_translationentry_compile' %}" class="btn btn-info">
+                {% filter capfirst %}{% trans "admin-translation_manager-compile_translations" %}{% endfilter %}
+            </a>
+
+        {% if has_add_permission %}
+
+            <a id="id_make_translations" href="{% url 'admin:translation_manager_translationentry_make' %}"
+               class="btn btn-info" style="margin-left: 10px">
+                {% filter capfirst %}{% trans "admin-translation_manager-make_translations" %}{% endfilter %}
+            </a>
+
+        {% endif %}
+        {% if perms.translation_manager.load %}
+
+            <a href="{% url 'admin:translation_manager_translationentry_load' %}" class="btn btn-info"
+               style="margin-left: 10px">
+                {% filter capfirst %}{% trans "admin-translation_manager-load-from-po" %}{% endfilter %}
+            </a>
+
+        {% endif %}
+
+        {% if remote_url and perms.translation_manager.sync %}
+            <a href="{% url 'admin:translation_manager_translationentry_sync' %}" class="btn btn-info"
+               title="{{ remote_url }}" style="margin-left: 10px">
+                    {% filter capfirst %}{% trans "admin-translation_manager-sync_with_remote_url" %}{% endfilter %}
+            </a>
+        {% endif %}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        var id_make_translations = "#id_make_translations";
+        var make_messages_status_timer = null;
+
+        $(document).ready(function () {
+
+            var make_messages_status = "{{make_translations_running}}";
+
+            if (make_messages_status == true) {
+                $(id_make_translations).text("{% trans "admin-translation_manager-makemessages-running" %}")
+            }
+
+            $(id_make_translations).click(make_messages_link_on_click_not_running);
+        });
+
+        function make_messages_link_on_click_not_running() {
+            $(id_make_translations).text("{% trans "admin-translation_manager-makemessages-running" %}");
+            make_messages_status_timer = setInterval(get_make_messages_status, 200);
+            $(id_make_translations).css("background-color", "SteelBlue");
+            $(id_make_translations).click(make_messages_link_on_click_running());
+        }
+
+        function make_messages_link_on_click_running() {
+            return false;
+        }
+
+        function get_make_messages_status() {
+            clearInterval(make_messages_status_timer);
+            $.getJSON('/admin/translation_manager/translationentry/get_make_translations_status/', function (data) {
+                if (data["running"] == false) {
+                    set_link_make_messages_not_running();
+                } else {
+                    make_messages_status_timer = setInterval(get_make_messages_status, 200)
+                }
+            });
+        }
+
+        function set_link_make_messages_not_running() {
+            $(id_make_translations).text("{% trans "admin-translation_manager-make_translations" %}");
+            $(id_make_translations).click(make_messages_link_on_click_not_running);
+        }
+
+    </script>
+{% endblock %}

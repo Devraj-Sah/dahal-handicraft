@@ -1,0 +1,196 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-16 12:57+0000\n"
+"PO-Revision-Date: 2014-10-27 21:26:51\n"
+"Last-Translator: Server <root@localhost>\n"
+"Language-Team: English <cisarpavel@gmail.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: settings.py:72
+msgid "Czech"
+msgstr ""
+
+#: settings.py:73
+msgid "English"
+msgstr ""
+
+#: translation_manager/admin.py:116
+msgid "admin-translation_manager-data-loaded_from_po"
+msgstr "Translations were loaded from .po files"
+
+#: translation_manager/admin.py:132
+msgid "admin-translation_manager-translations_made"
+msgstr "list updated"
+
+#: translation_manager/admin.py:141
+msgid "admin-translation_manager-translations_compiled"
+msgstr "translations published"
+
+#: translation_manager/admin.py:210
+#, fuzzy
+#| msgid "admin-translation_manager-backups_restore_option"
+msgid "admin-translation_manager-use_remote-value"
+msgstr "restore selected backups"
+
+#: translation_manager/admin.py:221
+msgid "admin-translation_manager-backups_restore_option"
+msgstr "restore selected backups"
+
+#: translation_manager/filters.py:11
+msgid "admin-translation_manager-translation_state_filter-title"
+msgstr "state"
+
+#: translation_manager/filters.py:16
+msgid "admin-translation_manager-translation_state_filter-translated"
+msgstr "translated"
+
+#: translation_manager/filters.py:17
+msgid "admin-translation_manager-translation_state_filter-untranslated"
+msgstr "untranslated"
+
+#: translation_manager/filters.py:48
+#, fuzzy
+#| msgid "admin-translation_manager-translation_state_filter-title"
+msgid "admin-translation_manager-translation_custom_filter-title"
+msgstr "state"
+
+#: translation_manager/models.py:12
+msgid "admin-translation_entry-created-label"
+msgstr "created"
+
+#: translation_manager/models.py:13
+msgid "admin-translation_entry-changed-label"
+msgstr "changed"
+
+#: translation_manager/models.py:14
+msgid "admin-translation_entry-language-label"
+msgstr "language"
+
+#: translation_manager/models.py:15
+msgid "admin-translation_entry-original-label"
+msgstr "original"
+
+#: translation_manager/models.py:16
+msgid "admin-translation_entry-translation-label"
+msgstr "translation"
+
+#: translation_manager/models.py:17
+msgid "admin-translation_entry-occurrences-label"
+msgstr "occurrencies"
+
+#: translation_manager/models.py:18
+msgid "admin-translation_entry-is_published-label"
+msgstr "is published"
+
+#: translation_manager/models.py:19
+msgid "admin-translation_entry-locale_path-label"
+msgstr "relative path to project root dir"
+
+#: translation_manager/models.py:20
+msgid "admin-translation_entry-locale_parent_dir-label"
+msgstr "application dir"
+
+#: translation_manager/models.py:21
+msgid "admin-translation_entry-domain-label"
+msgstr "domain"
+
+#: translation_manager/models.py:26
+msgid "admin-translation_entry-singular"
+msgstr "translation entry"
+
+#: translation_manager/models.py:27
+msgid "admin-translation_entry-plural"
+msgstr "translation entries"
+
+#: translation_manager/models.py:30
+msgid "admin-translation_entry-load-from-po"
+msgstr "load from .po files"
+
+#: translation_manager/models.py:52
+#, fuzzy
+#| msgid "admin-translation_entry-domain-label"
+msgid "admin-translation_entry-hint-label"
+msgstr "domain"
+
+#: translation_manager/models.py:56
+#, fuzzy
+#| msgid "admin-translation_entry-translation-label"
+msgid "admin-remote_translation_entry-remote_translation-label"
+msgstr "translation"
+
+#: translation_manager/models.py:57
+#, fuzzy
+#| msgid "admin-translation_entry-changed-label"
+msgid "admin-remote_translation_entry-changed-label"
+msgstr "changed"
+
+#: translation_manager/models.py:69
+msgid "admin-translation_backup-created-label"
+msgstr "created at"
+
+#: translation_manager/models.py:70
+msgid "admin-translation_backup-changed-label"
+msgstr "changed"
+
+#: translation_manager/models.py:71
+msgid "admin-translation_backup-language-label"
+msgstr "language"
+
+#: translation_manager/models.py:72
+msgid "admin-translation_backup-locale_path-label"
+msgstr "relative path to project root dir"
+
+#: translation_manager/models.py:73
+msgid "admin-translation_backup-locale_parent_dir-label"
+msgstr "parent dir"
+
+#: translation_manager/models.py:74
+msgid "admin-translation_backup-domain-label"
+msgstr "domain"
+
+#: translation_manager/models.py:76
+msgid "admin-translation_backup-content"
+msgstr "content"
+
+#: translation_manager/models.py:79
+msgid "admin-translation_backup-singular"
+msgstr "language backup"
+
+#: translation_manager/models.py:80
+msgid "admin-translation_backup-plural"
+msgstr "language backups"
+
+#: translation_manager/templates/admin/translation_manager/change_list.html:8
+msgid "admin-translation_manager-compile_translations"
+msgstr "publish translations"
+
+#: translation_manager/templates/admin/translation_manager/change_list.html:15
+#: translation_manager/templates/admin/translation_manager/change_list.html:81
+msgid "admin-translation_manager-make_translations"
+msgstr "update list of translations"
+
+#: translation_manager/templates/admin/translation_manager/change_list.html:23
+msgid "admin-translation_manager-load-from-po"
+msgstr "Load translations from .po files "
+
+#: translation_manager/templates/admin/translation_manager/change_list.html:31
+#, fuzzy
+#| msgid "admin-translation_manager-backups_restore_option"
+msgid "admin-translation_manager-sync_with_remote_url"
+msgstr "restore selected backups"
+
+#: translation_manager/templates/admin/translation_manager/change_list.html:46
+#: translation_manager/templates/admin/translation_manager/change_list.html:59
+#, fuzzy
+#| msgid "admin-translation_manager-make_translations"
+msgid "admin-translation_manager-makemessages-running"
+msgstr "update list of translations"
+
+#~ msgid "admin-translation_backup-filename-label"
+#~ msgstr "filename"
