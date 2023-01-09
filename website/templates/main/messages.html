@@ -1,4 +1,4 @@
-<div style="display: flex;justify-content: center;">
+<div style="display: flex;   margin-left:200px  ">
     <img height="50" src="cid:image0" width="50">
 <span style="color: green; font-weight: bold; margin-top: 15px;margin-left: 10px;"> Dahal HandiCraft </span>
 </div>
@@ -8,29 +8,29 @@
 <ul>
     <li style="display: block; padding: 5px;">
         <span style="color: black; font-weight: bold;"> Name: </span>
-        <span style="color: black; font-weight: bold;"> Devraj </span>
+        <span style="color: black; font-weight: bold;"> {{Name}} </span>
     </li>
     <li style="display: block;padding: 5px;">
         <span style="color: black; font-weight: bold;"> Email: </span>
-        <span style="color: black; font-weight: bold;"> Devraj </span>
+        <span style="color: black; font-weight: bold;"> {{Email}} </span>
     </li>
     <li style="display: block;padding: 5px;">
         <span style="color: black; font-weight: bold;"> Phone Number: </span>
-        <span style="color: black; font-weight: bold;"> Devraj </span>
+        <span style="color: black; font-weight: bold;"> {{Phone_Number}} </span>
     </li>
 </ul>
 <ul style="margin-left: 100px;">    
     <li style="display: block;padding: 5px;">
-        <span style="color: black; font-weight: bold;"> Billing Address: </span>
-        <span style="color: black; font-weight: bold;"> Devraj </span>
+        <span style="color: black; font-weight: bold;"> Shipping Address: </span>
+        <span style="color: black; font-weight: bold;"> {{Shipping_Address}} </span>
     </li>
     <li style="display: block;padding: 5px;">
         <span style="color: black; font-weight: bold;"> Billing Address: </span>
-        <span style="color: black; font-weight: bold;"> Devraj </span>
+        <span style="color: black; font-weight: bold;"> {{Billing_Address}} </span>
     </li>
     <li style="display: block;padding: 5px;">
         <span style="color: black; font-weight: bold;"> Current Address: </span>
-        <span style="color: black; font-weight: bold;"> Devraj </span>
+        <span style="color: black; font-weight: bold;"> {{Current_Address}} </span>
     </li>
 </ul>
 </div>
@@ -41,6 +41,7 @@
                     <th scope="" colspan="2" style="border: 1px solid black; padding:15px">Product Name</th>
                     <th scope="" style="border: 1px solid black; padding:15px">Color</th>
                     <th colspan="" style="border: 1px solid black; padding:15px">Qty</th>
+                    <th colspan="" style="border: 1px solid black; padding:15px">size</th>
                     <th colspan="" style="border: 1px solid black; padding:15px">Price</th>
                 </tr>
             </thead>
@@ -50,12 +51,14 @@
                 <td rowspan="" style="padding:15px">{{product_data['product_name']}}</td>
                 <td style="border: 1px solid black; padding:15px">{{shipping_data['product_color']}}</td>
                 <td style="border: 1px solid black; padding:15px">{{shipping_data['product_quantity']}}</td>
+                <td style="border: 1px solid black; padding:15px">{{shipping_data['product_size']}}</td>
                 <td style="border: 1px solid black; padding:15px">${{product_data['product_price']}}</td>
             </tr>
             <tr style="border: 1px solid black;">
                 <td rowspan=""></td>
                 <td rowspan="" ></td>
                 <td >Total</td>
+                <td ></td>
                 <td ></td>
                 <td ></td>
                 <td >${{total}}</td>

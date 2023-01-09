@@ -221,7 +221,6 @@ def CheckOut(request):
                 'current_address' : request.POST['caddress'],
             }
 
-            names = "Devraj" 
             emails = "devraj.sah13@gmail.com"
 
            # html = html.replace('{{names}}',names)
@@ -243,6 +242,15 @@ def CheckOut(request):
                 fp = open(os.path.join(BASE_DIR ,'website/static/assets/images/logo.png'), 'rb')
                 msgImage = MIMEImage(fp.read())
                 fp.close()
+                
+                html = html.replace("{{Name}}",str(user_info['name']))
+                html = html.replace("{{Email}}",str(user_info['email']))
+                html = html.replace("{{Phone_Number}}",str(user_info['phone']))
+                html = html.replace("{{Shipping_Address}}",str(user_info['shpping_address']))
+                html = html.replace("{{Billing_Address}}",str(user_info['billing_address']))
+                html = html.replace("{{Current_Address}}",str(user_info['current_address']))
+
+
 
                 # Define the image's ID as referenced above
                 msgImage.add_header('Content-ID', '<image0>')
@@ -262,7 +270,12 @@ def CheckOut(request):
                     'product_name' : j.name,
                     'product_price' : j.price,
                     'product_image' : j.image1,
+                    'most_ordered' : j.most_ordered,
                 }
+                
+                Products.objects.filter(id=shipping_data['product_id']).update(most_ordered=int(product_data['most_ordered'])+1)
+
+
                 html = html.replace("{{product_data['product_name']}}",str(product_data['product_name']))
                 html = html.replace("{{product_data['product_price']}}",str(product_data['product_price']))
                 fp = open(os.path.join(BASE_DIR ,"media/"+str(product_data['product_image'])), 'rb')
@@ -280,7 +293,7 @@ def CheckOut(request):
             s.quit()
                 # Order.objects.update_or_create(product_id=data['product_id'],user_id=c_id,defaults=data)
             messages.info(request,"Successfully Orderd ! We will contact you very Soon. ")
-            #Wishlist.objects.filter(temp_id=c_id,ishere=False).update(ishere=2)
+            Wishlist.objects.filter(temp_id=c_id,ishere=False).update(ishere=2)
             return redirect('Cart')            
         menus = Navigation.objects.filter(parent_page_id=0).order_by('position')
         global_data = GlobalSettings.objects.first()

@@ -5874,7 +5874,7 @@ label.radio input:checked + span {
 .apply-wrapper{
   height: auto;
   box-shadow: rgb(136 165 191 / 48%) 6px 2px 16px 0px, rgb(255 255 255 / 80%) -6px -2px 16px 0px;
-  padding: 20px 20px 20px 20px;
+  /* padding: 20px 20px 20px 20px; */
 }
 .form-shopping{
   padding-bottom: 50px;

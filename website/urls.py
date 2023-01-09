@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import views
-from .includes import Action
+from .includes import Action,search
 
 urlpatterns = [  
     path('', views.index, name='website.index'),
@@ -26,7 +26,7 @@ urlpatterns = [
     # path('change-password', user_account.ChangePassword, name="ChangePassword"),
     # path('view-order/<int:p_id>', user_account.ViewOrder, name="ViewOrder"),
 
-    # path('search',search.ProductSearch,name="ProductSearch"),
+    path('search',search.ProductSearch,name="ProductSearch"),
 
     # path('login', user_auth.Login, name='user_login'),
     # path('register', user_auth.SignUp, name='user_register'),
