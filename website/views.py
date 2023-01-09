@@ -6,6 +6,18 @@ from django.shortcuts import render
 from root.models import *
 from website.includes.Action import *
 
+#Mail
+import smtplib
+from string import Template
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.application import MIMEApplication
+from email.mime.image import MIMEImage
+import os
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+
+
 # Create your views here.
 def index(request):        
         # return render(request, 'index.html')
@@ -199,15 +211,6 @@ def CheckOut(request):
     if Wishlist.objects.filter(temp_id=c_id,ishere=False):
         if request.POST: 
             #mail
-            import smtplib
-            from string import Template
-            from email.mime.multipart import MIMEMultipart
-            from email.mime.text import MIMEText
-            from email.mime.application import MIMEApplication
-            from email.mime.image import MIMEImage
-            import os
-            from pathlib import Path
-            BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
             MY_ADDRESS = 'fenfit@fenfitnepal.com'
             PASSWORD = 'fenfit@devraj'
@@ -221,13 +224,18 @@ def CheckOut(request):
                 'current_address' : request.POST['caddress'],
             }
 
-            emails = "devraj.sah13@gmail.com"
+            get_data = GlobalSettings.objects.only('configure_email').first()        
+            emails = get_data.configure_email
 
            # html = html.replace('{{names}}',names)
 
-            s = smtplib.SMTP(host='mail.fenfitnepal.com', port=587)
-            s.starttls()
-            s.login(MY_ADDRESS, PASSWORD)
+            try:
+                s = smtplib.SMTP(host='mail.fenfitnepal.com', port=587)
+                s.starttls()
+                s.login(MY_ADDRESS, PASSWORD)
+            except:
+                messages.info(request,"Connecting To Mail Server Failed !!!")
+                return redirect('CheckOut')
             
 
             for i in Wishlist.objects.filter(temp_id=c_id,ishere=False) :
@@ -307,6 +315,82 @@ def CheckOut(request):
     else:
         messages.error(request,"Please add to Cart. Before Checkout")
         return redirect('Cart')
+
+def Custom(request):
+    try:
+        c_id = request.COOKIES['c_id']
+    except:
+        return redirect('website.index')
+    
+    if request.POST: 
+
+        MY_ADDRESS = 'fenfit@fenfitnepal.com'
+        PASSWORD = 'fenfit@devraj'
+        user_info = {
+            'name'    : request.POST['name'],
+            'phone'   : request.POST['phone'],
+            'email'   : request.POST['email'],
+            'shpping_address' : request.POST['address'],
+            'billing_address' : request.POST['baddress'],
+            'current_address' : request.POST['caddress'],
+            'product_name'    : request.POST['product_name'],
+            'size'   : request.POST['size'],
+            'color'   : request.POST['color'],
+            'quantity'   : request.POST['number'],
+        }
+        get_data = GlobalSettings.objects.only('configure_email').first()        
+        emails = get_data.configure_email
+
+        # html = html.replace('{{names}}',names)
+        try:
+            s = smtplib.SMTP(host='mail.fenfitnepal.com', port=587)
+            s.starttls()
+            s.login(MY_ADDRESS, PASSWORD)
+        except:
+            messages.info(request,"Connecting To Mail Server Failed !!!")
+            return redirect('website.index') 
+
+        html = read_template(os.path.join(BASE_DIR ,'website/templates/main/custom-messages.html'))
+        msg = MIMEMultipart()       # create a message
+        msg['From']=MY_ADDRESS
+        msg['To']=emails
+        msg['Subject']="Order Details"
+
+        # This example assumes the image is in the current directory
+        fp = open(os.path.join(BASE_DIR ,'website/static/assets/images/logo.png'), 'rb')
+        msgImage = MIMEImage(fp.read())
+        fp.close()
+        
+        html = html.replace("{{product_name}}",str(user_info['product_name']))
+        html = html.replace("{{size}}",str(user_info['size']))
+        html = html.replace("{{color}}",str(user_info['color'])) 
+        html = html.replace("{{quantity}}",str(user_info['quantity'])) 
+        html = html.replace("{{Name}}",str(user_info['name']))
+        html = html.replace("{{Email}}",str(user_info['email']))
+        html = html.replace("{{Phone_Number}}",str(user_info['phone']))
+        html = html.replace("{{Shipping_Address}}",str(user_info['shpping_address']))
+        html = html.replace("{{Billing_Address}}",str(user_info['billing_address']))
+        html = html.replace("{{Current_Address}}",str(user_info['current_address']))
+
+
+
+        # Define the image's ID as referenced above
+        msgImage.add_header('Content-ID', '<image0>')
+        msg.attach(msgImage)     
+       
+        msg.attach(MIMEText(html, 'html'))
+        s.send_message(msg)
+        del msg
+        # Terminate the SMTP session and close the connection
+        s.quit()
+
+        messages.info(request,"Successfully Orderd ! We will contact you very Soon. ")
+        return redirect('website.index')            
+
+    else:
+        messages.error(request,"Please Try Again !!!")
+        return redirect('website.index')
+
 
 def Contactus(request):
     data = {

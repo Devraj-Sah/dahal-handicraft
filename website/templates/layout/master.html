@@ -155,15 +155,23 @@
 
                             </div>
                             <div class="col-5 middleSideTop">
-                                <div class="searhInput">
-                                    <input type="text" placeholder="Keyword here..." />
-                                </div>
+                                <form action="search" method="get" style="display: flex;">
+                                    {% comment %} {% csrf_token %} {% endcomment %}
+                                    <div class="searhInput">
+                                        <input type="text" id="search-input" name="product" placeholder="Keyword here..." />
+                                    </div>
+                                    {% comment %} <div id="search-suggestions">
+                                        {% for k in search %}
+                                        <div class="suggestion">{{ k.name }}</div>
+                                        {% endfor %}
+                                    </div> {% endcomment %}
 
-                                <div class="searchIcon">
-                                    <span>
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </span>
-                                </div>
+                                    <button style="background-color: #00a550; border:none">
+                                        <div class="searchIcon">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </div>
+                                    </button>
+                                </form>
                             </div>
                             <div class="col-3 rightSideTop">
                                 <div class="cartList">
@@ -448,6 +456,27 @@
         function closeForm() {
             document.getElementById("myForm").style.display = "none";
         }
+
+        
+
+    {% comment %} $(function() {
+        $('#search-input').on('keyup', function() {
+            //alert('ho')
+          var query = $(this).val();
+          $.ajax({
+              url: 'search',
+              data: {
+              'product': query
+            },
+            success: function(data) {
+                //alert('ok');
+              $('#search-suggestions').html(data);
+              //console.log(data)
+            }
+          });
+        });
+      }); {% endcomment %}
+
     </script>
 
 </body>

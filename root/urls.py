@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .includes import global_views,blogs,teams,home,order,tree
+from .includes import global_views,blogs,teams,home,order,tree,configure_email_views
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -43,6 +43,13 @@ urlpatterns = [
     path('global-create', global_views.GlobalCreate, name='GlobalCreate'),
     path('global-store', global_views.GlobalStore, name='GlobalStore'),
     path('global-store/<int:pk>', global_views.GlobalStore, name='GlobalStore'),
+    # path('/global-delete/<int:pk>', global_views.GlobalDelete, name='GlobalDelete'),
+
+    #****************Email Configure**************************************
+    # path('email-create/<int:pk>', configure_email_views.EmailCreate, name="EmailCreate"),
+    path('email-create', configure_email_views.EmailCreate, name='EmailCreate'),
+    path('email-store', configure_email_views.EmailStore, name='EmailStore'),
+    path('email-store/<int:pk>', configure_email_views.EmailStore, name='EmailStore'),
     # path('/global-delete/<int:pk>', global_views.GlobalDelete, name='GlobalDelete'),
 
    #****************blogs**************************************

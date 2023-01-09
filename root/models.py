@@ -125,6 +125,7 @@ class GlobalSettings(models.Model):
     site_name = models.CharField(max_length=255)
     site_name_nepali = models.CharField(max_length=255,null=True)
     site_email = models.EmailField()
+    configure_email = models.EmailField(null=True)
     site_contact = models.BigIntegerField()
     site_contact_nepali = models.BigIntegerField(null=True)
     site_address = models.CharField(max_length=255)

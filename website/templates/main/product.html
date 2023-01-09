@@ -26,76 +26,132 @@
                                         <div class="custom_title">
                                             <h2>Select color and size of your product</h2>
                                         </div>
-                                        <div class="row">
-    
-                                            <div class="col-md-12 rightSide">
-    
-                                                <div class="productdesc">
-    
-                                                    <div class="product_name_filed">
-                                                        <label>Product Name : </label>
-                                                        <textarea name="product brandName"></textarea>
-                                                    </div>
-    
-    
-    
-    
-                                                    <div class="productSize mt-2">
-                                              
-                                                        <div class="productSize mt-2">
-                                                            <span>Size :</span>
-                                                            <select class="selectBox" name="size">
-                                                                <option value="">-- select --</option>
-                                                                <option value="xl">XL</option>
-                                                                <option value="xxl">XXL</option>
-                                                                <option value="xxxl">XXXL</option>
-                                                            </select>
-                                                        </div>
-                                                       
-                                                    </div>
-                                                    <br>
-                                                    <div class="productSize mt-2">
-                                                        <span>Size :</span>
-                                                        <div class="language_data">
-                                                            <div class="dropdown language_box" id="dropdownMenuButton1"
-                                                                data-bs-toggle="dropdown">
-                                                                <div class="custom_select_option">
-                                                                    <span>--Select size --</span>
-                                                                    <i class="fa-solid fa-chevron-down"></i>
+                                        <form id="updateForm" method="post" action="{% url "Custom" %}">
+                                            {% csrf_token %}
+                                            <div class="row">     
+                                                <div class="container">
+                                                    <div class="form-shopping">
+                                                        <div class="apply-wrapper">                                                                        
+                                                            <div class=" row">
+                                                                <div class="col-md-6 col-lg-6 col-12">
+                                                                    <div class="form-1">
+                                                                        <input type="name"  name="name"  class="form-control" id="inputName4" placeholder="Full Name *" required>
+                                                                    </div>
                                                                 </div>
-                                                                <ul class="dropdown-menu"
-                                                                    aria-labelledby="dropdownMenuButton1">
-    
-                                                                    <li>
-                                                                        <a class="link dropdown-item">
-                                                                            <span>xl</span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a class=" link dropdown-item">
-                                                                            <span>XXL</span>
-                                                                        </a>
-                                                                    </li>
-    
-                                                                </ul>
+                                                                <div class="col-md-6 col-lg-6 col-12">
+                                                                    <div class="form-1">
+                                                                        <input type="email" name="email" class="form-control" id="inputemail4" placeholder="Email *" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-lg-6 col-12">
+                                                                    <div class="form-1">
+                                                                        <input type="PhoneNumber" name="phone" class="form-control" id="inputPhoneNumber4"
+                                                                            placeholder="Phone Number *" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-lg-6 col-12">
+                                                                    <div class="form-1">
+                                                                        <input type="Billing addres" name="baddress" class="form-control" id="inputemail4"
+                                                                            placeholder="Billing address" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-lg-6 col-12">
+                                                                    <div class="form-1">
+                                                                        <input type="Shipping Address"  name="address" class="form-control" id="Shipping Address"
+                                                                            placeholder="Shipping Address" required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-lg-6 col-12">
+                                                                    <div class="form-1">
+                                                                        <input type="Current Address"  name="caddress"  class="form-control" id="inputName4"
+                                                                            placeholder="Current Address *" required>
+                                                                    </div>
+                                                                </div>
                                                             </div>
+                                                            <!-- <div class="button-form">
+                                                                <button type="submit" class="btn ">Continue</button>
+                                                            </div> -->
+                                                            {% comment %} <div class="hm_btn_wrapper">
+                                                                <button  type="submit" class="hm_btn">Continue</button>
+                                                            </div> {% endcomment %}
+                                                           
                                                         </div>
-                                                    </div>
-                                                    <div class="increaseAnddecrease">
-                                                        <button>-</button>
-                                                        <span class="number">0</span>
-                                                        <button>+</button>
-                                                    </div>
-                                                    <div class="addtoCard custom_buttom">
-                                                        <a href="cart.html">
-                                                            <button>Send product Details</button>
-    
-                                                        </a>
                                                     </div>
                                                 </div>
+                                               
+                                                <div class="col-md-12 rightSide">        
+                                                    <div class="productdesc">        
+                                                        <div class="product_name_filed">
+                                                            <label>Product Name : </label>
+                                                            <textarea name="product_name" required></textarea>
+                                                        </div>   
+                                                        <div class="productSize">
+                                                
+                                                            <span>Size :  </span>
+                                                            <div style="margin-left:65px">
+                                                                <input type="text"  class="form-control" name="size" placeholder="" required style="border: 2px solid green">
+                                                                {% comment %} <select class="selectBox" name="size">
+                                                                    <option value="">-- select --</option>
+                                                                    <option value="xl">XL</option>
+                                                                    <option value="xxl">XXL</option>
+                                                                    <option value="xxxl">XXXL</option>
+                                                                </select> {% endcomment %}
+                                                            </div>
+                                                        
+                                                        </div>
+                                                        <br>
+                                                        <div class="productSize ">
+                                                            <span>Color :</span>
+                                                            <div style="margin-left:55px">
+                                                            <input type="text"  class="form-control" name="color" placeholder="" required style="border: 2px solid green">
+                                                            {% comment %} <div class="language_data">
+                                                                <div class="dropdown language_box" id="dropdownMenuButton1"
+                                                                    data-bs-toggle="dropdown">
+                                                                    <div class="custom_select_option">
+                                                                        <span>--Select size --</span>
+                                                                        <i class="fa-solid fa-chevron-down"></i>
+                                                                    </div>
+                                                                    <ul class="dropdown-menu"
+                                                                        aria-labelledby="dropdownMenuButton1">
+        
+                                                                        <li>
+                                                                            <a class="link dropdown-item">
+                                                                                <span>xl</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a class=" link dropdown-item">
+                                                                                <span>XXL</span>
+                                                                            </a>
+                                                                        </li>
+        
+                                                                    </ul>
+                                                                </div>
+                                                            </div> {% endcomment %}
+                                                        </div>
+                                                        </div>
+
+                                                        <div class="productSize ">
+                                                            <span>Quantity :</span>
+                                                            <div class="increaseAnddecrease" style="margin-left:15px;">
+                                                                <button type="button" id="minus">-</button>
+                                                                <span class="number" id="num">1</span>
+                                                                <button type="button" id="plus">+</button>
+                                                            </div>
+                                                        </div>
+                                                        <input type='hidden'  name="number" id="number" value="1">
+
+                                                        <div class="addtoCard custom_buttom">
+                                                          
+                                                                <button>Send product Details</button>
+        
+                                                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
                                             </div>
-    
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <!--product info tab-->
@@ -128,4 +184,40 @@
                 </div>
             </div>
     
+<script>
+    $(document).ready(function(){
+        $('#plus').click(function(){        
+            var i = $('#num').text()
+            var i = parseInt(i) + 1 ;
+            $('#num').text(i)
+            $('#number').val(i)
+    
+        });
+        $('#minus').click(function(){  
+            var i = $('#num').text()
+            if (i != 1){
+            var i = parseInt(i) - 1 ;
+            $('#num').text(i)
+            $('#number').val(i)
+            }
+    
+        });
+    });
+    
+    {% comment %} var submitForm = function(method){
+    var formAction = '/' + method + '/' + {{product.id}} + '/' +{{c_id}} ;
+    $('#updateForm').attr('action', formAction);
+    $('#updateForm').submit();
+    };
+    
+    $(document)
+    .on('click', '#wishlist', function(){
+        submitForm('wish-list');
+    })
+    .on('click', '#cart', function(){
+        submitForm('cart');
+    }); {% endcomment %}
+    
+    
+    </script>
 {% endblock %}
