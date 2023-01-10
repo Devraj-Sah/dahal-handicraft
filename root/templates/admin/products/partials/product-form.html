@@ -82,7 +82,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--/span-->
+                                            <input type="hidden" name="discount_type">
+                                            <input type="hidden" name="discount">
+                                            <input type="hidden" name="payment_type">
+                                            <input type="hidden" name="vendor">
+                                            <input type="hidden" name="brand">
+                                            <input type="hidden" name="meta_title">
+                                            <input type="hidden" name="keyword">
+                                            <input type="hidden" name="size">
+                                            {% comment %} <!--/span-->
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label class="form-label">Discount In %</label>
@@ -106,7 +114,7 @@
                                                 </div>
                                             </div>
                                           
-                                            <!--/span-->
+                                            <!--/span--> {% endcomment %}
                                         </div>
                                         <style>
                                             
@@ -131,7 +139,7 @@
                                         </div>
                                         <!--/row-->
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            {% comment %} <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-label">Meta Title</label>
                                                     <input type="text" name="meta_title" class="form-control" value="{{id_data.title}}"> </div>
@@ -141,13 +149,13 @@
                                                 <div class="form-group">
                                                     <label class="form-label">Meta Keyword</label>
                                                     <input type="text" name="keyword" class="form-control" value="{{id_data.keyword}}"> </div>
-                                            </div>
+                                            </div> {% endcomment %}
                                             <!--/span-->
                                       
                                             <div class="col-md-3">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">Upload1</h4>
+                                                        <h4 class="card-title">Upload Product Image</h4>
                                                         <input name="image1" type="file" id="input-file-now1" class="dropify" />
                                                     </div>
                                                 </div>
@@ -157,7 +165,7 @@
                                                     </script>
                                                 {% endif %}
                                             </div>
-                                            <div class="col-md-3">
+                                            {% comment %} <div class="col-md-3">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h4 class="card-title">Upload2</h4>
@@ -180,9 +188,9 @@
                                                         <input name="image4" type="file" id="input-file-now" class="dropify" />{{id_data.image4}}
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> {% endcomment %}
                                         </div>
-                                        <div class="row">
+                                        {% comment %} <div class="row">
                                             <div class="col-md-12">
                                                 <h5 class="card-title m-t-40">GENERAL INFO</h5>
                                                 <div class="table-responsive">
@@ -209,7 +217,7 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> {% endcomment %}
                                         <hr> </div>
                                     <div class="form-actions m-t-40">
                                         <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>
