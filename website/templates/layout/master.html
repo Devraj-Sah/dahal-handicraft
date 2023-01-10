@@ -204,9 +204,9 @@
 
                                     <div class="rightSideTop_mobile">
                                         <div class="cartList_mobile">
-                                            <a class="link" href="cart.html">
+                                            <a class="link" href="{% url 'Cart' %}">
                                                 <i class="fa-solid fa-cart-arrow-down"></i>
-                                                <span class="badge">2</span>
+                                                <span class="badge">{% if cartvalue %}{{cartvalue}}{% else %}0{% endif %}</span>
                                             </a>
                                         </div>
                                     </div>
