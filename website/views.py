@@ -280,8 +280,11 @@ def CheckOut(request):
                     'product_image' : j.image1,
                     'most_ordered' : j.most_ordered,
                 }
-                
-                Products.objects.filter(id=shipping_data['product_id']).update(most_ordered=int(product_data['most_ordered'])+1)
+                if(product_data['most_ordered'] != None):
+                    temp_mostordered = int(product_data['most_ordered']) + 1
+                else :
+                    temp_mostordered = 1
+                Products.objects.filter(id=shipping_data['product_id']).update(most_ordered=temp_mostordered)
 
 
                 html = html.replace("{{product_data['product_name']}}",str(product_data['product_name']))
