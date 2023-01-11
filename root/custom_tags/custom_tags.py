@@ -24,7 +24,7 @@ def times(count, start):
 @register.filter
 def str(str):
     if len(str) > 50:
-        to_str = '%.80s' % str
+        to_str = '%.50s' % str
         data = to_str + ' ...'
         return data
     return str
