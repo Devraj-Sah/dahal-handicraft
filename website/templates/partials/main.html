@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load mathfilters %}
+{%load custom_tags %}
 
 
 <!-- slider -->
@@ -80,16 +81,16 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="new_pro_box">
                         <div class="new_pro_img">
-                            <a href="/product-details/{{k.id}}">
+                            <a href="{% url 'ProductDetail' id=k.id %}">
                             <img src="{% if k.image1 %}{{k.image1.url}}{% endif %}" alt="handmade-craft-arrivals1" class="img-fluid">
                             </a>
                         </div>
                         <div class="new_pro_data">
-                            <h3><a href="/product-details/{{k.id}}">{{k.name}}</a></h3>
-                            <p>{{k.title}}</p>
+                            <h3><a href="{% url "ProductDetail" id=k.id %}">{{k.name}}</a></h3>
+                            <p>{{k.title|str}}</p>
                             <div class="new_pro_data_dollar">
-                            <span class="cart_icon"><a href="/product-details/{{k.id}}"><i class="fa fa-eye" aria-hidden="true"></i></a></span>
-                            <a href="/product-details/{{k.id}}"><span class="more">VIEW more</span></a>
+                            <span class="cart_icon"><a href="{% url "ProductDetail" id=k.id %}"><i class="fa fa-eye" aria-hidden="true"></i></a></span>
+                            <a href="{% url "ProductDetail" id=k.id %}"><span class="more">VIEW more</span></a>
                             </div>
                             
                         </div>
