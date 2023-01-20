@@ -99,21 +99,33 @@
             {% endfor %}
         {% endif %}
             <!-- pagination -->
-            <div class="pagination_rounded pagination_wrapper">
+            <style>
+                /* Style the active class, and buttons on mouse-over */
+                .active_page, .change_page:hover {
+                  background-color: #ee2761;
+                  color: white;
+                }
+            </style>
+            <div id="active_pagination" class="pagination_rounded pagination_wrapper">
                 <ul>            
                     <li>
                         <a href="{% if product.has_previous %}?page={{product.previous_page_number}}{% else %}#{% endif %}" class="prev"> <i class="fa fa-angle-left" aria-hidden="true"></i> Prev </a>
                     </li>  
                     {% if product.number > 4 %}
                         <li>
-                            <a href="?page=1">1</a>
+                            <a class="change_page" href="?page=1">1</a>
                         </li> 
                         <li><a href="#"> . . . </a></li>
                     {% endif %}
                     {% for i in product.paginator.num_pages|times:product.number %} 
                         {% if forloop.counter < 6 %}
                             <li>
-                                <a href="?page={{i}}">{{i}}</a>
+                                {% comment %} {% if page_number|to_int == i|to_int %}
+                                    <a style=" background-color: #ee2761; color: white; border: none;" href="?page={{i}}">{{i}}</a>
+                                {% else %}
+                                    <a href="?page={{i}}">{{i}}</a>
+                                {% endif %} {% endcomment %}
+                                <a class="change_page" href="?page={{i}}">{{i}}</a>
                             </li>
                         {% endif %}
                     {% endfor %}            
@@ -127,6 +139,18 @@
                     </li>
                 </ul>
             </div>
+            <script>
+                // Add active class to the current button (highlight it)
+                var header = document.getElementById("active_pagination");
+                var btns = header.getElementsByClassName("change_page");
+                for (var i = 0; i < btns.length; i++) {
+                btns[i].addEventListener("click", function() {
+                var current = document.getElementsByClassName("active_page");
+                current[0].className = current[0].className.replace(" active_page", "");
+                this.className += " active_page";
+                });
+                }
+            </script>
             <!--end pagination-->
         </div>
     </div>

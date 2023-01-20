@@ -130,26 +130,27 @@
                                     <h1 class="hm_heading"><span class="hm_color">Related</span> products</h1>
                                     <div class="hm_related_product">
                                         <div class="owl-carousel owl-theme related_pro_slider">
-                                            <div class="item">
-                                                <div class="new_pro_box">
-                                                    <div class="new_pro_img">
-                                                        <a href="#">
-                                                            <img src="{% static 'assets/images/new_pro1.jpg' %}"
-                                                                alt="handmade-craft-arrivals1" class="img-fluid">
-                                                        </a>
-                                                    </div>
-                                                    <div class="new_pro_data">
-                                                        <h3><a href="#">Hemp Hiking Backpack</a></h3>
-                                                        <p>This Hemp Hiking Backpack is handmade in Nepal using organic hemp
-                                                            from the Himalayas and cotton.</p>
-                                                        <div class="new_pro_data_dollar">
-                                                            <span class="cart_icon"><a href="#"><i class="fa fa-eye"
-                                                                        aria-hidden="true"></i></a></span>
+                                            {% for rel_product in related_product %}
+                                                <div class="item">
+                                                    <div class="new_pro_box">
+                                                        <div class="new_pro_img">
+                                                            <a href="/product-details/{{rel_product.id}}">
+                                                                <img src="{{rel_product.image1.url}}"
+                                                                    alt="handmade-craft-arrivals1" class="img-fluid">
+                                                            </a>
                                                         </div>
-    
+                                                        <div class="new_pro_data">
+                                                            <h3><a href="/product-details/{{rel_product.id}}">{{rel_product.name}}</a></h3>
+                                                            <p>{{rel_product.title|str}}</p>
+                                                            <div class="new_pro_data_dollar">
+                                                                <span class="cart_icon"><a href="/product-details/{{rel_product.id}}"><i class="fa fa-eye"
+                                                                            aria-hidden="true"></i></a></span>
+                                                            </div>
+        
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>

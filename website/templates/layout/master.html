@@ -149,7 +149,7 @@
                                     <a href="/">
                                         <img src="{% if global_data.image2 != '' %}{{global_data.image2.url}}{% else %}{% static 'assets/images/logo.png' %}{% endif %} " alt="_logo" />
                                     </a>
-                                    <span class="notranslate" >{% if global_data.site_name != '' %}{{global_data.site_name}}{% else %}Dahal HandiCraft{% endif %}<span>
+                                    {% comment %} <span class="notranslate" >{% if global_data.site_name != '' %}{{global_data.site_name}}{% else %}Dahal HandiCraft{% endif %}<span> {% endcomment %}
 
                                 </div>
 

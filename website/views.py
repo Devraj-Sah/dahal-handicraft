@@ -50,7 +50,7 @@ def index(request):
         product = product.get_page(page_number) 
 
         global_data = GlobalSettings.objects.first()
-        data = {'page':"index",'global_data':global_data,'customers':customers,'clients':clients,'most_ordered':most_ordered,'contact_section':contact_section,'menus':menus,'blog':blog,'product':product,'sliders':sliders,'clientschild':clientschild,'pemplatechild':pemplatechild}
+        data = {'page':"index",'global_data':global_data,'page_number':page_number,'customers':customers,'clients':clients,'most_ordered':most_ordered,'contact_section':contact_section,'menus':menus,'blog':blog,'product':product,'sliders':sliders,'clientschild':clientschild,'pemplatechild':pemplatechild}
         try:
             c_id = request.COOKIES['c_id']
             cartvalue = Wishlist.objects.filter(temp_id=c_id,ishere=False)
@@ -102,8 +102,10 @@ def ProductDetail(request,id):
         return redirect('website.index')
     menus = Navigation.objects.filter(parent_page_id=0).order_by('position')
     product = Products.objects.get(id=id) 
+    related_product = Products.objects.filter(category_id=product.category_id).order_by('-updated_at')
+    # print(product.category_id)
     global_data = GlobalSettings.objects.first()
-    data = {'product':product,'global_data':global_data,'menus':menus,'c_id':c_id}
+    data = {'product':product,'global_data':global_data,'menus':menus,'c_id':c_id,'related_product':related_product}
     return render(request, 'main/product-details.html',data)
 
 def BlogDetail(request,id):

@@ -29,3 +29,6 @@ def str(str):
         return data
     return str
     
+@register.filter()
+def to_int(value):
+    return int(value)
