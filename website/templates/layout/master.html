@@ -237,8 +237,11 @@
                                                 <i class="fa-solid fa-chevron-down"></i>
                                                 {% endif %}
                                             </a>
-                                            <ul class="dropdown-menu" style="height: 250px;overflow: scroll;">
-                                            
+                                            <ul class="dropdown-menu" 
+                                            {% if menu.childs.all %}
+                                            style="height: 250px;overflow: auto;"
+                                            {% endif %}
+                                            >
                                                 {% for submenu in menu.childs.all %}
                                                     <li class="nav-item">
                                                         <a href="/{{menu.name}}/{{submenu.name}}" class="nav-link">{{submenu.caption}}</a>
