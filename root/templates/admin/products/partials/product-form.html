@@ -58,11 +58,11 @@
                                                     <label class="form-label">Status</label>
                                                     <br/>
                                                     <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" id="customRadioInline1" name="status" value="1" class="form-check-input" {% if id_data.status == 1 %} checked {% endif %} >
+                                                        <input type="radio" id="customRadioInline1" name="status" value="1" class="form-check-input" {% if id_data.status == 1 %} checked {% elif id_data.status != 0 %} checked {% endif %} >
                                                         <label class="form-check-label" for="customRadioInline1">Publish</label>
                                                     </div>
                                                     <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" id="customRadioInline2" name="status" value="0" class="form-check-input" {% if id_data.status != 1 %} checked {% endif %}>
+                                                        <input type="radio" id="customRadioInline2" name="status" value="0" class="form-check-input" {% if id_data.status == 0 %} checked {% endif %}>
                                                         <label class="form-check-label" for="customRadioInline2">Draft</label>
                                                     </div>
                                                 </div>
@@ -89,7 +89,6 @@
                                             <input type="hidden" name="brand">
                                             <input type="hidden" name="meta_title">
                                             <input type="hidden" name="keyword">
-                                            <input type="hidden" name="size">
                                             {% comment %} <!--/span-->
                                             <div class="col-md-3">
                                                 <div class="form-group">
@@ -190,7 +189,7 @@
                                                 </div>
                                             </div> {% endcomment %}
                                         </div>
-                                        {% comment %} <div class="row">
+                                        <div class="row">
                                             <div class="col-md-12">
                                                 <h5 class="card-title m-t-40">GENERAL INFO</h5>
                                                 <div class="table-responsive">
@@ -198,26 +197,28 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>
-                                                                    <input type="text" class="form-control" value="{{id_data.brand}}" name="brand" placeholder="Brand">
+                                                                    <h6 class="card-title">Size</h6>
+                                                                    <input type="text" class="form-control" value="{{id_data.size}}" name="size" placeholder="XXL, XL, L etc">
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" class="form-control" value="{{id_data.vendor}}" name="vendor" placeholder="Vendor">
+                                                                    <h6 class="card-title">Color</h6>
+                                                                    <input type="text" class="form-control" value="{{id_data.color}}" name="color" placeholder="Red, Green, White etc">
                                                                 </td>
                                                             </tr>
-                                                            <tr>
+                                                            {% comment %} <tr>
                                                                 <td>
                                                                     <input type="text" class="form-control" value="{{id_data.payment_type}}" name="payment_type" placeholder="Payment type">
                                                                 </td>
                                                                 <td>
                                                                     <input type="text" name="size" class="form-control" placeholder="Knock Down">
                                                                 </td>
-                                                            </tr>
+                                                            </tr> {% endcomment %}
                                                             
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
-                                        </div> {% endcomment %}
+                                        </div>
                                         <hr> </div>
                                     <div class="form-actions m-t-40">
                                         <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>

@@ -76,6 +76,7 @@ class Products(models.Model):
     vendor = models.CharField(max_length=255,null=True)
     payment_type = models.CharField(max_length=255,default="COD")
     size =models.CharField(max_length=255,default="medium")
+    color =models.CharField(max_length=255,default="white")
     title = models.CharField(max_length=2000,null=True)
     discription = models.TextField(max_length=5000,null=True)   #overview
     long_contents = models.TextField(max_length=5000,null=True) #more
@@ -126,14 +127,15 @@ class GlobalSettings(models.Model):
     site_name_nepali = models.CharField(max_length=255,null=True)
     site_email = models.EmailField()
     configure_email = models.EmailField(null=True)
-    site_contact = models.BigIntegerField()
+    site_contact = models.CharField(max_length=255,null=True)
     site_contact_nepali = models.BigIntegerField(null=True)
     site_address = models.CharField(max_length=255)
     site_address_nepali = models.CharField(max_length=255,null=True)
     fb_link = models.CharField(max_length=255,null=True)
     twitter_link = models.CharField(max_length=255,null=True)
     linkedin_link = models.CharField(max_length=255,null=True)
-    other_link = models.CharField(max_length=255,null=True)
+    tiktok_link = models.CharField(max_length=255,null=True) 
+    other_link = models.CharField(max_length=255,null=True) #youtube
     page_title = models.CharField(max_length=255)
     page_keyword = models.CharField(max_length=200,null=True)
     page_discription = models.TextField(max_length=5000,null=True)

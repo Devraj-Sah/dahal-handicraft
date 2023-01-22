@@ -70,6 +70,7 @@ def GlobalStore(request,pk=None):
             'site_address' : site_address,
             'site_address_nepali' : site_address_nepali,
             'fb_link' : fb_link,
+            'tiktok_link' : request.POST['tiktok_link'],
             'twitter_link' : twitter_link,
             'linkedin_link' : linkedin_link,
             'other_link' : other_link,

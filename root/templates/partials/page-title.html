@@ -11,12 +11,12 @@
             {% if create == True %}
                 <button type="button" class="btn btn-info d-lg-block m-l-15 text-white" onclick="Create('{{  create_link_name  }}')"><i class="fa fa-plus-circle"></i> Create New</button>
             {% endif %}
-            {% if import == True %}
+            {% comment %} {% if import == True %}
                 <button type="button" class="btn btn-info d-lg-block m-l-15 text-white" data-bs-toggle="modal" data-bs-target=".bs-example-modal-sm" class="model_img img-responsive"><i class="bi bi-cloud-arrow-down"></i> Import</button>
             {% endif %}
              {% if export == True %}
                 <button type="button" class="btn btn-info d-lg-block m-l-15 text-white" onclick="Create('{{  export_link_name  }}')"><i class="bi bi-cloud-arrow-up"></i> Export</button>
-            {% endif %}
+            {% endif %} {% endcomment %}
             <script>
                 function Create(link){
                       location.href = link

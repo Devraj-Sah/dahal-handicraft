@@ -17,7 +17,7 @@
                                   {%endif%}
                                 <th>Page Type</th>
                                 <th>Position</th>
-                                <th>Status</th>
+                                {% comment %} <th>Status</th> {% endcomment %}
                                 <th>Actions</th>                              
                                 {% if not open%}
                                 <th>Open</th>
@@ -41,9 +41,9 @@
                                 {%endif%}
                                 <td>{{i.page_type}}</td>
                                 <td>{{i.position}}</td>
-                                <td>
+                                {% comment %} <td>
                                     <span class="label label-success">{{i.status}}</span>
-                                </td>
+                                </td> {% endcomment %}
                                 <td>
                                     {% if i.page_type != 'group' %}
                                         <a href="{% url 'HomeNavigationCreate' edit_id=i.id %}" class="text-inverse p-r-10" data-bs-toggle="tooltip" title="" data-original-title="Edit">

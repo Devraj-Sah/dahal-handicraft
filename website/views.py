@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # Create your views here.
 def index(request):        
         # return render(request, 'index.html')
-        menus = Navigation.objects.filter(parent_page_id=0).order_by('position')
+        menus = Navigation.objects.filter(parent_page_id=0, status=1).order_by('position')
         blog = Blog.objects.filter(status=1).order_by('-updated_at')[:3]
         sliders = HomeNavigation.objects.filter(page_type='sale')
         contact_section = HomeNavigation.objects.filter(page_type='contact').all().first()
@@ -41,9 +41,9 @@ def index(request):
         if ftn:
                 product = Products.objects.filter(ftn=ftn)  
         else:
-                all_product = Products.objects.all().order_by('-created_at')
+                all_product = Products.objects.filter(status=1).order_by('-created_at')
         
-        most_ordered = Products.objects.all().order_by('-most_ordered')[:6]
+        most_ordered = Products.objects.filter(status=1).order_by('-most_ordered')[:6]
 
         product = Paginator(all_product, 6)
         page_number = request.GET.get('page')
@@ -100,16 +100,18 @@ def ProductDetail(request,id):
         c_id = request.COOKIES['c_id']
     except:
         return redirect('website.index')
-    menus = Navigation.objects.filter(parent_page_id=0).order_by('position')
-    product = Products.objects.get(id=id) 
-    related_product = Products.objects.filter(category_id=product.category_id).order_by('-updated_at')
+    menus = Navigation.objects.filter(parent_page_id=0,status=1).order_by('position')
+    product = Products.objects.get(id=id,status=1) 
+    sizes = product.size.split(',')
+    colors = product.color.split(',')
+    related_product = Products.objects.filter(category_id=product.category_id,status=1).order_by('-updated_at')
     # print(product.category_id)
     global_data = GlobalSettings.objects.first()
-    data = {'product':product,'global_data':global_data,'menus':menus,'c_id':c_id,'related_product':related_product}
+    data = {'product':product,'global_data':global_data,'menus':menus,'c_id':c_id,'related_product':related_product,'sizes':sizes,'colors':colors}
     return render(request, 'main/product-details.html',data)
 
 def BlogDetail(request,id):
-    menus = Navigation.objects.filter(parent_page_id=0).order_by('position')
+    menus = Navigation.objects.filter(parent_page_id=0,status=1).order_by('position')
     blog = Blog.objects.get(id=id) 
     global_data = GlobalSettings.objects.first()
     data = {'blog_detail':blog,'global_data':global_data,'menus':menus}
@@ -139,7 +141,7 @@ def WishList(request, p_id=None ,c_id=None):
             }
             addingwishes = Wishlist.objects.update_or_create(temp_id=c_id,product_id=p_id,ishere=True,defaults=data)
             return redirect('WishList')
-    menus = Navigation.objects.filter(parent_page_id=0).order_by('position')
+    menus = Navigation.objects.filter(parent_page_id=0,status=1).order_by('position')
     wishlist = Wishlist.objects.filter(temp_id=c_id,ishere=True)
     global_data = GlobalSettings.objects.first()
     data = {'menus':menus,'global_data':global_data ,'wishlist':wishlist,'c_id':c_id}
@@ -177,7 +179,7 @@ def Cart(request, p_id=None ,c_id=None):
             deleteifcolide = Wishlist.objects.filter(temp_id=c_id,product_id=p_id,ishere=True)
             deleteifcolide.delete()
             return redirect('Cart')
-    menus = Navigation.objects.filter(parent_page_id=0).order_by('position')
+    menus = Navigation.objects.filter(parent_page_id=0,status=1).order_by('position')
     wishlist = Wishlist.objects.filter(temp_id=c_id,ishere=False)
     global_data = GlobalSettings.objects.first()
     data = {'menus':menus,'global_data':global_data, 'wishlist':wishlist,'c_id':c_id}
@@ -308,7 +310,7 @@ def CheckOut(request):
             messages.info(request,"Successfully Orderd ! We will contact you very Soon. ")
             Wishlist.objects.filter(temp_id=c_id,ishere=False).update(ishere=2)
             return redirect('Cart')            
-        menus = Navigation.objects.filter(parent_page_id=0).order_by('position')
+        menus = Navigation.objects.filter(parent_page_id=0,status=1).order_by('position')
         global_data = GlobalSettings.objects.first()
         data = {'page':"index",'global_data':global_data,'menus':menus}  
         wishvalue = Wishlist.objects.filter(temp_id=c_id,ishere=True)

@@ -345,7 +345,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-12 col-sm-12">
                         <div class="hm_footer_box">
-                            <img src="{% if global_data.image2 != '' %}{{global_data.image2.url}}{% else %}{% static 'assets/images/logo.png' %}{% endif %}" alt="handmade-craft-logo" class="img-responsive">
+                            <img src="{% if global_data.image2 != '' %}{{global_data.image2.url}}{% else %}{% static 'assets/images/logo.png' %}{% endif %}" alt="handmade-craft-logo" style="margin-top:50px" class="img-responsive">
                             <!-- <p class="footer_about_para">Nepali hemp handicrafts products at an affordable price and ship worldwide.</p> -->
                         </div>
                     </div>
@@ -373,7 +373,7 @@
                             <ul>                          
                                 {%for menu in menus %}
                                     {% for submenu in menu.childs.all %}
-                                        {% if submenu.page_type == "sale"%}
+                                        {% if submenu.page_type == "sale" and forloop.counter < 7 %}
                                             <li class="nav-item">
                                                 <a href="/{{menu.name}}/{{submenu.name}}" class="nav-link">{{submenu.caption}}</a>
                                             </li>
@@ -414,6 +414,7 @@
 
                                 </li>
                             </ul>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28256.16214590955!2d85.29791887361867!3d27.716660476621744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb199627ab4fd9%3A0xdbf5126864dfb7dc!2sDahal%20Handicraft!5e0!3m2!1sen!2snp!4v1674370469691!5m2!1sen!2snp" width="250" height="100" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>
@@ -440,7 +441,9 @@
                                         style="color: lightblue; font-size: 20px;"></i></a></li>
                             <li><a href="{% if global_data.other_link != '' %}{{global_data.other_link}}{% else %}#{% endif %}"><i class="fa-brands fa-youtube"
                                         style="color: red; font-size: 20px;"></i></a></li>
-                            <!-- <li><a href="#"><i class="fa-brands fa-instagram" style="color: #E90B18; font-size: 20px;"></i></a></li> -->
+                            <li><a href="{% if global_data.other_link != '' %}{{global_data.tiktok_link}}{% else %}#{% endif %}"><i class="fa-brands fa-tiktok"
+                                style="color: black; font-size: 20px;"></i></a></li>
+                            <li><a href="{% if global_data.other_link != '' %}{{global_data.linkedin_link}}{% else %}#{% endif %}"><i class="fa-brands fa-instagram" style="color: #E90B18; font-size: 20px;"></i></a></li>
                         </ul>
                     </div>
                 </div>

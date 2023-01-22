@@ -17,8 +17,8 @@
                                 <th>Name</th>
                                 <th>photo</th>
                                 <th>Price</th>
-                                <th>Discount_type</th>
-                                <th>Discount</th>
+                                {% comment %} <th>Discount_type</th> {% endcomment %}
+                                {% comment %} <th>Discount</th> {% endcomment %}
                                 <th>category</th>
                                 <th>Status</th>
                                 <th>Actions</th>
@@ -44,19 +44,11 @@
                                     {% endif %}
                                 </td>
                                 <td>{{i.price}}</td>
-                                <td>{{i.discount_type}}</td>
-                                <td>{{i.discount}}</td>
+                                {% comment %} <td>{{i.discount_type}}</td> {% endcomment %}
+                                {% comment %} <td>{{i.discount}}</td> {% endcomment %}
                                 <td>{{i.category.name}}</td>
                                 <td>
-                                    {%if i.ftn == "f" %} 
-                                        <span class="label label-primary">Featured</span>
-                                    {% endif %}
-                                    {%if i.ftn == "t" %} 
-                                        <span class="label label-success">Trending</span>
-                                    {% endif %}
-                                    {%if i.ftn == "n" %} 
-                                        <span class="label label-info">New Arrival</span>
-                                    {% endif %}
+                                    <span class="label label-success">{{i.status}}</span>
                                 </td>
                                 <td>
                                     <a href="{% url 'ProductCreate' pk=i.id %}" class="text-inverse p-r-10" data-bs-toggle="tooltip" title="" data-original-title="Edit">
@@ -67,7 +59,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                   <div class="dropdown">
+                                   {% comment %} <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                            <i class="bi bi-three-dots-vertical" style="color: ;"></i>
                                         </a>
@@ -97,7 +89,7 @@
                                                 New Arrival
                                             </a></li>
                                         </ul>
-                                        </div>
+                                    </div> {% endcomment %}
 
 
 
@@ -108,6 +100,14 @@
                         </tbody>
                         {% endif %}
                     </table>
+                    <div style="float:right;">
+                        <a href="{% if p_list.has_previous %}?page={{p_list.previous_page_number}}{% else %}#{% endif %}" class="prev">
+                            <button type="button" class="btn btn-outline-primary">Prev</button>
+                        </a>
+                        <a href="{% if p_list.has_next %}?page={{p_list.next_page_number}}{% else %}#{% endif %}" class="prev">
+                            <button type="button" class="btn btn-outline-primary">Next</button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

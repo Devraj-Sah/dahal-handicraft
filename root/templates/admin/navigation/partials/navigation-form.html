@@ -70,11 +70,11 @@
                                                     <label class="form-label">Status</label>
                                                     <br/>
                                                     <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" value=1 id="customRadioInline1" name="status" class="form-check-input" {% if id_data.status == 1 %} checked {% endif %}>
+                                                        <input type="radio" value=1 id="customRadioInline1" name="status" class="form-check-input" {% if id_data.status == 1 %} checked {% elif id_data.status != 0  %} checked {% endif %}>
                                                         <label class="form-check-label" for="customRadioInline1">Publish</label>
                                                     </div>
                                                     <div class="custom-control custom-radio custom-control-inline">
-                                                        <input type="radio" value=0 id="customRadioInline2" name="status" class="form-check-input" {% if id_data.status == 0 %} checked {% endif %} checked>
+                                                        <input type="radio" value=0 id="customRadioInline2" name="status" class="form-check-input" {% if id_data.status == 0 %} checked {% endif %} >
                                                         <label class="form-check-label" for="customRadioInline2">Draft</label>
                                                     </div>
                                                 </div>

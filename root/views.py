@@ -27,6 +27,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import permission_required
 from wsgiref.util import FileWrapper
 from django.shortcuts import redirect
+from django.core.paginator import Paginator
 
 
 @login_required(login_url=settings.LOGIN_URL)
@@ -234,8 +235,14 @@ def ProductList(request, pk=None, ftn=None):
     export_link_name = reverse("ExportProduct")
     if pk and ftn:
         Products.objects.filter(id=pk).update(ftn=ftn)
-    all_data = Products.objects.all()
-    data = {'slug1':slug1,'export':True,'create':True,'create_link_name':create_link_name,'export_link_name':export_link_name, 'p_list':all_data}
+
+    all_data = Products.objects.all().order_by('-updated_at')
+    product = Paginator(all_data, 10)
+    page = request.GET.get('page')
+    products = product.get_page(page)
+    # return HttpResponse(product)
+    
+    data = {'slug1':slug1,'export':True,'create':True,'create_link_name':create_link_name,'export_link_name':export_link_name, 'p_list':products}
     client_msg = ContactUs.objects.filter(read_unread=True)
     data['client_msg']=client_msg
     return render(request,'admin/products/product-list.html',data)
@@ -296,6 +303,8 @@ def ProductStore(request,pk=None):
             'payment_type' : payment_type,
             'vendor' : vendor,
             'brand' : brand, 
+            'color' : request.POST['color'], 
+            'size' : request.POST['size'], 
             'title' : title,
             'discription' : discription,
             'long_contents' : long_contents,
@@ -304,7 +313,7 @@ def ProductStore(request,pk=None):
             'most_ordered' : 0
         }
         data = {**data,**images}   #merging two dictionary       
-         
+        # return HttpResponse(data['size'])
         if not pname:
             messages.error(request, "Productname name should not be empty")
             return redirect(request.POST['next'])

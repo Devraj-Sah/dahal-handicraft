@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-12">
                 <div class="hm_about_img">
-                    <img src="{% static 'assets/images/about.jpg' %} " alt="handmade-craft-about" class="img-responsive">
+                    <img src="{% if contact_section.banner_image1 %}{{contact_section.banner_image1.url}}{% else %}{% static 'assets/images/about.jpg' %}{% endif %} " alt="handmade-craft-about" class="img-responsive">
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">

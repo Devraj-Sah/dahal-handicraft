@@ -13,7 +13,7 @@ def CategoryAction(request,page_type,page_detail,c_id=None):
     # nav = Navigation.objects.filter(id=page_detail.first().id)
     # product = nav.product.all()
     #page_detail.first().name
-    all_product = Products.objects.all()  
+    all_product = Products.objects.filter(status=1)  
     # team = Team.objects.all()
     blog = Blog.objects.filter(status=1).order_by('-updated_at')[:6]
     global_data = GlobalSettings.objects.first()
@@ -77,7 +77,7 @@ def SubcategoryAction(request,page_type,page_detail,c_id=None,submenu=None):
             #     return HttpResponse("product")
             if page_type == 'sale':
                 nav_id = Navigation.objects.filter(name = submenu).get()
-                all_product = Products.objects.filter(category_id = nav_id.id )  
+                all_product = Products.objects.filter(category_id = nav_id.id, status=1 )  
                 # return HttpResponse(print (all_product))
                 if all_product != None:
                     product = Paginator(all_product, 9)

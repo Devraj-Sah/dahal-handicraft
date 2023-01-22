@@ -25,15 +25,14 @@
                                                     value="{{id_data.site_name}}" required>
                                                 </div>
                                             </div>
-                                            <!--/span-->
+                                            <input type="hidden" id="site_nepali_name" name="site_name_nepali" class="form-control">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label">Site Name (नेपालिमा)</label>
-                                                    <input type="text" id="site_nepali_name" name="site_name_nepali" class="form-control"
-                                                    placeholder="Site Name" value="{{id_data.site_name_nepali}}">
+                                                    <label class="form-label dev">Site Contact</label>
+                                                    <input type="text" id="phone" name="site_contact" class="form-control" placeholder="9829936530"
+                                                    value="{{id_data.site_contact}}" required>
                                                 </div>
                                             </div>
-                                            <!--/span-->
                                         </div>
                                         <!--/row-->
                                         <!--/row-->
@@ -46,25 +45,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <!--/span-->
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-label dev">Site Contact</label>
-                                                    <input type="text" id="phone" name="site_contact" class="form-control" placeholder="9829936530"
-                                                    value="{{id_data.site_contact}}" required>
-                                                </div>
-                                            </div>
-                                            <!--/span-->
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label class="form-label">Site Contact (नेपालिमा)</label>
-                                                    <input type="text" id="phone_ne" name="site_contact_nepali" class="form-control"
-                                                    placeholder="9861733649" value="{{id_data.site_contact_nepali}}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--/row-->
+                                        <input type="hidden" id="phone_ne" name="site_contact_nepali" class="form-control"
+                                        placeholder="9861733649" value="{{id_data.site_contact_nepali}}">
+                                        
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -73,13 +56,15 @@
                                                     placeholder="Ktm, 1 .." value="{{id_data.site_address}}" required>
                                                 </div>
                                             </div>
+                                            <input type="hidden" id="address_ne" name="site_address_nepali" class="form-control"
+                                            placeholder="काठमाडौँ , १ .." value="{{id_data.site_address_nepali}}">
                                             <!--/span-->
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="form-group">
-                                                        <label class="form-label">Site Address (नेपालिमा)</label>
-                                                        <input type="text" id="address_ne" name="site_address_nepali" class="form-control"
-                                                        placeholder="काठमाडौँ , १ .." value="{{id_data.site_address_nepali}}">
+                                                        <label class="form-label">Tiktok Link</label>
+                                                        <input type="text" id="facebook" name="tiktok_link" class="form-control"
+                                                        placeholder="facebook link" value="{{id_data.tiktok_link}}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -110,14 +95,6 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label">LinkedIn  url</label>
-                                                    <input type="text" id="LinkedIn" name="linkedin_link" class="form-control"
-                                                    placeholder="LinkedIn" value="{{id_data.linkedin_link}}">
-                                                </div>
-                                            </div>
-                                            <!--/span-->
-                                            <div class="col-md-6">
-                                                <div class="form-group">
                                                     <div class="form-group">
                                                         <label class="form-label">Youtube link</label>
                                                         <input type="text" id="other" name="other_link" class="form-control"
@@ -125,29 +102,39 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Instagram  Link</label>
+                                                    <input type="text" id="LinkedIn" name="linkedin_link" class="form-control"
+                                                    placeholder="LinkedIn" value="{{id_data.linkedin_link}}">
+                                                </div>
+                                            </div>
+                                            <!--/span-->
                                             <!--/span-->
                                         </div>
                                         <!--/row-->
                                         <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label dev">Page Title</label>
-                                                <input type="text" id="page_title" name="page_title" class="form-control" placeholder="Page Title"
-                                                value="{{id_data.page_title}}" required>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                        <div class="col-md-6">
-                                            <div class="form-group">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label">Page Keyword</label>
-                                                    <input type="text" id="page_keyword" name="page_keyword" class="form-control"
-                                                    placeholder="Page Keyword" value="{{id_data.page_keyword}}">
+                                                    <label class="form-label dev">Page Title</label>
+                                                    <input type="text" id="page_title" name="page_title" class="form-control" placeholder="Page Title"
+                                                    value="{{id_data.page_title}}" required>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        {% comment %} <label class="form-label">Page Keyword</label> {% endcomment %}
+                                                        <input type="hidden" id="page_keyword" name="page_keyword" class="form-control"
+                                                        placeholder="Page Keyword" value="{{id_data.page_keyword}}">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="page_discription">
                                         <!--/span-->
-                                        </div>
+                                        {% comment %} </div>
                                         <h5 class="card-title m-t-40">Description</h5>
                                         <div class="row">
                                             <div class="col-md-12 ">
@@ -155,10 +142,10 @@
                                                     <textarea name="page_discription" class="form-control" rows="4">{{id_data.page_discription}}</textarea>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> {% endcomment %}
                                         <!--/row-->
                                         <div class="row">                                      
-                                            <div class="col-md-3">
+                                            {% comment %} <div class="col-md-3">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h4 class="card-title">Fav Icon</h4>
@@ -170,7 +157,7 @@
                                             <script>
                                                 $("#input-file-now1").attr("data-default-file", "{{id_data.image1.url}}");
                                             </script>
-                                            {% endif %}
+                                            {% endif %} {% endcomment %}
                                             <div class="col-md-3">
                                                 <div class="card">
                                                     <div class="card-body">
@@ -184,7 +171,7 @@
                                                     $("#input-file-now2").attr("data-default-file", "{{id_data.image2.url}}");
                                                 </script>
                                             {% endif %}
-                                            <div class="col-md-3">
+                                            {% comment %} <div class="col-md-3">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h4 class="card-title">Fotter Logo</h4>
@@ -196,7 +183,7 @@
                                             <script>
                                                 $("#input-file-now3").attr("data-default-file", "{{id_data.image3.url}}");
                                             </script>
-                                            {% endif %}
+                                            {% endif %} {% endcomment %}
                                         <hr> </div>
                                     <div class="form-actions m-t-40">
                                         <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i> Save</button>
