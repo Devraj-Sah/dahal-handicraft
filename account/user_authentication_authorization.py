@@ -100,6 +100,10 @@ def UserCreate(request,id=None):
 @customized_user_passes_test(is_admin_role)
 def UserStore(request,id=None):
 
+    if CustomUser.objects.filter(email=request.POST['email']).exists():
+        messages.info(request, "email_already_exists")
+        return redirect(request.POST['next'])
+
     if request.POST['password1'] == request.POST['password2']:
         password = make_password(request.POST['password1'])
     else:
@@ -143,10 +147,10 @@ def UserStore(request,id=None):
             else:
                 messages.INFO(request, 'Group not Seted!!!')
         
-        if str(user.role) == str(CustomUser.DISTRICT) and 'division_forest_email' in request.POST:
-            division_forest_email = request.POST['division_forest_email']
-            user.division_forest_email = division_forest_email
-            user.save()
+        # if str(user.role) == str(CustomUser.DISTRICT) and 'division_forest_email' in request.POST:
+        #     division_forest_email = request.POST['division_forest_email']
+        #     user.division_forest_email = division_forest_email
+        #     user.save()
         request.session['user_id'] = user.id
         messages.info(request, 'User inserted Successfully !!!')
         return redirect(UserList)

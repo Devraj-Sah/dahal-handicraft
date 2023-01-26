@@ -1,6 +1,6 @@
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/fenfitnepal/dahal-handicraft/
+    - export DEPLOYPATH=/home/nepalihemp/dahal_handicraft/
     - /bin/cp -r website $DEPLOYPATH
     - /bin/cp -r root $DEPLOYPATH
     - /bin/cp -r account $DEPLOYPATH
