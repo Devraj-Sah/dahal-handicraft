@@ -82,15 +82,16 @@
                     <div class="new_pro_box">
                         <div class="new_pro_img">
                             <a href="{% url 'ProductDetail' id=k.id %}">
-                            <img src="{% if k.image1 %}{{k.image1.url}}{% endif %}" alt="handmade-craft-arrivals1" class="img-fluid">
+                            <img src="{% if k.image1 %}{{k.image1.url}}{% endif %}" alt="handmade-craft-arrivals1" class="img-fluid"
+                            style="max-height:290px; min-height:290 object-fit:cover ">
                             </a>
                         </div>
-                        <div class="new_pro_data">
+                        <div class="new_pro_data" style="min-height:225px;">
                             <h3><a href="{% url "ProductDetail" id=k.id %}">{{k.name}}</a></h3>
                             <p>{{k.title|str}}</p>
                             <div class="new_pro_data_dollar">
                             <span class="cart_icon"><a href="{% url "ProductDetail" id=k.id %}"><i class="fa fa-eye" aria-hidden="true"></i></a></span>
-                            <a href="{% url "ProductDetail" id=k.id %}"><span class="more">VIEW more</span></a>
+                            <a href="{% url "ProductDetail" id=k.id %}"><span class="more">VIEW MORE</span></a>
                             </div>
                             
                         </div>
