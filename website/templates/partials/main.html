@@ -88,7 +88,7 @@
                         </div>
                         <div class="new_pro_data" style="min-height:225px;">
                             <h3><a href="{% url "ProductDetail" id=k.id %}">{{k.name}}</a></h3>
-                            <p>{{k.title|str}}</p>
+                            <p>{{k.title|str_rm}}</p>
                             <div class="new_pro_data_dollar">
                             <span class="cart_icon"><a href="{% url "ProductDetail" id=k.id %}"><i class="fa fa-eye" aria-hidden="true"></i></a></span>
                             <a href="{% url "ProductDetail" id=k.id %}"><span class="more">VIEW MORE</span></a>
@@ -156,7 +156,7 @@
         </div>
     </div>
 </div>
-<div class="viewed">
+<div class="viewed" style="padding-bottom:0;">
     <h1 class="viewed-title"> <span> Most</span> viewed/ordered Product</h1>
     <div class="container">
         <div class="row g-3">
@@ -166,10 +166,10 @@
                     <div class="new_pro_box">
                         <div class="new_pro_img">
                             <a href="/product-details/{{k.id}}">
-                            <img src="{% if k.image1 %}{{k.image1.url}}{% endif %}" alt="handmade-craft-arrivals1" class="img-fluid">
+                            <img src="{% if k.image1 %}{{k.image1.url}}{% endif %}" alt="handmade-craft-arrivals1" class="img-fluid" style="max-height:290px; min-height:290px; object-fit:cover ">
                             </a>
                         </div>
-                        <div class="new_pro_data">
+                        <div class="new_pro_data" style="min-height:225px;">
                             <h3><a href="/product-details/{{k.id}}">{{k.name}}</a></h3>
                             <p>{{k.title}}</p>
                             <div class="new_pro_data_dollar">
@@ -293,11 +293,11 @@
                             </ul>
                             {% if b.main_title != '' %}
                                 {% autoescape off %}
-                                    {{b.main_title}}
+                                    {{b.main_title|str_rm:107}}
                                 {% endautoescape %}
                             {% else %}
                             <p>Every time we are on a vacation, we face a tough time selecting budget-friendly souvenirs for our relatives. </p>
-                            {% endif %}
+                            {% endif %} <br>
                             <a href="{% url 'BlogDetail' id=b.id %}" class="news_btn">read more</a>
                         </div>
                     </div>

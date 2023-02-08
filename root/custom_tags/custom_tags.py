@@ -21,14 +21,23 @@ def times(count, start):
         return range(start-2,count)
     return range(1,count)
 
+# @register.filter
+# def str(str):
+#     if len(str) > 50:
+#         to_str = '%.50s' % str
+#         data = to_str + ' ...'
+#         return data
+#     return str
+
 @register.filter
-def str(str):
-    if len(str) > 50:
-        to_str = '%.50s' % str
+def str_rm(string,num=50):
+    if len(string) > num:
+        total_str = '%.'+str(num)+'s'
+        to_str =  total_str % string
         data = to_str + ' ...'
         return data
-    return str
-    
+    return string
+
 @register.filter()
 def to_int(value):
     return int(value)
