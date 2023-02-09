@@ -73,15 +73,26 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="form-label">Price</label>
+                                                    <label class="form-label">Minimum Order</label>
+                                                    <div class="input-group mb-3">
+                                                        {% comment %} <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="basic-addon1"><i class="ti-money"></i></span>
+                                                        </div> {% endcomment %}
+                                                        <input type="text" class="form-control" name="price" value="{{id_data.price}}" placeholder="Minimum Order" aria-label="price" aria-describedby="basic-addon1" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% comment %} <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Minimum Order</label>
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text" id="basic-addon1"><i class="ti-money"></i></span>
                                                         </div>
-                                                        <input type="text" class="form-control" name="price" value="{{id_data.price}}" placeholder="price" aria-label="price" aria-describedby="basic-addon1" required>
+                                                        <input type="text" class="form-control" name="payment_type" value="{{id_data.payment_type}}" placeholder="Quantity" aria-label="price" aria-describedby="basic-addon1" required>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> {% endcomment %}
                                             <input type="hidden" name="discount_type">
                                             <input type="hidden" name="discount">
                                             <input type="hidden" name="payment_type">
