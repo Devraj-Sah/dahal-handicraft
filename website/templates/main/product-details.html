@@ -50,18 +50,24 @@
                                                                     <img src="{{product.image1.url}}" alt="" min-width="100% " min-height="78px"
                                                                         class="small-img">
                                                                 </div>
-                                                                <div class="small-img-col">
-                                                                    <img src="{{product.image2.url}}" alt="" min-width="100%"  min-height="78px"
-                                                                        class="small-img">
-                                                                </div>
-                                                                <div class="small-img-col">
-                                                                    <img src="{{product.image3.url}}" alt="" min-width="100%"  min-height="78px"
-                                                                        class="small-img">
-                                                                </div>
-                                                                <div class="small-img-col">
-                                                                    <img src="{{product.image4.url}}" alt="" min-width="100%"  min-height="78px"
-                                                                        class="small-img">
-                                                                </div>
+                                                                {% if product.image2 %} 
+                                                                    <div class="small-img-col">
+                                                                        <img src="{{product.image2.url}}" alt="" min-width="100%"  min-height="78px"
+                                                                            class="small-img">
+                                                                    </div>
+                                                                {% endif %} 
+                                                                {% if product.image3 %}
+                                                                    <div class="small-img-col">
+                                                                        <img src="{{product.image3.url}}" alt="" min-width="100%"  min-height="78px"
+                                                                            class="small-img">
+                                                                    </div>
+                                                                {% endif %} 
+                                                                {% if product.image4 %}
+                                                                    <div class="small-img-col">
+                                                                        <img src="{{product.image4.url}}" alt="" min-width="100%"  min-height="78px"
+                                                                            class="small-img">
+                                                                    </div>
+                                                                {% endif %} 
                                                             </div>
                                                      
                                                         </div>
