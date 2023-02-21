@@ -72,7 +72,7 @@
                                                     
                                                     <div class="increaseAnddecrease">
                                                         <button type="button" id="minus">-</button>
-                                                        <span class="number" id="num">1</span>
+                                                        <input type="text" class="number" id="num" value="1" style="width:60px; text-align:center;">
                                                         <button type="button" id="plus">+</button>
                                                     </div>
                                                     <input type='hidden'  name="number" id="number" value="1">
@@ -136,10 +136,10 @@
                                                         <div class="new_pro_img">
                                                             <a href="/product-details/{{rel_product.id}}">
                                                                 <img src="{{rel_product.image1.url}}"
-                                                                    alt="handmade-craft-arrivals1" class="img-fluid">
+                                                                    alt="handmade-craft-arrivals1" class="img-fluid" style="max-height:290px; min-height:290px; object-fit:cover ">
                                                             </a>
                                                         </div>
-                                                        <div class="new_pro_data">
+                                                        <div class="new_pro_data" style="min-height:225px;">
                                                             <h3><a href="/product-details/{{rel_product.id}}">{{rel_product.name}}</a></h3>
                                                             <p>{{rel_product.title|str_rm}}</p>
                                                             <div class="new_pro_data_dollar">
@@ -161,17 +161,22 @@
 <script>
 $(document).ready(function(){
     $('#plus').click(function(){        
-        var i = $('#num').text()
+        var i = $('#num').val()
         var i = parseInt(i) + 1 ;
-        $('#num').text(i)
+        $('#num').val(i)
         $('#number').val(i)
 
     });
+    $('#num').keyup(function(){
+        var i = $('#num').val()
+        $('#number').val(i)
+    });
+
     $('#minus').click(function(){  
-        var i = $('#num').text()
+        var i = $('#num').val()
         if (i != 1){
         var i = parseInt(i) - 1 ;
-        $('#num').text(i)
+        $('#num').val(i)
         $('#number').val(i)
         }
 
