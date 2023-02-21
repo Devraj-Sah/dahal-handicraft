@@ -211,9 +211,9 @@
                                         <a href="/{{menu.name}}/{{submenu.name}}" class="nav-link">{{submenu.caption}}</a>
                                     </li> {% endcomment %}
                                     <div class="hm_pro_box">
-                                        <div class="hm_pro_img">
+                                        <div class="hm_pro_img" style="max-height:330px">
                                             <a href="/{{menu.name}}/{{submenu.name}}">
-                                                <img src="{% if submenu.banner_image1 %}{{submenu.banner_image1.url}}{% else %}{% static 'assets/images/noimage.jpg' %}{% endif %}" alt="" class="img-responsive">
+                                                <img src="{% if submenu.banner_image1 %}{{submenu.banner_image1.url}}{% else %}{% static 'assets/images/noimage.jpg' %}{% endif %}" alt="" class="img-responsive" style="max-height:330px">
                                             </a>
                                         </div>
                                         <div class="hm_pro_data">
