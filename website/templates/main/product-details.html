@@ -31,9 +31,44 @@
                                         <form id="updateForm" method="post" action="/cart/{{product.id}}/{{c_id}}">
                                         <div class="row">
                                             {% csrf_token %}
-                                            <div class="col-md-6 leftSideImg">
+                                            {% comment %} <div class="col-md-6 leftSideImg">
                                                 <img src="{{product.image1.url}}" />
+                                            </div> {% endcomment %}
+                                            <div class="col-md-6 ">
+                                                <div class="small-container single-product1">
+                                                    <div class="row aaaa">
+                                                        <div class="single-product-img">
+                                                            <div class="zoom-area">
+                                                                <div class="large"></div>
+                                                                <img class="small" src="{{product.image1.url}}" alt=""
+                                                                width="100%" id="ProductImg">
+                                                                
+                                                            </div>
+                                                            <div class="small-ing-row">
+                                                           
+                                                                <div class="small-img-col">
+                                                                    <img src="{{product.image1.url}}" alt="" min-width="100% " min-height="78px"
+                                                                        class="small-img">
+                                                                </div>
+                                                                <div class="small-img-col">
+                                                                    <img src="{{product.image2.url}}" alt="" min-width="100%"  min-height="78px"
+                                                                        class="small-img">
+                                                                </div>
+                                                                <div class="small-img-col">
+                                                                    <img src="{{product.image3.url}}" alt="" min-width="100%"  min-height="78px"
+                                                                        class="small-img">
+                                                                </div>
+                                                                <div class="small-img-col">
+                                                                    <img src="{{product.image4.url}}" alt="" min-width="100%"  min-height="78px"
+                                                                        class="small-img">
+                                                                </div>
+                                                            </div>
+                                                     
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
+
                                             <div class="col-md-6 rightSide">
                                                 <div class="productTitle">
                                                     {{product.name}}
@@ -200,6 +235,92 @@ $(document)
 
 </script>
 
+
+<script>
+    var ProductImg = document.getElementById("ProductImg");
+    var SmallImg = document.getElementsByClassName("small-img")
+
+    SmallImg[0].onclick = function () {
+        ProductImg.src = SmallImg[0].src;
+        $(".large").css(
+        "background",
+        "url(ProductImg.src) no-repeat"
+        );
+    }
+    SmallImg[1].onclick = function () {
+        ProductImg.src = SmallImg[1].src;
+        $(".large").css(
+        "background",
+        "url('" + $(".small").attr("src") + "') no-repeat"
+        );
+    }
+    SmallImg[2].onclick = function () {
+        ProductImg.src = SmallImg[2].src;
+        $(".large").css(
+        "background",
+        "url('" + $(".small").attr("src") + "') no-repeat"
+        );
+    }
+    SmallImg[3].onclick = function () {
+        ProductImg.src = SmallImg[3].src;
+        $(".large").css(
+        "background",
+        "url('" + $(".small").attr("src") + "') no-repeat"
+        );
+    }
+
+</script>
+<script>
+/* Created by Rohan Hapani */
+$(document).ready(function () {
+var sub_width = 0;
+var sub_height = 0;
+$(".large").css(
+"background",
+"url('" + $(".small").attr("src") + "') no-repeat"
+);
+
+$(".zoom-area").mousemove(function (e) {
+if (!sub_width && !sub_height) {
+  var image_object = new Image();
+  image_object.src = $(".small").attr("src");
+  sub_width = image_object.width;
+  sub_height = image_object.height;
+} else {
+  var magnify_position = $(this).offset();
+
+  var mx = e.pageX - magnify_position.left;
+  var my = e.pageY - magnify_position.top;
+
+  if (mx < $(this).width() && my < $(this).height() && mx > 0 && my > 0) {
+    $(".large").fadeIn(200);
+  } else {
+    $(".large").fadeOut(200);
+  }
+  if ($(".large").is(":visible")) {
+    var rx =
+      Math.round(
+        (mx / $(".small").width()) * sub_width - $(".large").width() / 2
+      ) * -1;
+    var ry =
+      Math.round(
+        (my / $(".small").height()) * sub_height - $(".large").height() / 2
+      ) * -1;
+
+    var bgp = rx + "px " + ry + "px";
+
+    var px = mx - $(".large").width() / 2;
+    var py = my - $(".large").height() / 2;
+
+    $(".large").css({ left: px, top: py, backgroundPosition: bgp });
+  }
+}
+});
+});
+
+
+
+</script>
 
 
 {% endblock %}

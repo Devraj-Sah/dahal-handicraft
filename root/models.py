@@ -88,6 +88,7 @@ class Products(models.Model):
     image2 = models.ImageField(upload_to='uploads/', null=True)
     image3 = models.ImageField(upload_to='uploads/', null=True)
     image4 = models.ImageField(upload_to='uploads/', null=True)
+    image5 = models.ImageField(upload_to='uploads/', null=True)
     created_at = models.DateTimeField(auto_now=True,null=True)
     updated_at = models.DateTimeField(auto_now=True,null=True)
     ftn_choice = [("f","featured"),("t","trending"),("n","new_arrival")]

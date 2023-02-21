@@ -165,7 +165,7 @@
                                             <div class="col-md-3">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h4 class="card-title">Upload Product Image</h4>
+                                                        <h4 class="card-title">Upload Product Main Image</h4>
                                                         <input name="image1" type="file" id="input-file-now1" class="dropify" />
                                                     </div>
                                                 </div>
@@ -175,6 +175,50 @@
                                                     </script>
                                                 {% endif %}
                                             </div>
+
+                                            <div class="col-md-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Product Image 2</h4>
+                                                        <input name="image2" type="file" id="input-file-now2" class="dropify" />
+                                                    </div>
+                                                </div>
+                                                {% if id_data.image2 %}
+                                                    <script>
+                                                        $("#input-file-now2").attr("data-default-file", "{{id_data.image2.url}}");
+                                                    </script>
+                                                {% endif %}
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Product Image 3</h4>
+                                                        <input name="image3" type="file" id="input-file-now3" class="dropify" />
+                                                    </div>
+                                                </div>
+                                                {% if id_data.image3 %}
+                                                    <script>
+                                                        $("#input-file-now3").attr("data-default-file", "{{id_data.image3.url}}");
+                                                    </script>
+                                                {% endif %}
+                                            </div>
+
+
+                                            <div class="col-md-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">Product Image 4</h4>
+                                                        <input name="image4" type="file" id="input-file-now4" class="dropify" />
+                                                    </div>
+                                                </div>
+                                                {% if id_data.image4 %}
+                                                    <script>
+                                                        $("#input-file-now4").attr("data-default-file", "{{id_data.image4.url}}");
+                                                    </script>
+                                                {% endif %}
+                                            </div>
+
                                             {% comment %} <div class="col-md-3">
                                                 <div class="card">
                                                     <div class="card-body">

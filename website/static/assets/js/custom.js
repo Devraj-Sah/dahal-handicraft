@@ -370,6 +370,7 @@
       });
     },
 
+
     Related_pro_item: function () {
       $(".test_slider_pro").owlCarousel({
         loop: true,
